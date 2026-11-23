@@ -2,6 +2,6 @@
    Both identifiers are public app configuration, NOT secret credentials.
    Never commit an OAuth client secret, API token, private key, or password. */
 window.GOOGLE_SHEETS_CONFIG = {
-  clientId: 'REPLACE_WITH_WEB_OAUTH_CLIENT_ID.apps.googleusercontent.com',
-  spreadsheetId: 'REPLACE_WITH_SPREADSHEET_ID'
+  clientId: '261928782963-gpr27sn7tio7g25m73smvtsrd90p0rn6.apps.googleusercontent.com',
+  spreadsheetId: '1Hgt7nzF23dnUH1sVWnDTe-zQdBX2h-XnBz315POzLFw'
 };
