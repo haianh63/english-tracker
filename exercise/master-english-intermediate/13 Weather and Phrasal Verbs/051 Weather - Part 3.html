@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 73773140, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I took the chicken _____ the freezer to thaw _____</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["Take sth from sw = does not exist", "Take sth from sw = does not exist, thaw away = does not exist", "take sth out (of) sth = remove sth from sw. Thaw out = defrost ", "thaw up = does not exist"], "answers": ["<p>from, out</p>", "<p>from, away</p>", "<p>out, out</p>", "<p>out, up</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "I took the chicken _____ the freezer to thaw _____", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73773172, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We wrapped _____ the Christmas presents and put them _____ the tree.</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["wrap away = does not exist", "wrap sth up = cover it with sth, put sth under sw = place sth under sth", "Wrap out = does not exist. We don't put presents on the Christmas tree; we put them under the tree.", "We don't put presents on the Christmas tree; we put them under the tree."], "answers": ["<p>away, under</p>", "<p>up, under</p>", "<p>out, on</p>", "<p>up, on</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "We wrapped _____ the Christmas presents and put them _____ the tree.", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73775016, "assessment_type": "multiple-choice", "prompt": {"question": "<p>His face clouded _____ when he heard the bad news; then, he stormed _____ the room in a foul mood.</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["Cloud over = get cloudy, but we use it metaphorically too. Storm out (of) the room = leave the room feeling angry", "Cloud up = does not exist", "cloud out / storm from = do not exist", "storm from = does not exist"], "answers": ["<p>over, out</p>", "<p>up, out</p>", "<p>out, from</p>", "<p>over, from</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "His face clouded _____ when he heard the bad news; then, he stormed _____ the room in a foul mood.", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73786754, "assessment_type": "multiple-choice", "prompt": {"question": "<p>While we were putting the tent _____, torrential rain started pouring _____ .</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["People can 'pour out of a stadium', which means leave the stadium in great numbers", "put sth (clothes) on = get dressed", "", "People can 'pour out of a stadium', which means leave the stadium in great numbers. Put sth (clothes) on = get dressed"], "answers": ["<p>up, out</p>", "<p>on, down</p>", "<p>up, down</p>", "<p>on, out</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "While we were putting the tent _____, torrential rain started pouring _____ .", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73786900, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Several roads had flooded, so I turned ____ late for the wedding; I felt that I had let the happy couple ____ .</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["let sb in = allow them to enter your house. Turn round = turn 180 degrees", "turn up = show up = appear or arrive. Let sb down = disappoint sb", "It turned out that = in the end, we realized that.... (It turned out that she had lived there all her life)", "turn sth on = switch sth on (press the 'on' button). let sb out = allow someone to leave your house (I let the cat out very early, as he needed the toilet)"], "answers": ["<p>round, in</p>", "<p>up, down</p>", "<p>out, down</p>", "<p>on, out</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Several roads had flooded, so I turned ____ late for the wedding; I felt that I had let the happy couple ____ .", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73786934, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The city was so polluted that it was difficult to see _____ the thick, unpleasant smog</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["", "see through sth = see beyond sth (We can see through transparent materials, like glass)", "", ""], "answers": ["<p>round</p>", "<p>through</p>", "<p>across</p>", "<p>into</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "The city was so polluted that it was difficult to see _____ the thick, unpleasant smog", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73787114, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When it is boiling, we start to _____, but when it is freezing, we start to _____</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["We shiver when we are very cold, and we sweat when we are very hot", "A puddle (noun) is some water on the ground. If it is drizzling, then it is raining but not heavily. ", "Only your teeth 'chatter' and they do this when you are very cold.", "We shiver when we are very cold, and we sweat when we are very hot"], "answers": ["<p>shiver, sweat</p>", "<p>puddle, drizzle</p>", "<p>chatter, shiver</p>", "<p>sweat, shiver</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "When it is boiling, we start to _____, but when it is freezing, we start to _____", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}, {"_class": "assessment", "id": 73787252, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A) Can you open a window, please? It's so _____ in here!<br>B) But if I open the window, there will be a _____, and we will all start to shiver.</p>", "relatedLectureIds": ["41171010"], "feedbacks": ["Chilly = a bit cold (so why open the window?)", "Chilly = a bit cold (so why open the window?). Puddle = a bit of water on the floor", "Stuffy = a lack of fresh air. Draft = a breeze (light wind) that goes through a room", "Flood = a destructive amount of water. When a town floods, houses are destroyed and sometimes lives are lost"], "answers": ["<p>chilly, draft</p>", "<p>chilly, puddle</p>", "<p>stuffy, draft</p>", "<p>stuffy, flood</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "A) Can you open a window, please? It's so _____ in here!B) But if I open the window, there will be a _____, and we will all start to shiver.", "related_lectures": [{"_class": "lecture", "id": 41171010, "title": "Weather - Part 3", "created": "2023-12-05T17:43:13Z", "is_published": true, "asset": {"_class": "asset", "id": 53151732, "asset_type": "Video", "title": "Weather Part 3.mp4", "created": "2023-12-05T18:18:32Z"}, "object_index": 51, "url": "/course/master-english-intermediate/learn/lecture/41171010"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

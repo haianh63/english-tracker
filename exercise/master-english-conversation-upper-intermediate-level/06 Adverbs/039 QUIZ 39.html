@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 81057372, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-03-35-dd6f9cfc99ffd777e232e3b1cd47ccf4.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["We need passive", "This form is incorrect", "Present perfect simple (Passive)", "2 laptops has?"], "answers": ["<p>2 laptops <strong><em>have stolen</em></strong>, and this dodgy geezer is blatantly the culprit.</p>", "<p>2 laptops <strong><em>have being stolen</em></strong>, and this dodgy geezer is blatantly the culprit.</p>", "<p>2 laptops <strong><em>have been stolen</em></strong>, and this dodgy geezer is blatantly the culprit.</p>", "<p>2 laptops <strong><em>has been stolen</em></strong>, and this dodgy geezer is blatantly the culprit.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81057474, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-15-54-bf141d958762caad1abbc40ebe39437d.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["", "We need passive", "We need present continuous, because this is happening now (currently)"], "answers": ["<p>The suspect <strong>is</strong> currently <strong>being interrogated</strong> by the police</p>", "<p>The suspect <strong>is</strong> currently <strong>interrogated</strong> by the police</p>", "<p>The suspect <strong>was</strong> currently <strong>being interrogated</strong> by the police</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81057548, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-26-49-9165afd4d45e81c1b5a15ecdff7eeb60.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["Hate + gerund. We don't often use to + infinitive after hate (we only use to + inf after hate if we mean that we prefer not to do sth. For example, I hate to say this, but your leg needs to be amputated.)", "Passive gerund (hate + gerund)", "We don't use the perfect gerund (having been told off), because she hates being told off regularly (every week), so simple is best."], "answers": ["<p>She hates <strong>to be told off</strong>, but she's always getting into trouble.</p>", "<p>She hates <strong>being told off</strong>, but she's always getting into trouble.</p>", "<p>She hates <strong>having been told off</strong>, but she's always getting into trouble.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81057674, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-31-32-66a16860102f9e5ff8809cc62869ef6a.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["We need passive", "This sentence is missing an important auxiliary verb", "Present continuous (passive). Hold sb back = restrain sb"], "answers": ["<p>This violent thug <strong>is holding back</strong> by his friends</p>", "<p>This violent thug <strong>being held back</strong> by his friends</p>", "<p>This violent thug <strong>is being held back</strong> by his friends</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81057788, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-34-13-05bada4161d5a8af7abf1c7a1b2b0a40.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["Future perfect simple (passive)", "'By + future time expression' = will have done (finished) OR will be doing (in progress)", "We need passive"], "answers": ["<p>The boy's parents pander to his every whim. He <strong>will have been spoilt</strong> rotten by the time he reaches adulthood.</p>", "<p>The boy's parents pander to his every whim. He <strong>will be spoilt</strong> rotten by the time he reaches adulthood.</p>", "<p>The boy's parents pander to his every whim. He <strong>will have spoilt</strong> rotten by the time he reaches adulthood.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81057808, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-36-39-7a40cdb70a728e31b6fc12a2d641a6e1.png\">", "relatedLectureIds": ["42920326"], "feedbacks": ["Past continuous is incorrect. We need past simple", "We need passive", "Past simple passive (shirk your duties/responsibilities = avoid your duties)"], "answers": ["<p>The meeting <strong>was being avoided</strong> by one of my colleagues, who often shirks her duties.</p>", "<p>The meeting<strong> avoided</strong> by one of my colleagues, who often shirks her duties.</p>", "<p>The meeting <strong>was avoided</strong> by one of my colleagues, who often shirks her duties.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81058196, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-42-15-392d4abfb07b86cacdf304e51ef32b49.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["This must be active rather than passive. To make it passive, we need to rephrase it:  While the snake's skin was being shed, a photographer managed to capture the moment on film", "This must be active rather than passive. To make it passive, we need to rephrase it:  While the snake's skin was being shed, a photographer managed to capture the moment on film", "Good. Here we need active, and past continuous (while)"], "answers": ["<p>While the snake <strong>was being shed</strong> its skin, a photographer managed to capture the moment on film</p>", "<p>While the snake <strong>was being shed by</strong> its skin, a photographer managed to capture the moment on film</p>", "<p>While the snake <strong>was shedding</strong> its skin, a photographer managed to capture the moment on film</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}, {"_class": "assessment", "id": 81058240, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2024-04-30_08-46-24-0432c37f2c6164d1e91b439436d7b94c.jpg\">", "relatedLectureIds": ["42920326"], "feedbacks": ["Need is usually to + inf", "Need + to + inf", "To + infinitive simple (passive)"], "answers": ["<p>Naughty children <strong>need being punished</strong> for unacceptable behaviour; otherwise, they grow up to be self-entitled spoilt brats.</p>", "<p>Naughty children <strong>need be punished</strong> for unacceptable behaviour; otherwise, they grow up to be self-entitled spoilt brats.</p>", "<p>Naughty children <strong>need to be punished</strong> for unacceptable behaviour; otherwise, they grow up to be self-entitled spoilt brats.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42920326, "title": "Passive - Part 1", "created": "2024-03-21T18:33:21Z", "is_published": true, "asset": {"_class": "asset", "id": 55466430, "asset_type": "Video", "title": "Passive 1.mp4", "created": "2024-03-22T12:02:47Z"}, "object_index": 40, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42920326"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

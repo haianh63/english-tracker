@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46802584, "assessment_type": "multiple-choice", "prompt": {"question": "<p>You ought to ____ your laces up or you will trip over. </p>", "relatedLectureIds": ["31928638"], "feedbacks": ["We don't zip up laces!", "We don't wrap up laces!", "To do sth up (opposite = undo sth) = to fasten clothing with a zip/laces/buttons", "We don't button up laces!", "Dress up = put on your best clothes (We don't dress up laces!)", "Hang up = put clothes on the hanger (We don't hang up laces!)"], "answers": ["<p>zip</p>", "<p>wrap</p>", "<p>do</p>", "<p>button</p>", "<p>dress</p>", "<p>hang</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "You ought to ____ your laces up or you will trip over.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46802596, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He got really hot under the _____ when I suggested that he was mistaken, and he stormed out of the room in a terrible mood.</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["Wrong idiom. To do sth off the cuff = do sth spontaneously (without preparation)", "Wrong idiom. A coat is a large jacket (e.g. a fur coat)", "To get hot under the collar = to get angry about sth", "Wrong idiom. A cardigan is a type of sweater with buttons (it can be open or closed), and it is often worn by old people (I have a few in my wardrobe)", "Wrong idiom. A hood is joined to a sweater or jacket or coat, and it covers the head, protecting it from the rain"], "answers": ["<p>cuff</p>", "<p>coat</p>", "<p>collar</p>", "<p>cardigan</p>", "<p>hood</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "He got really hot under the _____ when I suggested that he was mistaken, and he stormed out of the room in a terrible mood.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46802722, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Once again, a minister has been caught with his _____ down, as compromising photos of him wrapped in the arms of his secretary have been plastered on the front pages of every tabloid. The photos show the married father-of-three kissing a young lady, old enough to be his daughter, who is wearing nothing but a _____ bikini.</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["Wrong for 2 reasons! ", "We don't usually describe a bikini as 'loose'. They are usually rather tight, revealing, and alluring (or perhaps it's just me!)", "We don't have an idiom 'to be caught with your belt down'. ", "This is ALMOST correct. We do say 'he was caught with his flies down', but this literally means that your flies are unzipped. It is not an idiom meaning 'caught in an embarrassing position'", "We don't usually describe a bikini as 'scruffy'. They are usually rather tight, revealing, and alluring (or perhaps it's just me!)", "To be caught with your pants down = caught in an embarrassing position. Skimpy clothes = tight, revealing clothes"], "answers": ["<p>belt, baggy</p>", "<p>pants, loose</p>", "<p>belt, skimpy</p>", "<p>flies, skimpy</p>", "<p>flies, scruffy</p>", "<p>pants, skimpy</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "Once again, a minister has been caught with his _____ down, as compromising photos of him wrapped in the arms of his secretary have been plastered on the front pages of every tabloid. The photos show the married father-of-three kissing a young lady, old enough to be his daughter, who is wearing nothing but a _____ bikini.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46803110, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Unfortunately, the culprit can't be identified from the CCTV footage, because his head is concealed under a large, dark _____ .</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["Your face can be concealed BEHIND a mask, but your head is concealed UNDER something else. ", "A hood covers your head", "A dressing gown covers your body (and is usually put on after a shower, or when you get up)", "A cloak covers your back, and it is often worn by superheroes. I have never ever worn a cloak, but I hope to one day. ", "A waist coat has no sleeves, but it is fastened with buttons. They are quite smart (as opposed to scruffy)."], "answers": ["<p>mask</p>", "<p>hood</p>", "<p>dressing gown</p>", "<p>cloak</p>", "<p>waist coat</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Unfortunately, the culprit can't be identified from the CCTV footage, because his head is concealed under a large, dark _____ .", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46803154, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Many of these local projects have been financed on a ______ budget, but in spite of the limited funding, they have been a great success.</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["", "Cloak-and-dagger is an adjective that means secretive and conspiratorial (a cloak-and-dagger book is probably about politics, conspiracy, and intrigue)", "To do sth on a shoestring (budget) = to do sth with very limited funds", "When clothes are inside out, the inside label is on the outside.", "When clothes are back to front, the back is at the front. ", "If something is upside down, then its feet are in the air, and its head is on the ground"], "answers": ["<p>laces</p>", "<p>cloak-and-dagger</p>", "<p>shoestring</p>", "<p>inside out</p>", "<p>back to front</p>", "<p>upside down</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Many of these local projects have been financed on a ______ budget, but in spite of the limited funding, they have been a great success.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46803174, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When she dolls herself up for a party, she always wears the most elegant evenings dresses that go with her _______ shoes. </p>", "relatedLectureIds": ["31928638"], "feedbacks": ["Why would she wear ripped shoes?", "Why would she wear torn shoes?", "Why would she wear filthy shoes?", "Skimpy = tight and revealing (skimpy top/bikini/clothes)", "High-heeled shoes = shoes (worn by women) that raise their height", "Nylon is a material (Nylon tights)", "Lycra is a material (Lycra cycling shorts)"], "answers": ["<p>ripped</p>", "<p>torn</p>", "<p>filthy</p>", "<p>skimpy</p>", "<p>high-heeled</p>", "<p>nylon</p>", "<p>lycra</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "When she dolls herself up for a party, she always wears the most elegant evenings dresses that go with her _______ shoes.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46803242, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I thought that _____ was only produced by spiders when making their webs, but as is regularly the case, I was completely mistaken. ____ is actually produced by a large number of insects (according to Wikipedia)<br>Which word is missing from both spaces?</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["Nylon is a synthetic polymer (nylon tights)", "Lycra is a synthetic fibre, and it is very elastic (Lycra cycling shorts. Spandex)", "Cotton is a natural fibre that grows around cotton plants", "Silk comes from insects, and it is a very comfortable material (silk shirt, silk underwear)", "denim is the material used in jeans", "A woven fabric, very soft and very smooth (a velvet bow tie)", "Suede is a type of leather, made from the underside of animal skin", "Leather is a material made from animal skins"], "answers": ["<p>nylon</p>", "<p>lycra</p>", "<p>cotton</p>", "<p>silk</p>", "<p>denim</p>", "<p>velvet</p>", "<p>suede</p>", "<p>leather</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I thought that _____ was only produced by spiders when making their webs, but as is regularly the case, I was completely mistaken. ____ is actually produced by a large number of insects (according to Wikipedia)Which word is missing from both spaces?", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}, {"_class": "assessment", "id": 46803410, "assessment_type": "multiple-choice", "prompt": {"question": "<p>She breezed into the office wearing a ________ fur coat that must have cost an arm and a leg.</p>", "relatedLectureIds": ["31928638"], "feedbacks": ["If it's scruffy, then it won't be expensive", "A stunning/gorgeous/eye-catching fur coat", "Coats don't have short sleeves", "Why would she be wearing a dirty coat? It's unlikely", "Why would she be torn a dirty coat? It's unlikely"], "answers": ["<p>scruffy</p>", "<p>stunning</p>", "<p>short-sleeve</p>", "<p>filthy</p>", "<p>torn</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "She breezed into the office wearing a ________ fur coat that must have cost an arm and a leg.", "related_lectures": [{"_class": "lecture", "id": 31928638, "title": "Clothes and Fashion", "created": "2022-04-22T10:31:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40924976, "asset_type": "Video", "title": "IMG_2670.MOV", "created": "2022-04-22T09:20:22Z"}, "object_index": 36, "url": "/course/master-english-vocabulary/learn/lecture/31928638"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

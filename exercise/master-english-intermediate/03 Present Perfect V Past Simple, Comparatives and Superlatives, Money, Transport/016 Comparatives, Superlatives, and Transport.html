@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 73108396, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option: </strong></p><p><br></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-27-41-e5d3b19a2551d10b481f05bf958b9c69.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["Cheap = 1 syllable adjective", "Cheap = 1 syllable adjective", "Cheap = 1 syllable adjective", "cheaper (or 'more expensive') than "], "answers": ["<p>A full tank of petrol in France is much more cheap than a full tank in the UK. </p>", "<p>A full tank of petrol in France is more cheaper than a full tank in the UK. </p>", "<p>A full tank of petrol in France is much cheaper than a full tank in the UK. </p>", "<p>A full tank of petrol in France is much cheaper as a full tank in the UK. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73108454, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-31-46-f13d4856e7c2c8fe87e291019bd8a2ec.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["more skilful than", "skilful = two syllable adjective", "", "as + adjective + as"], "answers": ["<p>The driver in the yellow car isn't more skilful as the one in the black car</p>", "<p>The driver in the yellow car isn't skilfuller than the one in the black car</p>", "<p>The driver in the yellow car isn't as skilful as the one in the black car</p>", "<p>The driver in the yellow car isn't as skilful than the one in the black car</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73108474, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-35-26-eeb2bae3924b81fe210811151c7ff15d.jpg\"></p>", "relatedLectureIds": ["40372460"], "feedbacks": ["Thick = 1 syllable adjective", "Thick = 1 syllable adjective (thicker than)", "thicker than", "Thick = 1 syllable adjective"], "answers": ["<p>This sandwich is thickier than the average sandwich</p>", "<p>This sandwich is thicker than the average sandwich</p>", "<p>This sandwich is thicker as the average sandwich</p>", "<p>This sandwich is more thicker than the average sandwich</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73108498, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-40-22-42f0cb7c5822d81c96d6ef11b6590147.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["", "most spicy OR spiciest (but NOT both)", "most spicy OR spiciest (but NOT both)", "Superlatives usually require present perfect (because they refer to your whole life, which is unfinished)"], "answers": ["<p>Tom Yum is the spiciest and tastiest soup that I have ever eaten.</p>", "<p>Tom Yum is the most spiciest and tastiest soup that I have ever eaten.</p>", "<p>Tom Yum is the much more spiciest and tastiest soup that I ever ate</p>", "<p>Tom Yum is the spiciest and tastiest soup that I ever ate</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73109148, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-43-36-74bbcc1e65faecdd1772a9d3bb28c29f.jpg\"><p><br></p>", "relatedLectureIds": ["40372460"], "feedbacks": ["dangerous = 3 syllable adjective", "worser? (bad, worse, the worst)", "worse as? Worse than", ""], "answers": ["<p>Drink driving is a worser crime than exceeding the speed limit, because it is usually dangerouser. </p>", "<p>Drink driving is a worser crime than exceeding the speed limit, because it is usually more dangerous. </p>", "<p>Drink driving is a worse crime as exceeding the speed limit, because it is usually more dangerous. </p>", "<p>Drink driving is a worse crime than exceeding the speed limit, because it is usually more dangerous. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73109178, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-47-19-2e2bf5c3e68d9a52ad64c1c7fbffde98.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["The + superlative", "The + superlative", "", "tall = 1 syllable"], "answers": ["<p>Our goalkeeper is tallest goalkeeper in the league, but he is not best. </p>", "<p>Our goalkeeper is the tallest goalkeeper in the league, but he is not best. </p>", "<p>Our goalkeeper is the tallest goalkeeper in the league, but he is not the best. </p>", "<p>Our goalkeeper is the most tall goalkeeper in the league, but he is not the best. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73109296, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_11-58-24-ccb13c01d6194486514255409d62bb24.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["", "go by car/train (NO article in some prepositional phrases)", "as + adjective + as", "as + adjective + as"], "answers": ["<p>Going by car is not as reliable as going by train</p>", "<p>Going by the car is not as reliable as going by the train</p>", "<p>Going by the car is not as reliable than going by the train</p>", "<p>Going by car is not as reliable than going by train</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}, {"_class": "assessment", "id": 73109318, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/quiz_question/2023-12-05_12-00-38-b05df4d313994991b8d35871e68be6b9.jpg\">", "relatedLectureIds": ["40372460"], "feedbacks": ["More heavy OR heavier (NOT both)", "More heavy OR heavier (NOT both)", "heavier than", ""], "answers": ["<p>Lorries are more heavier than vans, and vans are more heavier than cars</p>", "<p>Lorries are much more heavier than vans, and vans are much more heavier than cars</p>", "<p>Lorries are much heavier as vans, and vans are much heavier as cars</p>", "<p>Lorries are much heavier than vans, and vans are much heavier than cars</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40372460, "title": "Comparatives, Superlatives, and Transport", "created": "2023-10-16T15:35:21Z", "is_published": true, "asset": {"_class": "asset", "id": 52066998, "asset_type": "Video", "title": "IMG_4583.MOV", "created": "2023-10-16T15:50:47Z"}, "object_index": 16, "url": "/course/master-english-intermediate/learn/lecture/40372460"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

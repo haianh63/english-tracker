@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46738820, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I _____ curiously through the keyhole, hoping to catch a glimpse of what was going on inside that room. </p>", "relatedLectureIds": ["31831352"], "feedbacks": ["To glance = to take a quick look (but here, we are taking a secret look)", "To gaze = to take a long and loving look (but here, we are taking a secret look)", "To glare = to take a long and angry look (but here, we are taking a secret look)", "To frown = to take a disapproving look (but here, we are taking a secret look)", "To peek -= to take a secret look at sth", "To leer (at sb) = to look at sb in a sexually interested way"], "answers": ["<p>glanced</p>", "<p>gazed</p>", "<p>glared</p>", "<p>frowned</p>", "<p>peeked</p>", "<p>leered</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "I _____ curiously through the keyhole, hoping to catch a glimpse of what was going on inside that room.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740106, "assessment_type": "multiple-choice", "prompt": {"question": "<p>As a boy, I always enjoyed peering through my telescope and _____ at the stars. </p>", "relatedLectureIds": ["31831352"], "feedbacks": ["To glare at sth/sb = to angrily look at sth/sb for a long time", "To gaze at sth = to look at sth with love (collocates strongly with stars)", "To glare at sth/sb = to look at sth/sb for a long time (often angrily, but not always)", "To gawp = to stare with your mouth open", "To gape = to stare with your mouth open", "To squint = to screw up your eyes, maybe in order to avert your eyes from the bright light, or maybe in order to see something in the distance "], "answers": ["<p>glaring</p>", "<p>gazing</p>", "<p>staring</p>", "<p>gawping</p>", "<p>gaping</p>", "<p>squinting</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "As a boy, I always enjoyed peering through my telescope and _____ at the stars.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740126, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Just wait here for a few minutes, and I will be back before you can even _____ .</p>", "relatedLectureIds": ["31831352"], "feedbacks": ["Wrong collocation (ogle = look at sb in a sexually interested way)", "Wrong collocation (bat/flutter your eyelids)", "Wrong collocation (wink = close one eye in a secret signal)", "before you can blink = very quickly. (Blink = close both eyes briefly at the same time)", "Wrong collocation (glimpse = a brief look)", "To squint = to screw up your eyes, maybe in order to avert your eyes from the bright light, or maybe in order to see something in the distance "], "answers": ["<p>ogle</p>", "<p>flutter</p>", "<p>wink</p>", "<p>blink</p>", "<p>glimpse</p>", "<p>squint</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Just wait here for a few minutes, and I will be back before you can even _____ .", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740144, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I decided to look at the back of the book so that I could take a quick _________ at the answers.</p>", "relatedLectureIds": ["31831352"], "feedbacks": ["Wrong collocation", "Wrong collocation", "Wrong collocation", "A sneak-peak = a brief and secret look", "Wrong collocation"], "answers": ["<p>peep-peek</p>", "<p>sneak-peep</p>", "<p>creep-peep</p>", "<p>sneak-peak</p>", "<p>creep-peek</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I decided to look at the back of the book so that I could take a quick _________ at the answers.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740156, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A thick fog had completely surrounded us, and ________ through it, I tried to make out what was written on the sign ahead.</p>", "relatedLectureIds": ["31831352"], "feedbacks": ["To peek = to take a secret look", "To peep = to take a secret look", "To peer through sth = to look through sth for a long time, with some difficulty.", "To gaze = to take a loving look", "To gaze = to take an angry (and long) look", "To scan through sth = to quickly go through a document to get the general idea (not reading every word)"], "answers": ["<p>peeking</p>", "<p>peeping</p>", "<p>peering</p>", "<p>gazing</p>", "<p>glaring</p>", "<p>scanning</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "A thick fog had completely surrounded us, and ________ through it, I tried to make out what was written on the sign ahead.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740190, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I found the sight of the rotting corpses so grotesque that I had to _____ my eyes.</p>", "relatedLectureIds": ["31831352"], "feedbacks": ["To avoid sb's eyes/ gaze = avoid sb else's look", "To blink = to briefly close both eyes", "To wink = to briefly close one eye (secret signal)", "To avert your eyes = to look away", "To flutter your eyelids = make yourself pretty", "To squint = to screw up your eyes, maybe in order to avert your eyes from the bright light, or maybe in order to see something in the distance "], "answers": ["<p>avoid</p>", "<p>blink</p>", "<p>wink</p>", "<p>avert</p>", "<p>flutter</p>", "<p>squint</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I found the sight of the rotting corpses so grotesque that I had to _____ my eyes.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740222, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The dazzling glare of the midday sun meant that I had to _____ to read the map.</p>", "relatedLectureIds": ["31831352"], "feedbacks": ["To squint = to screw up your eyes, maybe in order to avert your eyes from the bright light, or maybe in order to see something more clearly", "To blink = to briefly close both eyes at the same time", "To wink = to briefly close 1 eye (secret signal)", "To gawp = to stare with your mouth open", "To peek = to take a secret look", "To scrutinize sth (always with object) = examine sth (a document) carefully "], "answers": ["<p>squint</p>", "<p>blink</p>", "<p>wink </p>", "<p>gawp</p>", "<p>peek</p>", "<p>scrutinize</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "The dazzling glare of the midday sun meant that I had to _____ to read the map.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}, {"_class": "assessment", "id": 46740266, "assessment_type": "multiple-choice", "prompt": {"question": "<p>As I walked into the room, my boss fixed me with an icy _____ , and I did my best to avoid his gaze, but I could still feel his cold frown of disapproval no matter how hard I tried. </p>", "relatedLectureIds": ["31831352"], "feedbacks": ["Wrong collocation (glance = quick look)", "Wrong collocation (gaze = loving look)", "To fix sb with an icy glare/stare = look at sb for a long time and in an angry way", "Wrong collocation (to gawp at sb = stare at sb with mouth open)", "Wrong collocation (glimpse  = quick look)", "Wrong collocation (peek = secret look)"], "answers": ["<p>glance</p>", "<p>gaze</p>", "<p>glare</p>", "<p>gawp</p>", "<p>glimpse</p>", "<p>peek</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "As I walked into the room, my boss fixed me with an icy _____ , and I did my best to avoid his gaze, but I could still feel his cold frown of disapproval no matter how hard I tried.", "related_lectures": [{"_class": "lecture", "id": 31831352, "title": "Ways of Looking", "created": "2022-04-15T12:29:21Z", "is_published": true, "asset": {"_class": "asset", "id": 40811254, "asset_type": "Video", "title": "IMG_2646.MOV", "created": "2022-04-16T09:49:35Z"}, "object_index": 24, "url": "/course/master-english-vocabulary/learn/lecture/31831352"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

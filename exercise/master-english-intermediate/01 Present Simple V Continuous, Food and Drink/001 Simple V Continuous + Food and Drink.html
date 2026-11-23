@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 70210456, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_16-29-19-6531af1c17ee14cadec15c3d3e2985ca.jpg\"><p><br></p>", "relatedLectureIds": ["40045722"], "feedbacks": ["", "See = stative verb (I see = correct)", "When we describe the actions in a photo, we use present continuous (because they are in the middle of the action)", "When we describe the actions in a photo, we use present continuous (because they are in the middle of the action)"], "answers": ["<p>In this picture, I see a couple. The man is chopping cucumbers and the woman is putting lettuce in a bowl.</p>", "<p>In this picture, I'm seeing a couple. The man is chopping cucumbers and the woman is putting lettuce in a bowl.</p>", "<p>In this picture, I see a couple. The man chops cucumbers and the woman puts lettuce in a bowl.</p>", "<p>In this picture, I see a couple. The man chops cucumbers and the woman is putting lettuce in a bowl.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70210732, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_16-36-34-e7c6389c2e4ada077120d6adfb5accd8.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["Usually =  present simple", "Once a week = present simple", "", "Once a week = present simple. Usually =  present simple"], "answers": ["<p>Once a week, I cook spaghetti bolognaise; usually, I'm adding tomatoes, mushrooms, peppers, onions, and garlic. </p>", "<p>Once a week, I'm cooking spaghetti bolognaise; usually, I add tomatoes, mushrooms, peppers, onions, and garlic. </p>", "<p>Once a week, I cook spaghetti bolognaise; usually, I add tomatoes, mushrooms, peppers, onions, and garlic. </p>", "<p>Once a week, I'm cooking spaghetti bolognaise; usually, I'm adding tomatoes, mushrooms, peppers, onions, and garlic. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70211640, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-03-07-7334d8d0a1a064f09aaa0fe7bcfe485b.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["usually = present simple", "At the moment = present continuous (if the verb is NOT stative)", "taste = stative verb (never use in continuous)", "Good. Taste = stative. Taste is ONLY dynamic when it refers to an action (E.g. The chef is tasting the soup to see if it is ready)"], "answers": ["<p>Which ingredients are you usually putting in your smoothies? My daughter loves using apple, lemon, lime, kiwi, pepper, broccoli, and avocado. I am drinking some at the moment, and it tastes disgusting. </p>", "<p>Which ingredients do you usually put in your smoothies? My daughter loves using apple, lemon, lime, kiwi, pepper, broccoli, and avocado. I drink some at the moment, and it tastes disgusting. </p>", "<p>Which ingredients do you usually put in your smoothies? My daughter loves using apple, lemon, lime, kiwi, pepper, broccoli, and avocado. I am drinking some at the moment, and it is tasting disgusting. </p>", "<p>Which ingredients do you usually put in your smoothies? My daughter loves using apple, lemon, lime, kiwi, pepper, broccoli, and avocado. I am drinking some at the moment, and it tastes disgusting. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70213262, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-15-44-7459f79894f6cec704d8da86eb408d81.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["See = stative verb", "When we describe a picture, we must use present continuous (we are in the middle of the action)", "", "Fry = cooking in a frying pan (in oil). Boil = cook in water (often in a saucepan)"], "answers": ["<p>I'm seeing two kettles in the picture, and they are boiling on the hob</p>", "<p>I see two kettles in the picture, and they boil on the hob</p>", "<p>I see two kettles in the picture, and they are boiling on the hob</p>", "<p>I see two kettles in the picture, and they are frying on the hob</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70213384, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-35-17-63f655ef8b4fd1a4dacc0872db5e9ca7.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["Bloody is a synonym for rare, so this is strange. ", "Like = stative verb (never use in continuous)", "Like = stative verb (never use in continuous). Bloody is a synonym for rare", "Raw = uncooked. Bloody is a synonym for rare, so this is strange. "], "answers": ["<p>How do you like your steak? Bloody, rare, or well-done?</p>", "<p>How are you liking your steak? Medium, rare, or well-done?</p>", "<p>How do you like your steak? Medium, rare, or well-done?</p>", "<p>How do you like your steak? Rare, bloody, or raw?</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70213630, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-43-10-7ff13e5a6aedb201a19749eb3d21b8eb.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["have breakfast = dynamic verb (it is an action, not a state). Have a problem/brother/car = stative verb. ", "have breakfast = dynamic verb (it is an action, not a state). Have a problem/brother/car = stative verb. ", "Those eggs are fried, not boiled", "Those eggs are fried, not scrambled"], "answers": ["<p>At the moment I'm having breakfast, and it's delicious: 2 fried eggs, some mushrooms, and some bacon. </p>", "<p>At the moment I have breakfast, and it's delicious: 2 fried eggs, some mushrooms, and some bacon. </p>", "<p>At the moment I'm having breakfast, and it's delicious: 2 boiled eggs, some mushrooms, and some bacon. </p>", "<p>At the moment I'm having breakfast, and it's delicious: scrambled eggs, some mushrooms, and some bacon. </p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70213692, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-53-16-eb2486b15630a9bd043f0b9fe92aa054.jpg\">", "relatedLectureIds": ["40045722"], "feedbacks": ["Please use present continuous to describe the actions in a photo. ", "think that = stative verb", "see = stative verb", "see = stative verb, think that = stative verb, lick = action verb"], "answers": ["<p>In this photo, I see a young person who licks an ice cream. I think that she is a girl. </p>", "<p>In this photo, I see a young person who is licking an ice cream. I'm thinking that she is a girl. </p>", "<p>In this photo, I'm seeing a young person who is licking an ice cream. I think that she is a girl. </p>", "<p>In this photo, I see a young person who is licking an ice cream. I think that she is a girl. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}, {"_class": "assessment", "id": 70213858, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-02_17-57-14-b2a517d83539b1d046135304b9575d4b.jpg\"><p><br></p>", "relatedLectureIds": ["40045722"], "feedbacks": ["Please use present continuous to describe actions in a photo. ", "I think (that) they are corn flakes. Think that = stative (informally, natives do use the continuous form, but in formal English, it is stative)", "I think (that) they are corn flakes. Think that = stative", "A plate is flat. We use a bowl to eat cereal."], "answers": ["<p>The woman in this photo pours milk into a plate of cereal - corn flakes, I think. </p>", "<p>The woman in this photo is pouring milk into a bowl of cereal - corn flakes, I'm thinking. </p>", "<p>The woman in this photo is pouring milk into a bowl of cereal - corn flakes, I think. </p>", "<p>The woman in this photo is pouring milk into a plate of cereal - corn flakes, I think. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40045722, "title": "Simple V Continuous + Food and Drink", "created": "2023-09-26T11:57:48Z", "is_published": true, "asset": {"_class": "asset", "id": 51617218, "asset_type": "Video", "title": "Cooking int 2 A.mp4", "created": "2023-09-26T12:36:26Z"}, "object_index": 1, "url": "/course/master-english-intermediate/learn/lecture/40045722"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

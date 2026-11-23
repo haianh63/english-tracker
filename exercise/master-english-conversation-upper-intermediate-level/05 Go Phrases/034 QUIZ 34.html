@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80976188, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-24-05-c76689c7a109f0a8b7af6d004d99e9ab.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["wouldn't have + 3rd / if + past perfect (3rd conditional)", "wouldn't have + 3rd / if + past perfect (3rd conditional)", "wouldn't have + 3rd / if + past perfect (3rd conditional)", "wouldn't have + 3rd / if + past perfect (3rd conditional). 3rd conditional is necessary as this is an unreal past event"], "answers": ["<p>The Titanic wouldn't sink if it hadn't been travelling so fast</p>", "<p>The Titanic wouldn't sink if it wasn't travelling so fast</p>", "<p>The Titanic wouldn't have sunk if it didn't travel so fast</p>", "<p>The Titanic wouldn't have sunk if it hadn't been travelling so fast</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80976242, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the most likely answer (we don't have many snakes in the UK):</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-30-26-252e1e771145ea3d080999262c70b65e.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["This is first conditional, which is for likely situations. This situation is very unlikely in the UK, so second conditional is better", "If + past / would + inf (second conditional)", "If + past / would + inf (second conditional)", "If + present / will + inf (first conditional)"], "answers": ["<p>If I find a snake in my bedroom, I will be terrified.</p>", "<p>If I found a snake in my bedroom, I would be terrified.</p>", "<p>If I would find a snake in my bedroom, I would be terrified.</p>", "<p>If I will find a snake in my bedroom, I will be terrified.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the most likely answer (we don't have many snakes in the UK):", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80976402, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-33-59-a2d77142fc0407f0d1d84723525e4a10.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["", "", "had been / would have found (3rd conditional).  This uses inversion (had they not been hit), so if is not required.", "This is first conditional, but we are talking about the unreal past, so we need third conditional"], "answers": ["<p>Had the twin towers not been hit by aircraft, the government would find a different pretext to go to war in the Middle East.</p>", "<p>Were the twin towers not been hit by aircraft, the government would find a different pretext to go to war in the Middle East.</p>", "<p>Had the twin towers not been hit by aircraft, the government would have found a different pretext to go to war in the Middle East.</p>", "<p>If the twin towers aren't hit by aircraft, the government will find a different pretext to go to war in the Middle East.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80976588, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-39-51-2e150ddac99abc0f82faaf68103ffda2.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["This is a mixed conditional (last night / right now).  If + had + 3rd / would + inf", "This is a mixed conditional (last night / right now).  If + had + 3rd / would + inf", "This is a mixed conditional (last night / right now).  If + had + 3rd / would + inf. Note well that it is also correct to use a simple form after would (and there is virtually no difference in meaning)  If I had gone to bed earlier last night, I wouldn't feel so tired right now = also correct", "This is a mixed conditional (last night / right now).  If + had + 3rd / would + inf"], "answers": ["<p>If I had gone to bed earlier last night, I wouldn't have felt so tired right now.</p>", "<p>If I went to bed earlier last night, I wouldn't be feeling so tired right now.</p>", "<p>If I had gone to bed earlier last night, I wouldn't be feeling so tired right now.</p>", "<p>If I went to bed earlier last night, I wouldn't have felt so tired right now.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80976886, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-48-41-cd78abe2eee12ddb23eb041865aa4296.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["This is unreal past (we see that it has already happened in the photo), so we need third conditional.", "This is unreal past (we see that it has already happened in the photo), so we need third conditional. If + had + 3rd / would have + 3rd (3rd conditional)", "This is unreal past (we see that it has already happened in the photo), so we need third conditional. If + had + 3rd / would have + 3rd (3rd conditional)", ""], "answers": ["<p>If I hadn't spilt the flammable liquid, the lab bench wouldn't have caught fire</p>", "<p>If I didn't spill the flammable liquid, the lab bench wouldn't catch fire</p>", "<p>If I didn't spill the flammable liquid, the lab bench wouldn't have caught fire</p>", "<p>If I hadn't spilt the flammable liquid, the lab bench wouldn't catch fire</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80977098, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-51-39-8ce918d6270b876f880cfc65ab95a00b.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["If + present / will (1st conditional)", "If + present / will (1st conditional)", "If + present / will (1st conditional)", "This is very likely (we see she is about to do it in the photo), so second conditional is incorrect (second = unlikely present/future = if + past / would )"], "answers": ["<p>If you had put that peg on his nose, he will stop snoring</p>", "<p>If you put that peg on his nose, he will stop snoring</p>", "<p>If you had put that peg on his nose, he would stop snoring</p>", "<p>If you put that peg on his nose, he would stop snoring</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80977124, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-54-03-11524ef3b8921cee311861aa33066578.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["If + present / will (first conditional)", "If + present / will (first conditional)", "If + present / will (first conditional)", "This us second (if + past / would), but this is very likely (according to the photo), so first conditional is required"], "answers": ["<p>If you won't turn the heat down on that hob, your noodles will start to boil over</p>", "<p>If you don't turn the heat down on that hob, your noodles would start to boil over</p>", "<p>If you don't turn the heat down on that hob, your noodles will start to boil over</p>", "<p>If you didn't turn the heat down on that hob, your noodles would start to boil over</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}, {"_class": "assessment", "id": 80977150, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_10-57-03-9e915fbd98b224048a092b51b8cdbebf.jpg\">", "relatedLectureIds": ["42880650"], "feedbacks": ["past / would + inf (second conditional)", "past / would + inf (second conditional). Splash out on sth = spend a lot of money with pleasure", "past / would + inf (second conditional)", "Never use future tense in both clauses of the conditional"], "answers": ["<p>Had I been rich man, I would splash out on a grandiose mansion with a huge maze in the garden</p>", "<p>Were I rich man, I would splash out on a grandiose mansion with a huge maze in the garden</p>", "<p>Would I be rich man, I would splash out on a grandiose mansion with a huge maze in the garden</p>", "<p>If I'll be a rich man, I'll splash out on a grandiose mansion with a huge maze in the garden</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42880650, "title": "Conditionals - Part 2", "created": "2024-03-19T19:42:51Z", "is_published": true, "asset": {"_class": "asset", "id": 55403200, "asset_type": "Video", "title": "Conditionals 2.mp4", "created": "2024-03-19T19:52:53Z"}, "object_index": 35, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42880650"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80999580, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_13-39-44-ea836deb1122217602859f0fff3e12cd.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["I am aware that you WILL rarely see 'profusely apologize', but I would like you to learn the most common combinations, as these sound the most fluent and native. If you are ever uncertain about which combination is the most common, Google ngrams is a valuable resource. ( https://books.google.com/ngrams/ )", "bleed / sweat / apologize profusely", "bleed / sweat / apologize profusely", "bleed / sweat / apologize profusely"], "answers": ["<p>He profusely apologized for having arrived so late</p>", "<p>Profusely, he apologized for having arrived so late </p>", "<p>He apologized profusely for having arrived so late</p>", "<p>He apologized for having arrived so late profusely</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81003404, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_13-54-54-7f58787619ef9e0a27af6f976fe5ac0b.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["abundantly clear, wildly inaccurate", "abundantly clear, wildly inaccurate", "abundantly clear, wildly inaccurate", "abundantly clear, wildly inaccurate"], "answers": ["<p>In 2017, we predicted that house prices would steadily increase for the next five years, but looking at the data, it is clear abundantly that our forecast was wildly inaccurate.</p><p><br></p>", "<p>In 2017, we predicted that house prices would steadily increase for the next five years, but looking at the data, it is abundantly clear that our forecast was inaccurate wildly</p>", "<p>In 2017, we predicted that house prices would steadily increase for the next five years, but looking at the data, it is abundantly clear that our forecast was wildly inaccurate.</p>", "<p>In 2017, we predicted that house prices would steadily increase for the next five years, but looking at the data, it is clear abundantly that our forecast was inaccurate wildly</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81004172, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_13-57-22-2c88fbd818e175d410c4ffbd40973ce6.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["Adverbs of manner (usually) go at the end of the clause.", "Adverbs of manner (usually) go at the end of the clause.", "Adverbs of manner (usually) go at the end of the clause.", "Adverbs of manner (usually) go at the end of the clause."], "answers": ["<p>Incessantly, the detective bombarded the suspect with questions</p>", "<p>The detective bombarded the suspect with questions incessantly</p>", "<p>The detective incessantly bombarded the suspect with questions</p>", "<p>The detective bombarded incessantly the suspect with questions</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81004888, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_13-59-55-74ddea2098e2bfac93b4e7e849bdde54.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["", "", "Distinctly, I remember leaving my wallet on the table, but now it has mysteriously disappeared."], "answers": ["<p>I remember distinctly leaving my wallet on the table, but now it has mysteriously disappeared.</p>", "<p>I distinctly remember leaving my wallet on the table, but now it has mysteriously disappeared.</p>", "<p>I remember leaving my wallet on the table distinctly, but now it has mysteriously disappeared.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81005658, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_14-02-40-ae8a98fe8f45c8021a430af585ed85c5.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["", "", "", ""], "answers": ["<p>He was bleeding profusely, so he went to the hospital and had stitches</p>", "<p>He was profusely bleeding, so he went to the hospital and had stitches</p>", "<p>Profusely, he was bleeding, so he went to the hospital and had stitches</p>", "<p>He was bleeding, so he went to the hospital and had stitches profusely</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81006428, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_14-05-43-6808fb94e5746d4004e5a2891c3133b0.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["perfectly clear", "perfectly clear", "perfectly clear", "Remember: stop having a rest = stop resting. Stop to have a rest = stop (the car) in order to have a rest "], "answers": ["<p>It is clear perfectly that this man is exhausted, so he should stop to have a rest, or he might fall asleep at the wheel.</p>", "<p>It is perfectly clear that this man is exhausted, so he should stop to have a rest, or he might fall asleep at the wheel.</p>", "<p>It is clear that this man is exhausted perfectly, so he should stop to have a rest, or he might fall asleep at the wheel.</p>", "<p>It is perfectly clear that this man is exhausted, so he should stop having a rest, or he might fall asleep at the wheel.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81007134, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_14-08-13-8fee6277ad87f5073d930dbc9cbe4e65.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["flatly refuse", "flatly refuse", "flatly refuse"], "answers": ["<p>Her behaviour had been completely unacceptable, so her mother refused flatly to let her go outside and play with her friends.</p>", "<p>Her behaviour had been completely unacceptable, so her mother refused to let her go outside flatly and play with her friends.</p>", "<p>Her behaviour had been completely unacceptable, so her mother flatly refused to let her go outside and play with her friends.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}, {"_class": "assessment", "id": 81007164, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the answer with the most common collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-29_14-10-38-7711f92116257b73478d2bb28f9cbb71.jpg\">", "relatedLectureIds": ["42684392"], "feedbacks": ["deeply disappointed", "deeply disappointed", "deeply disappointed"], "answers": ["<p>One of my colleagues was made redundant last month, and deeply he was disappointed</p>", "<p>One of my colleagues was made redundant last month, and he was deeply disappointed</p>", "<p>One of my colleagues was made redundant last month, and he was disappointed deeply</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the answer with the most common collocation:", "related_lectures": [{"_class": "lecture", "id": 42684392, "title": "Adverb Position - Part 1", "created": "2024-03-07T12:42:04Z", "is_published": true, "asset": {"_class": "asset", "id": 55147556, "asset_type": "Video", "title": "Adverbs Position 1.mp4", "created": "2024-03-07T12:48:46Z"}, "object_index": 38, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42684392"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

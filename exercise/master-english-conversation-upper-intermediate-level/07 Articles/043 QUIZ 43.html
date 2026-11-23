@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 81063180, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-21-05-044f060e0ab6f7c26ba8637a022e7219.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a pack of (lies, wolves, dogs)", "a flock of (birds)", "a herd of (large mammals, e.g. cows, elephants)  ", "a swarm of (+ flying insects e.g. wasps, bees, mosquitoes)"], "answers": ["<p>While we were sunbathing by the lake, <strong>a pack of mosquitoes</strong> attacked us, leaving me covered in insect bites from head to toe.</p>", "<p>While we were sunbathing by the lake, <strong>a flock of mosquitoes</strong> attacked us, leaving me covered with insect bites from head to toe.</p>", "<p>While we were sunbathing by the lake, <strong>a herd of mosquitoes</strong> attacked us, leaving me covered with insect bites from head to toe.</p>", "<p>While we were sunbathing by the lake, <strong>a swarm of mosquitoes</strong> attacked us, leaving me covered with insect bites from head to toe.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81063192, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-23-02-744fc9406718e311b2b36fc370f56b38.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["A plague of mice / locusts / journalists", "A pod of whales / dolphins / seals", "", "A pack of lies / dogs / wolves / hounds"], "answers": ["<p><strong>A plague of fish</strong> darted past me as I swam slowly around the coral reef</p>", "<p><strong>A pod of fish</strong> darted past me as I swam slowly around the coral reef</p>", "<p><strong>A school of fish</strong> darted past me as I swam slowly around the coral reef</p>", "<p><strong>A pack of fish</strong> darted past me as I swam slowly around the coral reef</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81063384, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-26-03-f2383e39da7bd8a6960673ba7fa3aedf.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a chunk of cheese / meat / pineapple", "a dollop / scoop / spoonful of ice cream", "a sip / drop / swig / gulp of brandy", "a sprinkling of (oregano, parsley, dill, any herb)"], "answers": ["<p>I'd like <strong>two large chunks</strong> of ice cream in a cone, please</p>", "<p>I'd like <strong>two large dollops</strong> of ice cream in a cone, please</p>", "<p>I'd like <strong>two large sips</strong> of ice cream in a cone, please</p>", "<p>I'd like <strong>two large sprinklings</strong> of ice cream in a cone, please</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81063710, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-29-05-ca639593a634a7f45cf9fcb0fa7151fb.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a knob of butter", "", "a slice of bread / toast / cake", "a snippet of information / conversation"], "answers": ["<p>I need <strong>a knob of garlic</strong> for the stir fry that I'll cook tonight</p>", "<p>I need <strong>a clove of garlic</strong> for the stir fry that I'll cook tonight</p>", "<p>I need <strong>a slice of garlic</strong> for the stir fry that I'll cook tonight</p>", "<p>I need <strong>a snippet of garlic</strong> for the stir fry that I'll cook tonight</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81064432, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-30-53-72fae65ed3f650052bb33fde74e5c00b.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["", "a spate of (crimes)", "a deluge of (complaints, paperwork, requests)", "a touch of (sadness, irony, humour) in your voice"], "answers": ["<p>Even though it was in the middle of the holiday season, by <strong>a stroke of luck</strong> we managed to find a hotel that had rooms available.</p>", "<p>Even though it was in the middle of the holiday season, by <strong>a spate of luck</strong> we managed to find a hotel that had rooms available.</p>", "<p>Even though it was in the middle of the holiday season, by <strong>a deluge of luck</strong> we managed to find a hotel that had rooms available.</p>", "<p>Even though it was in the middle of the holiday season, by <strong>a touch of luck</strong> we managed to find a hotel that had rooms available.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81064442, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-32-58-db05e9210d7a49d733d2d7f6aa377025.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a swig / sip / gulp / drop of (+ liquid)", "a spate of (+ crime)", "a snippet of information / conversation", "a stroke of luck / genius / work"], "answers": ["<p>The sloth is thought to be a lazy animal which never does <strong>a gulp of work</strong></p>", "<p>The sloth is thought to be a lazy animal which never does <strong>a spate of work</strong></p>", "<p>The sloth is thought to be a lazy animal which never does <strong>a snippet of work</strong></p>", "<p>The sloth is thought to be a lazy animal which never does <strong>a stroke of work</strong></p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81064456, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-35-17-74150cf04a8f8613edd04337a076e2ef.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a sprinkling of (herb)", "a sip / swig / gulp / drop of brandy (or any liquid)", "a scoop / spoonful / dollop of ice cream", "a snippet of conversation / information"], "answers": ["<p>She overheard <strong>a sprinkling of their conversation</strong> while they were gossiping about her</p>", "<p>She overheard <strong>a swig of their conversation</strong> while they were gossiping about her</p>", "<p>She overheard <strong>a spoonful of their conversation</strong> while they were gossiping about her</p>", "<p>She overheard <strong>a snippet of their conversation</strong> while they were gossiping about her</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}, {"_class": "assessment", "id": 81064630, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct collocation:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_12-39-00-ede42aefc2baeeb35442ecdf51397adb.jpg\">", "relatedLectureIds": ["42805558"], "feedbacks": ["a flurry of activity / interest / excitement / speculation. Note that people can swarm (verb) when they move around in large crowds", "a glimmer of hope / light / understanding / interest (in his eyes, on his face)", "a flicker of hope / interest / emotion (in his eyes, on his face)", "a touch of sadness / humour / irony (in his voice)"], "answers": ["<p>When the doors finally opened, there was <strong>a flurry of activity</strong> as everyone swarmed onto the train</p>", "<p>When the doors finally opened, there was <strong>a glimmer of activity</strong> as everyone swarmed onto the train</p>", "<p>When the doors finally opened, there was <strong>a flicker of activity</strong> as everyone swarmed onto the train</p>", "<p>When the doors finally opened, there was <strong>a touch of activity </strong>as everyone swarmed onto the train</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct collocation:", "related_lectures": [{"_class": "lecture", "id": 42805558, "title": "Collocations - Part 13", "created": "2024-03-15T07:58:25Z", "is_published": true, "asset": {"_class": "asset", "id": 55306010, "asset_type": "Video", "title": "Collocations 13.mp4", "created": "2024-03-15T08:06:19Z"}, "object_index": 44, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42805558"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

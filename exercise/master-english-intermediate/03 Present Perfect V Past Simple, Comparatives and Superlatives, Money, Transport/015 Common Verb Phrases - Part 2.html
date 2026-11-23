@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 72739210, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-27_19-11-48-7bd8a3b1869a5dc405675bd9c96683a0.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["We don't 'have a fortune' (wrong collocation)", "this year = unfinished period = present perfect ", "last week = past simple, this year = unfinished period = present perfect ", "last week = past simple"], "answers": ["<p>His company has had a fortune this year; last week, he spent most of the profits on a new yacht.&nbsp; </p>", "<p>His company got a fortune this year; last week, he spent most of the profits on a new yacht.&nbsp; </p>", "<p>His company has made a fortune this year; last week, he spent most of the profits on a new yacht.&nbsp; </p>", "<p>His company has made a fortune this year; last week, he has spent most of the profits on a new yacht.&nbsp; </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72739930, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-27_19-31-48-67bd8cb47962d36f6aa53187f4191e57.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["Get out (of) / in(to) a car. But for tubes we use a different verb", "We don't say 'it lost him an hour'", "We don't say 'go off the tube'. ", "Get on/off (transport), Get out (of) / in(to) a car, to get home/to work/to school, it takes me an hour to get to work"], "answers": ["<p>He got out of the tube at the wrong station, so it took him an hour to get home</p>", "<p>He got off the tube at the wrong station, so it lost him an hour to get home</p>", "<p>He went off the tube at the wrong station, so it took him an hour to go home</p>", "<p>He got off the tube at the wrong station, so it took him an hour to get home</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72740096, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-27_19-44-51-5750b52d4c109b1c9179fc3b459d40d5.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["make an experiment = wrong collocation", "have fire = wrong collocation", "Good. We can say 'we set fire to the bench', but this means we set fire to it on purpose (which is criminal!)", "We can say 'we set fire to the bench', but this means we set fire to it on purpose (which is criminal!). This was an accident, so we say 'the bench caught fire.'", "went fire = wrong collocation", "got fire = wrong collocation"], "answers": ["<p>While we were making the experiment, the bench caught fire. </p>", "<p>While we were doing the experiment, the bench had fire. </p>", "<p>While we were doing the experiment, the bench caught fire. </p>", "<p>While we were making the experiment, the bench set fire. </p>", "<p>While we were doing the experiment, the bench went fire. </p>", "<p>While we were making the experiment, the bench got fire. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72740806, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-27_20-18-10-33b05e6ca2ca85443810d052da7543ba.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["Wrong collocation", "", "Wrong collocation", "Wrong collocation"], "answers": ["<p>Something got my eye while I was in the garden, so I grabbed my magnifying glass to take a closer look. </p>", "<p>Something caught my eye while I was in the garden, so I grabbed my magnifying glass to take a closer look. </p>", "<p>Something took my eye while I was in the garden, so I grabbed my magnifying glass to take a closer look. </p>", "<p>Something kept my eye while I was in the garden, so I grabbed my magnifying glass to take a closer look. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72740870, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-27_20-23-23-0f842c871fad02fb20fd08174dcf064f.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["Wrong collocation", "Run away from sb/sth = escape from sb/sth", "Wrong collocation", "run out of (time/money/toilet paper), meet the next deadline", "Run away from sb/sth = escape from sb/sth"], "answers": ["<p>We are running out of time. If we don't act fast, we won't get the next deadline</p>", "<p>We are running away from time. If we don't act fast, we won't catch the next deadline</p>", "<p>We are running out of time. If we don't act fast, we won't take the next deadline</p>", "<p>We are running out of time. If we don't act fast, we won't meet the next deadline</p>", "<p>We are running away from time. If we don't act fast, we won't keep the next deadline</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72956556, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-01_14-03-58-669b064765ee1436c5f213d1086accc4.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["do a sound = wrong collocation", "got to bed = wrong collocation", "", "have a sound = wrong collocation", "taken to bed = wrong collocation"], "answers": ["<p>Don't do a sound. My little brother has already gone to bed, so we mustn't wake him up. </p>", "<p>Don't make a sound. My little brother has already got to bed, so we mustn't wake him up. </p>", "<p>Don't make a sound. My little brother has already gone to bed, so we mustn't wake him up. </p>", "<p>Don't have a sound. My little brother has already gone to bed, so we mustn't wake him up. </p>", "<p>Don't get a sound. My little brother has already taken to bed, so we mustn't wake him up. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72957540, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option: </strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-01_14-27-27-e472131ce04511b06e65e158b79f76a7.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["", "had turns = wrong collocation", "spent turns = wrong collocation", "made us ages = wrong collocation", "go lost = wrong collocation"], "answers": ["<p>We got lost on the way to the hotel, so it took us ages to get there. We were both tired, so we took turns driving. </p>", "<p>We got lost on the way to the hotel, so it took us ages to get there. We were both tired, so we had turns driving. </p>", "<p>We got lost on the way to the hotel, so it took us ages to get there. We were both tired, so we spent turns driving. </p>", "<p>We went lost on the way to the hotel, so it made us ages to get there. We were both tired, so we took turns driving. </p>", "<p>We went lost on the way to the hotel, so it took us ages to get there. We were both tired, so we took turns driving. </p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}, {"_class": "assessment", "id": 72958460, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-01_14-51-39-e15d660a2e9e5110ac22c9dcc4b7227d.jpg\">", "relatedLectureIds": ["40385482"], "feedbacks": ["got abroad = wrong collocation", "missing his mind = wrong collocation", "Lose = not be able to find. I lost my wife in the supermarket once, but I found her again very quickly. ", "", "catching his mind = wrong collocation"], "answers": ["<p>He missed his wife when she got abroad; he felt like he was losing his mind. </p>", "<p>He lost his wife when she went abroad; he felt like he was missing his mind. </p>", "<p>He lost his wife when she went abroad; he felt like he was losing his mind. </p>", "<p>He missed his wife when she went abroad; he felt like he was losing his mind. </p>", "<p>He missed his wife when she went abroad; he felt like he was catching his mind. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40385482, "title": "Common Verb Phrases - Part 2", "created": "2023-10-17T10:12:25Z", "is_published": true, "asset": {"_class": "asset", "id": 52085130, "asset_type": "Video", "title": "Common verb phrases B.mp4", "created": "2023-10-17T11:56:57Z"}, "object_index": 15, "url": "/course/master-english-intermediate/learn/lecture/40385482"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

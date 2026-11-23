@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 71189392, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-09-59-70347e2df0ceff5cab190b188572eada.jpg\"><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["Do (work)", "Make (money)", "Do (work)", "Make (money), Do (work)"], "answers": ["<p>While he was living in the United States, he made a lot of work and made a lot of money</p>", "<p>While he was living in the United States, he did a lot of work and did a lot of money</p>", "<p>While he was living in the United States, he made a lot of work and did a lot of money</p>", "<p>While he was living in the United States, he did a lot of work and made a lot of money</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71189590, "assessment_type": "multiple-choice", "prompt": {"question": "<p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-14-08-1527e49cac50dd843911c58d0bca2c11.jpg\"></p><p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["Do sb a favour", "Make a sound/noise/comment/speech", "", "Do sb a favour"], "answers": ["<p>Make me a favour. Don't do a sound; otherwise, you'll wake the kids up</p>", "<p>Do me a favour. Don't do a sound; otherwise, you'll wake the kids up</p>", "<p>Do me a favour. Don't make a sound; otherwise, you'll wake the kids up</p>", "<p>Make me a favour. Don't make a sound; otherwise, you'll wake the kids up</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71189824, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-21-33-5989c06ccbd87ebf5908c641364b46cf.jpg\"><p><strong>Please choose the correct answer: (All the sentences above contain mistakes - can you see them?)</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["First conditional = If + present / WILL + inf", "First conditional = If + present / WILL + inf", "make an effort", "Make progress"], "answers": ["<p>If you make an effort to avoid repeating your most common mistakes, you will make swift progress in your English classes</p>", "<p>If you will make an effort to avoid repeating your most common mistakes, you will make swift progress in your English classes</p>", "<p>If you will do an effort to avoid repeating your most common mistakes, you will make swift progress in your English classes</p>", "<p>If you make an effort to avoid repeating your most common mistakes, you will do swift progress in your English classes</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer: (All the sentences above contain mistakes - can you see them?)", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71189994, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-31-54-402c65fbcffe65ea04e229ef2be5de19.jpg\"><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["do a calculation (do work)", "make a mistake", "", "Do your accounts (do work)"], "answers": ["<p>While I was doing my accounts, I noticed that I hadn't made a few calculations correctly; I had made several mistakes</p>", "<p>While I was doing my accounts, I noticed that I hadn't done a few calculations correctly; I had done several mistakes</p>", "<p>While I was doing my accounts, I noticed that I hadn't done a few calculations correctly; I had made several mistakes</p>", "<p>While I was making my accounts, I noticed that I hadn't done a few calculations correctly; I had made several mistakes</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71190186, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-37-37-f06e7d0986b34b88215415177179e4f8.jpg\"><p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["make a fuss (complain, make a complaint)", "Make excuses (make works with most phrases that involve speaking)", "make a fuss (complain, make a complaint)", ""], "answers": ["<p>When I did a fuss about the substandard food, the manager didn't offer me any apology, but just did excuses </p>", "<p>When I made a fuss about the substandard food, the manager didn't offer me any apology, but just did excuses </p>", "<p>When I did a fuss about the substandard food, the manager didn't offer me any apology, but just made excuses </p>", "<p>When I made a fuss about the substandard food, the manager didn't offer me any apology, but just made excuses </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71190506, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-42-23-102dde1a1c3365a1dad360c3ebb60d8e.jpg\"><p><br><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["", "Do an experiment", "We say 'sth catches fire' when sth starts burning. Make a fire = create a fire", "Do damage (or cause damage)"], "answers": ["<p>While we were doing the experiment, the desk caught fire, doing a lot of damage to the ceiling of the laboratory. </p>", "<p>While we were making the experiment, the desk caught fire, doing a lot of damage to the ceiling of the laboratory. </p>", "<p>While we were doing the experiment, the desk made fire, doing a lot of damage to the ceiling of the laboratory. </p>", "<p>While we were doing the experiment, the desk caught fire, making a lot of damage to the ceiling of the laboratory. </p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71190546, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-47-58-6dcbe1875088b4e86e520b49c4b1998e.jpg\"><p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["Make the beds (this is the one chore which is make and not do)", "make a mess", "", "Make the beds (this is the one chore which is make and not do)"], "answers": ["<p>Listen, I have just done the beds, so please don't do a mess in there. </p>", "<p>Listen, I have just made the beds, so please don't do a mess in there. </p>", "<p>Listen, I have just made the beds, so please don't make a mess in there. </p>", "<p>Listen, I have just done the beds, so please don't make a mess in there. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71190578, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_18-54-50-bfa6cc637c0f62e8190190491fe060aa.jpg\"><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["Make an effort", "", "Do the bare minimum", "Do well, do badly, do your best"], "answers": ["<p>She's not a very good student; she makes the bare minimum during the classes, never doing an effort to improve, and she rarely does the homework which I set. I think she will do badly in the exams. </p>", "<p>She's not a very good student; she does the bare minimum during the classes, never making an effort to improve, and she rarely does the homework which I set. I think she will do badly in the exams. </p>", "<p>She's not a very good student; she makes the bare minimum during the classes, never making an effort to improve, and she rarely does the homework which I set. I think she will do badly in the exams. </p>", "<p>She's not a very good student; she does the bare minimum during the classes, never making an effort to improve, and she rarely does the homework which I set. I think she will make badly in the exams. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71191368, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_19-02-12-c77047d9256e019b9a8503fe32e2dac1.jpg\"><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["", "Make an appointment", "Do her make-up", "make a (good/bad) impression on sb"], "answers": ["<p>She had made the appointment for 5 o clock, so she still had a few minutes to do her make-up; she wanted to make a good impression on the new headmaster.</p>", "<p>She had done the appointment for 5 o clock, so she still had a few minutes to do her make-up; she wanted to make a good impression on the new headmaster.</p>", "<p>She had made the appointment for 5 o clock, so she still had a few minutes to make her make-up; she wanted to make a good impression on the new headmaster.</p>", "<p>She had made the appointment for 5 o clock, so she still had a few minutes to do her make-up; she wanted to do a good impression on the new headmaster.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}, {"_class": "assessment", "id": 71191382, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_19-05-55-a580d5d33ab2cc76ba9cd9b6b72d55bd.jpg\"><p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40210124"], "feedbacks": ["make a mistake", "", "Do your best", "Make a difference"], "answers": ["<p>We did our best, but it didn't make any difference; our goalkeeper did a lot of mistakes, so we were beaten by our rivals. </p>", "<p>We did our best, but it didn't make any difference; our goalkeeper made a lot of mistakes, so we were beaten by our rivals. </p>", "<p>We made our best, but it didn't make any difference; our goalkeeper made a lot of mistakes, so we were beaten by our rivals. </p>", "<p>We did our best, but it didn't do any difference; our goalkeeper made a lot of mistakes, so we were beaten by our rivals. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40210124, "title": "Make V do", "created": "2023-10-06T12:37:09Z", "is_published": true, "asset": {"_class": "asset", "id": 52060396, "asset_type": "Video", "title": "Make Do.mp4", "created": "2023-10-16T11:18:52Z"}, "object_index": 6, "url": "/course/master-english-intermediate/learn/lecture/40210124"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46736706, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A fierce blizzard was howling outside, so we had to make our way home by ______ slowly through the snow.</p>", "relatedLectureIds": ["31824946"], "feedbacks": ["Wrong collocation. To wade through/across the river", "Wrong collocation. To prance/strut/swagger = exaggerated walk (arms swinging) of vanity/pride", "Wrong collocation. To prowl the savannah (looking for prey)", "Wrong collocation. Kids and small animals scurry (fast, small steps)", "To trudge through the mud/snow (slow, heavy steps because mud/snow are difficult to walk through)"], "answers": ["<p>wading</p>", "<p>prancing</p>", "<p>prowling</p>", "<p>scurrying</p>", "<p>trudging</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "A fierce blizzard was howling outside, so we had to make our way home by ______ slowly through the snow.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736728, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The eruption of violence at last week's protests led to 2 policemen being injured and one protester being ______ on by the police horses. </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["Wrong collocation. To traipse = to walk (reluctantly, unwillingly)", "Wrong collocation. To march = to walk like a soldier (long, confident strides)", "Good. To trample on sb means to tread on sb many times. ", "Wrong collocation. To stamp on sb = To tread on them once (with great force), and it is usually people that stamp on others. ", "Wrong collocation. To stagger = to walk clumsily, swinging to and fro, almost falling over (maybe you are drunk)"], "answers": ["<p>traipsed</p>", "<p>marched</p>", "<p>trampled</p>", "<p>stamped</p>", "<p>staggered</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The eruption of violence at last week's protests led to 2 policemen being injured and one protester being ______ on by the police horses.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736782, "assessment_type": "multiple-choice", "prompt": {"question": "<p>In the city centre after dark, gangs of shady pickpockets _____ the underground, looking for drunks and other easy targets to prey on. </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["Wrong collocation (to trek up a mountain)", "Wrong collocation (kids and small animals scurry - short, fast steps)", "Good. They roam the underground (wander around it), looking for victims. Prowl would also work here. ", "Wrong collocation (To stride = to take long confident strides)", "Wrong collocation (To ramble through the fields/countryside)", "Wrong collocation (to stroll for pleasure)"], "answers": ["<p>trek</p>", "<p>scurry</p>", "<p>roam</p>", "<p>stride</p>", "<p>ramble</p>", "<p>stroll</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "In the city centre after dark, gangs of shady pickpockets _____ the underground, looking for drunks and other easy targets to prey on.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736802, "assessment_type": "multiple-choice", "prompt": {"question": "<p>On hearing that he had been fired, he _____ out of the office, slamming the door on his way. </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["To breeze out of sw = to walk out of sw overconfidently and possibly with self-satisfaction", "'To storm into/ out of' = to leave/enter angrily", "", "To waltz out of sw = to walk out of sw overconfidently and possibly with self-satisfaction", "'To hobble' = to walk with an injury (so it is not the best option)", "To prance/strut/swagger = exaggerated walk (arms swinging) of vanity/pride"], "answers": ["<p>breezed</p>", "<p>stormed</p>", "<p>paced</p>", "<p>waltzed</p>", "<p>hobbled</p>", "<p>pranced</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "On hearing that he had been fired, he _____ out of the office, slamming the door on his way.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736820, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I could tell that he was drunk as I saw him ________ down the road, almost falling head over heels as he tripped on the curb. </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["Wrong collocation. Kids and small animals scurry (fast, small steps)", "", "To prance/strut/swagger = exaggerated walk (arms swinging) of vanity/pride", "To prance/strut/swagger = exaggerated walk (arms swinging) of vanity/pride", "Wrong collocation. To shuffle = to walk without lifting your feet (much)"], "answers": ["<p>scurrying</p>", "<p>staggering</p>", "<p>strutting</p>", "<p>swaggering</p>", "<p>shuffling</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "I could tell that he was drunk as I saw him ________ down the road, almost falling head over heels as he tripped on the curb.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736860, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My uncle Albert fell off a ladder while he was just a young man, breaking his leg in three places. He has been _____ ever since the accident.&nbsp; </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["To saunter = to walk with pleasure (or for leisure)", "To roam = to wander sw (maybe without aim)", "To prowl = to roam sw, but looking for prey. ", "To charge round = to run/walk around carelessly (to charge into sb = to walk into sb violently)", "To stagger = to walk clumsily, swaying to and fro (drunk)", "To limp = to walk with an injury", "To amble = to walk with pleasure in the countryside"], "answers": ["<p>sauntering</p>", "<p>roaming</p>", "<p>prowling</p>", "<p>charging</p>", "<p>staggering</p>", "<p>limping</p>", "<p>ambling</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "My uncle Albert fell off a ladder while he was just a young man, breaking his leg in three places. He has been _____ ever since the accident.&nbsp;", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46736872, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We didn't want to wake anyone up, so we _______ down the corridor as quietly as we could.</p>", "relatedLectureIds": ["31824946"], "feedbacks": ["To shuffle = to walk while barely lifting the feet", "To trample = to walk very heavily (to trample on sb = to tred on sb many times)", "To march = to walk like a soldier", "To dash = to run fast", "To sprint = to run fast", "To tiptoe = to walk on your toes (in order to be quiet)", "To traipse = to walk reluctantly, unwillingly", "To prance = to walk in an exaggerated way, arms swinging, out of pride/vanity"], "answers": ["<p>shuffled</p>", "<p>trampled</p>", "<p>marched</p>", "<p>dashed</p>", "<p>sprinted</p>", "<p>tiptoed</p>", "<p>traipsed</p>", "<p>pranced</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "We didn't want to wake anyone up, so we _______ down the corridor as quietly as we could.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}, {"_class": "assessment", "id": 46737060, "assessment_type": "multiple-choice", "prompt": {"question": "<p>By the time that we had _____ the whole way across the swamp, several leeches had latched onto our bodies and started feeding off our blood. </p>", "relatedLectureIds": ["31824946"], "feedbacks": ["To waltz/breeze into/out of = to enter/exit overconfidently or smugly", "To sneak into/out of = to enter/exit without anyone noticing", "To strut means to walk in an exaggerated way (arms swinging) out of vanity or pride", "To wade through water / swamp", "To hobble means to walk with an injury", "To creep into/out of = to enter/exit without anyone noticing", "To pace (up and down, to and fro, back and forth) = to walk one way, then the other, many times"], "answers": ["<p>waltzed</p>", "<p>sneaked</p>", "<p>strutted</p>", "<p>waded</p>", "<p>hobbled</p>", "<p>crept</p>", "<p>paced</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "By the time that we had _____ the whole way across the swamp, several leeches had latched onto our bodies and started feeding off our blood.", "related_lectures": [{"_class": "lecture", "id": 31824946, "title": "Ways of Walking", "created": "2022-04-14T21:55:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40789034, "asset_type": "Video", "title": "IMG_2641.MOV", "created": "2022-04-14T21:47:11Z"}, "object_index": 22, "url": "/course/master-english-vocabulary/learn/lecture/31824946"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

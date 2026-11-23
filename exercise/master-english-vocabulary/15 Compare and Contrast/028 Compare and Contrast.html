@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46777292, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The results obtained from our experiment stand in _____ contrast to those we expected, forcing us to question both our assumptions and our methods. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["To stand in sharp/stark/marked contrast to sth = to ", "Wrong collocation. Subtle differences/distinctions = small and unnoticed differences/distinctions", "Wrong collocation. Clear distinctions", "Wrong collocation. Exact opposite", "Wrong collocation. Negligible differences", "Wrong collocation. Divergent opinions/ideas = ideas/opinions that differ sharply "], "answers": ["<p>stark</p>", "<p>subtle</p>", "<p>clear</p>", "<p>exact</p>", "<p>negligible</p>", "<p>divergent</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "The results obtained from our experiment stand in _____ contrast to those we expected, forcing us to question both our assumptions and our methods.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777304, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The results of the study give _____ weight to the hypothesis that was first proposed by Swedish scientists. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Wrong collocation (Vast doesn't collocate with weight)", "Wrong collocation (Substantial doesn't collocate with weight)", "Wrong collocation (Key doesn't collocate with weight)", "Wrong collocation (Sharp doesn't collocate with weight)", "Wrong collocation (Marked doesn't collocate with weight)", "Wrong collocation (Fair doesn't collocate with weight)", "give considerable weight to sth = to add/lend/give credence to sth"], "answers": ["<p>vast</p>", "<p>substantial</p>", "<p>key</p>", "<p>sharp</p>", "<p>marked</p>", "<p>fair</p>", "<p>considerable</p>"]}, "correct_response": ["g"], "section": "", "question_plain": "The results of the study give _____ weight to the hypothesis that was first proposed by Swedish scientists.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777446, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My twin brother and I bore a _____ resemblance to each other when we were children; when I look at old photos, I can't tell the difference between us. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["To bear a faint resemblance = to look like sb to a small degree", "To bear little resemblance = to look unlike sb ", "To bear a vague resemblance = to look like sb to a small degree", "To bear a striking resemblance to sb = to look like sb in every detail.", "Wrong collocation. Negligible differences", "Wrong collocation. A favourable comparison", "Wrong collocation. An impartial (objective) comparison"], "answers": ["<p>faint</p>", "<p>little</p>", "<p>vague</p>", "<p>striking</p>", "<p>negligible</p>", "<p>favourable</p>", "<p>impartial</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "My twin brother and I bore a _____ resemblance to each other when we were children; when I look at old photos, I can't tell the difference between us.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777602, "assessment_type": "multiple-choice", "prompt": {"question": "<p>There is a _____ wealth disparity between the rich and the poor in all countries. This trend seems likely to continue until we tackle the root causes of the problem: the close relationship between central banks and government. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Wrong collocation (negligible differences)", "Wrong collocation (faint resemblance)", "Wrong collocation (fair comparison)", "Wrong collocation (subtle differences/distinction)", "A growing disparity between X and Y", "Wrong collocation (slight differences)"], "answers": ["<p>negligible</p>", "<p>faint</p>", "<p>fair</p>", "<p>subtle</p>", "<p>growing</p>", "<p>slight</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "There is a _____ wealth disparity between the rich and the poor in all countries. This trend seems likely to continue until we tackle the root causes of the problem: the close relationship between central banks and government.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777940, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We ought to _________ the risks so that we can avoid any potential pitfalls. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Wrong collocation (X stands in marked/sharp/stark contrast to Y)", "Wrong collocation (draw/make a contrast or comparison between X and Y)", "Wrong collocation (bear a resemblance to, bear comparison)", "To weigh up the risks = examine/assess the risks (perhaps to mitigate/minimize them)", "Wrong collocation (to distinguish X from Y)", "Wrong collocation (the advantages/pros/benefits/upsides outweigh the disadvantages/cons/drawbacks/downsides)"], "answers": ["<p>stand</p>", "<p>draw</p>", "<p>bear</p>", "<p>weigh up</p>", "<p>distinguish</p>", "<p>outweigh</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "We ought to _________ the risks so that we can avoid any potential pitfalls.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777954, "assessment_type": "multiple-choice", "prompt": {"question": "<p>There has been a vast improvement in the quality of your work; your earlier essays _____ in comparison to those that I have received over the last few months.</p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Wrong collocation (bear a resemblance to, bear comparison with)", "Wrong collocation (stand in sharp/marked/stark contrast to)", "X pales/fades in comparison to Y (X is not as good as Y)", "Wrong collocation (draw a comparison between X and Y)", "Wrong collocation (highlight the differences)", "Wrong collocation (emphasize the differences)"], "answers": ["<p>bear</p>", "<p>stand</p>", "<p>pale</p>", "<p>draw</p>", "<p>highlight</p>", "<p>emphasize</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "There has been a vast improvement in the quality of your work; your earlier essays _____ in comparison to those that I have received over the last few months.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46777988, "assessment_type": "multiple-choice", "prompt": {"question": "<p>If we compare the population of France to that of the UK, we see that they ______________ each other, the former being roughly 66 million and the latter, 68 million. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Incorrect. They do NOT differ sharply", "Incorrect. They are not opposites", "Incorrect. They are distinguishable (one is 66 million, the other 68 million)", "Good. This means they are similar, which they are. ", "Incorrect. They do NOT sharply contrast", "Incorrect. They are actually quite similar."], "answers": ["<p>differ sharply from</p>", "<p>are the exact opposite of</p>", "<p>are indistinguishable from</p>", "<p>are not dissimilar to</p>", "<p>stand in marked contrast to</p>", "<p>bear little resemblance to</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "If we compare the population of France to that of the UK, we see that they ______________ each other, the former being roughly 66 million and the latter, 68 million.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}, {"_class": "assessment", "id": 46778944, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The movement of the tide is driven primarily by the gravitational attraction of the Moon and the Sun; the role played by other bodies in our solar system is _______ , so we may ignore the other planets and still make reliable predictions. </p>", "relatedLectureIds": ["31854058"], "feedbacks": ["Wrong collocation (favourable comparison)", "Wrong collocation (give considerable weight to sth)", "Wrong collocation (substantial differences/evidence)", "negligible differences = differences that are so slight that we may ignore them", "Wrong collocation (key differences)", "Wrong collocation (bear a faint resemblance to)", "Wrong collocation (bear little resemblance to)"], "answers": ["<p>favourable</p>", "<p>considerable</p>", "<p>substantial</p>", "<p>negligible</p>", "<p>key</p>", "<p>faint</p>", "<p>little</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The movement of the tide is driven primarily by the gravitational attraction of the Moon and the Sun; the role played by other bodies in our solar system is _______ , so we may ignore the other planets and still make reliable predictions.", "related_lectures": [{"_class": "lecture", "id": 31854058, "title": "Compare and Contrast", "created": "2022-04-17T08:59:32Z", "is_published": true, "asset": {"_class": "asset", "id": 40826202, "asset_type": "Video", "title": "IMG_2649.MOV", "created": "2022-04-17T08:35:35Z"}, "object_index": 30, "url": "/course/master-english-vocabulary/learn/lecture/31854058"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

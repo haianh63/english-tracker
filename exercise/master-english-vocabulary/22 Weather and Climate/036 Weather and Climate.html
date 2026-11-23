@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46803778, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Writers will often use the weather to reflect the mood of their characters; for example, when the protagonist is dreading a future event, thick and ______ clouds might loom on the horizon, or if he is miserable, he might be _____ in the pouring rain.</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["Arid means dry (an arid climate)", "Clouds don't howl. Only winds and blizzards howl", "You can't be cloaked in rain", "You can't be lingered in rain", "Arid means dry (an arid climate)", "Ominous clouds (they predict rain, which is bad), a drenched/soaked (through)/sopping wet/soaking wet person"], "answers": ["<p>arid, drenched</p>", "<p>howling, lingered</p>", "<p>prolonged, cloaked</p>", "<p>ominous, lingered</p>", "<p>arid, cloaked</p>", "<p>ominous, drenched</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "Writers will often use the weather to reflect the mood of their characters; for example, when the protagonist is dreading a future event, thick and ______ clouds might loom on the horizon, or if he is miserable, he might be _____ in the pouring rain.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46803788, "assessment_type": "multiple-choice", "prompt": {"question": "<p>As soon as the waters had _____ , the clean-up operation could begin in earnest. Sadly, 5 people had perished in the flash flood.</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["Good. Both hair and flood water can recede (reduce). We can also say 'subsided'.", "Fog/mist/smells/doubts/suspicions linger", "Clouds loom (overhead)", "Winds bluster on a windy day", "We all swelter (sweat profusely and get very hot) on a sweltering hot day ", "Frost sparkles/glitters"], "answers": ["<p>receded</p>", "<p>lingered</p>", "<p>loomed</p>", "<p>blustered</p>", "<p>sweltered</p>", "<p>sparkled</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "As soon as the waters had _____ , the clean-up operation could begin in earnest. Sadly, 5 people had perished in the flash flood.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804074, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The sun was ______ down fiercely overhead, the blistering heat making him feel dizzy and disoriented. If he didn't find water soon, he would be likely to pass out. </p>", "relatedLectureIds": ["31968210"], "feedbacks": ["Only rain can pour down (it is a liquid)", "Only rain or hail (or maybe snow) can pelt down", "We can talk about stifling heat, but there is no 'stifle down'", "", "A prevailing wind is a wind (in one area) that blows predominantly in one direction"], "answers": ["<p>pouring</p>", "<p>pelting</p>", "<p>stifling</p>", "<p>beating</p>", "<p>prevailing</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The sun was ______ down fiercely overhead, the blistering heat making him feel dizzy and disoriented. If he didn't find water soon, he would be likely to pass out.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804086, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Some of the _____ in yesterday's blizzard ____ so large that they damaged the windscreens of several cars.&nbsp; </p>", "relatedLectureIds": ["31968210"], "feedbacks": ["Sleet is wet snow", "Snow is not how we call the tiny balls of snow/ice", "Ice is not how we call the tiny balls of snow/ice", "Good. Hailstones are balls of ice/snow", "Damp is an adjective (usually). Even as a noun, it means (excessive) moisture."], "answers": ["<p>sleet....was</p>", "<p>snow.....was</p>", "<p>ice....was</p>", "<p>hailstones.....were</p>", "<p>damp....was</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Some of the _____ in yesterday's blizzard ____ so large that they damaged the windscreens of several cars.&nbsp;", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804094, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A _____ wind was raging all around us, so I pulled my hood up, wrapped my scarf tighter around my chin, and trudged onwards through the thick snow that was piling up left, right, and centre.</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["A biting wind is a very cold wind", "Frost glitters/sparkles", "Frost glitters/sparkles", "Clouds loom overhead", "Clouds form", "Clouds disperse"], "answers": ["<p>biting</p>", "<p>sparkling</p>", "<p>glittering</p>", "<p>looming</p>", "<p>forming</p>", "<p>dispersing</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "A _____ wind was raging all around us, so I pulled my hood up, wrapped my scarf tighter around my chin, and trudged onwards through the thick snow that was piling up left, right, and centre.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804422, "assessment_type": "multiple-choice", "prompt": {"question": "<p>This room is so hot and ____. Can you open a window and let a draft in? I feel as though I can't breath.</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["A severe frost", "A bitter frost", "A fluffy cloud (or a fluffy kitten)", "Scruffy = not dressed well, not smart", "When a room is stuffy, it is hot and hard to breath", "The heat can be blistering, but a room can't"], "answers": ["<p>severe</p>", "<p>bitter</p>", "<p>fluffy</p>", "<p>scruffy</p>", "<p>stuffy</p>", "<p>blistering</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "This room is so hot and ____. Can you open a window and let a draft in? I feel as though I can't breath.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804432, "assessment_type": "multiple-choice", "prompt": {"question": "<p>This part of Africa has an extremely arid climate, and when the rains don't come for a prolonged period, a ____ is declared by the local authorities</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["A blizzard is a snow storm", "A heatwave is just a prolonged period of heat. Here we have a lack of water too", "A tornado is a very strong (gale force) wind", "A hurricane is a very strong (gale force) wind", "A flood is when damage occurs because of too much water", "A drought is a prolonged period with a lack of water. They lead to crop failure and famine"], "answers": ["<p>blizzard</p>", "<p>heatwave</p>", "<p>tornado</p>", "<p>hurricane</p>", "<p>flood</p>", "<p>drought</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "This part of Africa has an extremely arid climate, and when the rains don't come for a prolonged period, a ____ is declared by the local authorities", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}, {"_class": "assessment", "id": 46804450, "assessment_type": "multiple-choice", "prompt": {"question": "<p>______ floods, triggered by a river bursting its banks, have caused extensive damage, and even loss of life, in rural areas on the east coast.</p>", "relatedLectureIds": ["31968210"], "feedbacks": ["Wrong collocation. The pouring rain", "Wrong collocation. He was soaking (wet)", "Wrong collocation. He was sopping (wet)", "Wrong collocation. He was drenched (very wet, soaked through)", "Good. Floods are devastating if they cause extensive damage or injuries", "Wrong collocation. (Thick clouds, thick fog/mist)", "Wrong collocation. (Bitterly cold, a bitter wind, a bitter frost)"], "answers": ["<p>Pouring</p>", "<p>Soaking</p>", "<p>Sopping</p>", "<p>Drenching</p>", "<p>Devastating</p>", "<p>Thick</p>", "<p>Bitter</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "______ floods, triggered by a river bursting its banks, have caused extensive damage, and even loss of life, in rural areas on the east coast.", "related_lectures": [{"_class": "lecture", "id": 31968210, "title": "Weather and Climate", "created": "2022-04-25T10:09:07Z", "is_published": true, "asset": {"_class": "asset", "id": 40985728, "asset_type": "Video", "title": "IMG_2678.MOV", "created": "2022-04-25T17:39:22Z"}, "object_index": 38, "url": "/course/master-english-vocabulary/learn/lecture/31968210"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46205446, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The burglar was caught red-handed, rifling ____ the victim's belongings when she opened the front door. </p>", "relatedLectureIds": ["31698504"], "feedbacks": ["", "", "'To rifle/rummage through sth' = to search an enclosed space (e.g. a drawer) to find or steal sth", "", "", ""], "answers": ["<p>in</p>", "<p>around</p>", "<p>through</p>", "<p>off</p>", "<p>out</p>", "<p>up</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The burglar was caught red-handed, rifling ____ the victim's belongings when she opened the front door.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46205596, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The local courts are clamping ____ ____ pickpockets, imposing custodial sentences on persistent and prolific offenders. </p>", "relatedLectureIds": ["31698504"], "feedbacks": ["", "Wrong prepositions", "Wrong prepositions", "Wrong prepositions", "Wrong prepositions"], "answers": ["<p>down on</p>", "<p>off on</p>", "<p>down with</p>", "<p>out on</p>", "<p>out with</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "The local courts are clamping ____ ____ pickpockets, imposing custodial sentences on persistent and prolific offenders.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46205738, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The con-man targeted elderly, vulnerable victims, _____ their confidence by claiming to be a local councillor. </p>", "relatedLectureIds": ["31698504"], "feedbacks": ["'To charge sb' = to formally accuse sb of a crime. usually, the police charge you with committing a crime", "'To commit a crime' = to carry out a crime", "'To cheat sb out of sth' = to fool sb into giving you sth (money)", "'To diddle sb out of sth' = to fool sb into giving you sth (money)", "'To gain sb's trust/confidence' = to make sb trust you"], "answers": ["<p>charging</p>", "<p>committing</p>", "<p>cheating</p>", "<p>diddling</p>", "<p>gaining</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "The con-man targeted elderly, vulnerable victims, _____ their confidence by claiming to be a local councillor.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46206170, "assessment_type": "multiple-choice", "prompt": {"question": "<p>All 3 juveniles were charged ____ being ____ possession of a deadly weapon. </p>", "relatedLectureIds": ["31698504"], "feedbacks": ["Wrong preposition", "", "Wrong preposition", "Wrong prepositions", "Wrong preposition", "Wrong prepositions"], "answers": ["<p>of, in</p>", "<p>with, in</p>", "<p>for, in</p>", "<p>for, on</p>", "<p>with, on</p>", "<p>of, on</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "All 3 juveniles were charged ____ being ____ possession of a deadly weapon.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46206580, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The accused was found guilty of a brutal assault on an elderly man, but the courts decided that a ____ punishment would be best, so he received a long _______ sentence. <br>Choose the most logical answer</p>", "relatedLectureIds": ["31698504"], "feedbacks": ["A suspended sentence is NOT harsh. ", "A suspended sentence is NOT severe.", "A custodial sentence (a prison sentence) is NOT lenient.", "Good. A suspended sentence does not involve prison, so it is more lenient than a custodial sentence."], "answers": ["<p>harsh, suspended</p>", "<p>severe, suspended</p>", "<p>lenient, custodial</p>", "<p>lenient, suspended</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The accused was found guilty of a brutal assault on an elderly man, but the courts decided that a ____ punishment would be best, so he received a long _______ sentence. Choose the most logical answer", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46207208, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The mugger forced the victim ____ gunpoint to hand over both his wallet and his watch. He is described as being more than 6 feet tall, with gangly arms, a double chin, and a scar on his right cheek. </p>", "relatedLectureIds": ["31698504"], "feedbacks": ["Wrong preposition", "Wrong preposition", "", "", "", ""], "answers": ["<p>in</p>", "<p>on</p>", "<p>at</p>", "<p>with</p>", "<p>of</p>", "<p>to</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The mugger forced the victim ____ gunpoint to hand over both his wallet and his watch. He is described as being more than 6 feet tall, with gangly arms, a double chin, and a scar on his right cheek.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46207626, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The local authorities have stepped _____ their efforts to crack down on the soaring crime rate by putting more bobbies on the beat.<br>'Bobbies on the beat' = policemen on the street (a bobby is an old informal word for a policeman)</p>", "relatedLectureIds": ["31698504"], "feedbacks": ["Wrong preposition", "Wrong preposition", "'To step up your efforts' = to make more effort", "Wrong preposition", "Wrong preposition"], "answers": ["<p>on</p>", "<p>at</p>", "<p>up</p>", "<p>in</p>", "<p>into</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The local authorities have stepped _____ their efforts to crack down on the soaring crime rate by putting more bobbies on the beat.'Bobbies on the beat' = policemen on the street (a bobby is an old informal word for a policeman)", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}, {"_class": "assessment", "id": 46207962, "assessment_type": "multiple-choice", "prompt": {"question": "<p>You should always be ____ the lookout for 'phishing scams' when you check your emails. These are emails, sent by fraudsters, which make ____ that they are from your bank or your PayPal account.</p>", "relatedLectureIds": ["31698504"], "feedbacks": ["'To make out that' = to pretend that", "Wrong preposition", "Wrong prepositions", "'To make away' = to run away (escape)"], "answers": ["<p>on, out</p>", "<p>in, out</p>", "<p>in, after</p>", "<p>on, away</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "You should always be ____ the lookout for 'phishing scams' when you check your emails. These are emails, sent by fraudsters, which make ____ that they are from your bank or your PayPal account.", "related_lectures": [{"_class": "lecture", "id": 31698504, "title": "Crime - Lesson 2", "created": "2022-04-05T21:57:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40601548, "asset_type": "Video", "title": "IMG_2604.MOV", "created": "2022-04-05T11:58:04Z"}, "object_index": 7, "url": "/course/master-english-vocabulary/learn/lecture/31698504"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

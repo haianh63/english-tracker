@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 73208928, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_15-42-00-52e0ad32f86bc1db71c865ef4be6046a.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["bare = naked (bare feet = feet without socks or shoes, bare chest = no t-shirt or top)", "rare (bloody), medium, well done", "We don't say 'absolutely sorry'. We say awfully/terribly sorry", "rare (bloody), medium, well done. We say awfully/terribly sorry"], "answers": ["<p>- Excuse me! I ordered a bare steak, but this looks well done to me.<br>- I'm absolutely sorry, sir. I will have the chef prepare you another steak</p>", "<p>- Excuse me! I ordered a bloody steak, but this looks done to me.<br>- I'm terribly sorry, sir. I will have the chef prepare you another steak</p>", "<p>- Excuse me! I ordered a bloody steak, but this looks done to me.<br>- I'm absolutely sorry, sir. I will have the chef prepare you another steak</p>", "<p>- Excuse me! I ordered a rare steak, but this looks well done to me.<br>- I'm awfully sorry, sir. I will have the chef prepare you another steak</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73209310, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_15-51-54-2620cfdef05075a5d06e6849e5a12eca.jpg\">", "relatedLectureIds": ["40515812"], "feedbacks": ["Mix in = incorrect. Which phrasal verb means to confuse two items?", "Before you complained, you had ordered the soup, so you need past perfect", "", "mixed down = incorrect. Which phrasal verb means to confuse two items?"], "answers": ["<p>I complained to the waiter that I hadn't ordered soup. We were certain that he had mixed in our order with an order from a different table. </p>", "<p>I complained to the waiter that I didn't order soup. We were certain that he had mixed out our order with an order from a different table. </p>", "<p>I complained to the waiter that I hadn't ordered soup. We were certain that he had mixed up our order with an order from a different table. </p>", "<p>I complained to the waiter that I didn't order soup. We were certain that he had mixed down our order with an order from a different table. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40515812, "title": "Reported Speech and Complaints - Part 2", "created": "2023-10-24T17:38:38Z", "is_published": true, "asset": {"_class": "asset", "id": 52252714, "asset_type": "Video", "title": "Reported speech B.mp4", "created": "2023-10-24T18:57:40Z"}, "object_index": 20, "url": "/course/master-english-intermediate/learn/lecture/40515812"}]}, {"_class": "assessment", "id": 73214792, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-12-51-e4440d20917cd23df69d8e18bf5e161c.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["Tell sb to do sth, say sth", "Tell sb TO do sth", "Fill (the car) up with petrol. Fill in/out a form", ""], "answers": ["<p>When we complained to the travel agent about the shoddy service at the hotel, he said us to fill out the form</p>", "<p>When we complained to the travel agent about the shoddy service at the hotel, he told us fill out the form</p>", "<p>When we complained to the travel agent about the shoddy service at the hotel, he told us fill up the form</p>", "<p>When we complained to the travel agent about the shoddy service at the hotel, he told us to fill in the form</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73215328, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-19-05-9fecc8e49ad2fb1106f34836585c3d52.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["Tell sb that, say that", "The mistake was EARLIER than 'he told' so we need past perfect", "We make a mistake (NOT do a mistake)", ""], "answers": ["<p>He told that the surgeons were so incompetent that they had made a mistake during the operation</p>", "<p>He told that the surgeons were so incompetent that they made a mistake during the operation</p>", "<p>He said that the surgeons were so incompetent that they had done a mistake during the operation</p>", "<p>He said that the surgeons were so incompetent that they had made a mistake during the operation</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73215644, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-20-39-99d2a232e51c1479b09eeccfa769bb91.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["", "Vomit was before admit, so we need past perfect", "The night before, the day before, the week before. ", "Vomit was before admit, so we need past perfect"], "answers": ["<p>He admitted that he had vomited the night before after drinking too much wine. </p>", "<p>He admitted that he vomited the night before after drinking too much wine. </p>", "<p>He admitted that he had vomited the before night after drinking too much wine. </p>", "<p>He admitted that he vomited the before night after drinking too much wine. </p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73217000, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-29-31-e56e7a62f1a0728c114e79b8d0bc7eeb.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["Spotless (or immaculate) means very clean, but cockroaches are a sign that the room was dirty. ", "Before we told the staff, we had already killed the cockroaches (so use past perfect)", "Spicy is for food, and it means 'very hot' (in terms of flavour)", ""], "answers": ["<p>Our room at the hotel was absolutely spotless. When we told the staff that we had killed 30 cockroaches on the first night, they just laughed. </p>", "<p>Our room at the hotel was absolutely filthy. When we told the staff that we killed 30 cockroaches on the first night, they just laughed. </p>", "<p>Our room at the hotel was absolutely spicy. When we told the staff that we killed 30 cockroaches on the first night, they just laughed. </p>", "<p>Our room at the hotel was absolutely filthy. When we told the staff that we had killed 30 cockroaches on the first night, they just laughed. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73217354, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-34-01-269649563e864ab3111d07f1afa513e4.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["promise to do sth (promise to give)", "", "Kick up a fuss = complain", "First we complained, then the manager promised a refund, so past perfect (had promised) is wrong"], "answers": ["<p>When we kicked out a fuss at reception, the manager promised give us a full refund</p>", "<p>When we kicked up a fuss at reception, the manager promised to give us a full refund</p>", "<p>When we kicked in a fuss at reception, the manager promised give us a full refund</p>", "<p>When we kicked up a fuss at reception, the manager had promised to give us a full refund</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}, {"_class": "assessment", "id": 73218072, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_17-39-36-5a7c7ec623f6773c6783fd4c6b51c639.jpg\">", "relatedLectureIds": ["40516942"], "feedbacks": ["Waiters give you a bill, not a receipt (which is from a shop assistant)", "Waiters give you a bill, not a check (nor a cheque)", "tell sb that, say that", ""], "answers": ["<p>The waiter apologized, then said that he would bring the receipt in a few minutes</p>", "<p>The waiter apologized, then told that he would bring the check in a few minutes</p>", "<p>The waiter apologized, then told that he would bring the bill in a few minutes</p>", "<p>The waiter apologized, then said that he would bring the bill in a few minutes</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40516942, "title": "Reported Speech and Complaints - Part 3", "created": "2023-10-24T19:00:01Z", "is_published": true, "asset": {"_class": "asset", "id": 52253224, "asset_type": "Video", "title": "Reported speech C.mp4", "created": "2023-10-24T19:20:03Z"}, "object_index": 21, "url": "/course/master-english-intermediate/learn/lecture/40516942"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

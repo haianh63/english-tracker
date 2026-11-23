@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46667594, "assessment_type": "multiple-choice", "prompt": {"question": "<p>In&nbsp;our local area we have had a _____ of arson attacks on vehicles, and police are asking anyone with information to come forward. </p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Wrong collocation", "An ambush is a surprise attack", "We might say 'the criminal struck at midnight', and we can say 'disaster strikes...'  To go on strike (or 'a strike') means that a group of workers refuse to work until they get better conditions/pay.", "A coup is a change of power, and one often achieved via the military", "Good. A spate of attacks/burglaries = a large number of (negative event)"], "answers": ["<p>row</p>", "<p>ambush</p>", "<p>strike</p>", "<p>coup</p>", "<p>spate</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "In&nbsp;our local area we have had a _____ of arson attacks on vehicles, and police are asking anyone with information to come forward.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46667712, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The rebels in the east have ________ a counter attack, shelling frontline positions with heavy artillery morning, noon, and night. </p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Wrong collocation (deploy troops/artillery)", "Wrong collocation (seize power)", "Wrong collocation (declare a ceasefire/war)", "Wrong collocation (loot shops)", "To launch a (counter) attack, to launch a pre-emptive strike"], "answers": ["<p>deployed</p>", "<p>seized</p>", "<p>declared</p>", "<p>looted</p>", "<p>launched</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "The rebels in the east have ________ a counter attack, shelling frontline positions with heavy artillery morning, noon, and night.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46667732, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Our troops have _______ heavy casualties in the fierce battles that are raging just a few kilometres from the city. </p>", "relatedLectureIds": ["31792190"], "feedbacks": ["We can say 'our troops have evacuated the wounded/injured', but 'evacuate heavy casualties' doesn't work.", "To stockpile (stock up on) sth (weapons / arms) = to accumulate (weapons / arms)", "To capture a city/town/village/enemy combatants", "To sustain/suffer heavy casualties"], "answers": ["<p>evacuated</p>", "<p>stockpiled</p>", "<p>captured</p>", "<p>sustained</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Our troops have _______ heavy casualties in the fierce battles that are raging just a few kilometres from the city.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46667750, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Sadly, three civilians were _____ in the crossfire while trying to flee from the brutal battle between rebel forces and government troops.</p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Wrong collocation. Launch an air strike/counter attack", "Wrong collocation. (Disaster strikes, launch an air strike)", "Wrong collocation. A spate of attacks/burglaries", "Wrong collocation. (suffer/sustain casualties)", "Wrong collocation. Pillage/plunder a village/town = soldiers go through the town taking (stealing) everything of value", "To be caught in the crossfire = to get stuck between two groups that are firing at each other"], "answers": ["<p>launched</p>", "<p>struck</p>", "<p>spate</p>", "<p>suffered</p>", "<p>pillaged</p>", "<p>caught</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "Sadly, three civilians were _____ in the crossfire while trying to flee from the brutal battle between rebel forces and government troops.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46668272, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Our city has now been under ______ for 31 days, and our supplies are dwindling. We won't be able to hold out for much longer. </p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Wrong collocation. (launch a bombing campaign)", "To lay siege to (a city), to be under siege = to be in a city/town that is surrounded by enemy troops", "An alliance is an agreement to collaborate (in war) between two different states (a pact)", "A truce is an agreement to stop fighting (cessation of hostilities, a peace treaty, a ceasefire) "], "answers": ["<p>bombing</p>", "<p>siege</p>", "<p>alliance</p>", "<p>truce</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Our city has now been under ______ for 31 days, and our supplies are dwindling. We won't be able to hold out for much longer.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46668290, "assessment_type": "multiple-choice", "prompt": {"question": "<p>_____ damage is a euphemism for the inevitable slaughter of civilians.</p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Wrong collocation. An ally is a state with whom you have a pact/alliance", "Collateral damage = slaughtered civilians", "Wrong collocation. Precision bombing = bombs that hit their targets ", "Wrong collocation. Surgical strikes = bombs that hit their targets ", "Wrong collocation. An armoured car is a type of vehicle used in conflicts"], "answers": ["<p>Ally</p>", "<p>Collateral</p>", "<p>Precision</p>", "<p>Surgical</p>", "<p>Armoured</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "_____ damage is a euphemism for the inevitable slaughter of civilians.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46668700, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The conflict has now spilled over into neighbouring territories, causing a huge number of ______ to leave the area, hoping to find sanctuary elsewhere. </p>", "relatedLectureIds": ["31792190"], "feedbacks": ["When civilians run flee from a conflict, we usually refer to them with a different word.", "This is unlikely. Why are the troops looking for sanctuary?", "This is unlikely. Why are the rebels looking for sanctuary?", "Refugees are people who flee from conflict or political repression"], "answers": ["<p>civilians</p>", "<p>troops</p>", "<p>rebels</p>", "<p>refugees</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The conflict has now spilled over into neighbouring territories, causing a huge number of ______ to leave the area, hoping to find sanctuary elsewhere.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}, {"_class": "assessment", "id": 46668710, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The death of a political dissident in prison has sparked off huge _____ in the city centre, with shops looted, police cars torched, and officials attacked by an angry, baying mob.</p>", "relatedLectureIds": ["31792190"], "feedbacks": ["Uprising is countable, so we must say 'a huge uprising'. ", "Coup is countable, so we must say 'a huge coup'. ", "An invasion is the deployment of troops into a foreign power's territory ", "Good. This is a description of a riot, rather than an uprising or coup"], "answers": ["<p>uprising</p>", "<p>coup</p>", "<p>invasion</p>", "<p>riots</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The death of a political dissident in prison has sparked off huge _____ in the city centre, with shops looted, police cars torched, and officials attacked by an angry, baying mob.", "related_lectures": [{"_class": "lecture", "id": 31792190, "title": "War and Peace", "created": "2022-04-12T18:01:24Z", "is_published": true, "asset": {"_class": "asset", "id": 40718418, "asset_type": "Video", "title": "IMG_2629.MOV", "created": "2022-04-11T13:33:53Z"}, "object_index": 18, "url": "/course/master-english-vocabulary/learn/lecture/31792190"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

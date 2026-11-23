@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 72733810, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": [" 'Still' = present perfect (He still hasn't paid me back = he hasn't paid me back yet)", "last week = past simple.", "last week = past simple. 'Still' = present perfect (He still hasn't paid me back = he hasn't paid me back yet)", " 'Still' = present perfect (He still hasn't paid me back = he hasn't paid me back yet)"], "answers": ["<p>I lent him \u00a350 last week, but he still didn't pay me back</p>", "<p>I have lent him \u00a350 last week, but he still hasn't paid me back</p>", "<p>I lent him \u00a350 last week, but he still hasn't paid me back</p>", "<p>I have lent him \u00a350 last week, but he still didn't pay me back</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72733902, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": ["How long = present perfect (for unfinished periods)", "For = present perfect (usually). You were paying it off and you are STILL paying it off, so present perfect is best for (pay off)", "You were paying it off and you are STILL paying it off, so present perfect is best for (pay off)", "How long AND for = present perfect (for unfinished periods). You were paying it off and you are STILL paying it off, so present perfect is best for (pay off)"], "answers": ["<p>A) Have long did you have your mortgage, and how much did you paid off?</p><p>B) We've had it for almost 5 years, but we've only paid off 15% of the initial loan</p>", "<p>A) Have long have you had your mortgage, and how much have you paid off?</p><p>B) We had it for almost 5 years, but we only paid off 15% of the initial loan</p>", "<p>A) Have long have you had your mortgage, and how much have you paid off?</p><p>B) We've had it for almost 5 years, but we only paid off 15% of the initial loan</p>", "<p>A) Have long have you had your mortgage, and how much have you paid off?</p><p>B) We've had it for almost 5 years, but we've only paid off 15% of the initial loan</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72734084, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option: (look at the tenses AND the prepositions)</p><p><br></p>", "relatedLectureIds": ["40210130"], "feedbacks": ["spend money ON sth", "spend money ON sth", "Yesterday = past simple", "spend money ON sth. Yesterday = past simple"], "answers": ["<p>Yesterday, he withdrew all his money from his account; today, he has spent half of his savings at a holiday in Spain. </p>", "<p>Yesterday, he withdrew all his money from his account; today, he spent half of his savings in a holiday in Spain. </p>", "<p>Yesterday, he has withdrawn all his money from his account; today, he has spent half of his savings for a holiday in Spain. </p>", "<p>Yesterday, he withdrew all his money from his account; today, he has spent half of his savings on a holiday in Spain. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option: (look at the tenses AND the prepositions)", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72735138, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": ["over the last few years = present perfect (unfinished period - from 5 years ago until now)", "over the last few years = present perfect (unfinished period - from 5 years ago until now)", "ago = past simple", "over the last few years = present perfect (unfinished period - from 5 years ago until now). ago = past simple"], "answers": ["<p>A) Did your salary increase over the last few years?<br>B) Yes, I earned \u00a32000 a month 5 years ago. Nowadays, with inflation running so high, it's impossible to get by on anything less than \u00a33000 per month. </p>", "<p>A) Did your salary increase over the last few years?<br>B) Yes, I have earned \u00a32000 a month 5 years ago. Nowadays, with inflation running so high, it's impossible to get by on anything less than \u00a33000 per month. </p>", "<p>A) Has your salary increased over the last few years?<br>B) Yes, I have earned \u00a32000 a month 5 years ago. Nowadays, with inflation running so high, it's impossible to get by on anything less than \u00a33000 per month. </p>", "<p>A) Has your salary increased over the last few years?<br>B) Yes, I earned \u00a32000 a month 5 years ago. Nowadays, with inflation running so high, it's impossible to get by on anything less than \u00a33000 per month. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72737358, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": ["When = past simple", "When = past simple", "", "nowadays = present perfect (or present simple, but NOT past simple)"], "answers": ["<p>When I was at university, the typical student owed about \u00a39000 when he has graduated; nowadays, student loans have got much bigger, as students must pay tuition fees in addition to their living costs. </p>", "<p>When I have been at university, the typical student has owed about \u00a39000 when he graduated; nowadays, student loans have got much bigger, as students must pay tuition fees in addition to their living costs. </p>", "<p>When I was at university, the typical student owed about \u00a39000 when he graduated; nowadays, student loans have got much bigger, as students must pay tuition fees in addition to their living costs. </p>", "<p>When I was at university, the typical student owed about \u00a39000 when he graduated; nowadays, student loans got much bigger, as students must pay tuition fees in addition to their living costs. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72737582, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": ["We can say 'interest rates have been at 5.25% for 3 months'. But is we are talking about now, we just use present simple (they are 5.25% now) ", "ago = past simple. just = present perfect", "ago = past simple", "just = present perfect"], "answers": ["<p>The Bank of England has just raised interest rates. A few years ago, they were only nought point five percent, but now, they have been five point two five. </p>", "<p>The Bank of England has just raised interest rates. A few years ago, they were only nought point five percent, but now, they are five point two five. </p>", "<p>The Bank of England has just raised interest rates. A few years ago, they have been only nought point five percent, but now, they are five point two five. </p>", "<p>The Bank of England just raised interest rates. A few years ago, they were only nought point five percent, but now, they are five point two five. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72738290, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p>", "relatedLectureIds": ["40210130"], "feedbacks": ["", "ago = past simple", "We would use present perfect (have you heard the news yet?). This is referring to an unfinished period. ", "just = present perfect"], "answers": ["<p>Have you heard the news? My uncle has just inherited a fortune. Apparently, a distant relative died a few days ago and left all his wealth to him.</p>", "<p>Have you heard the news? My uncle has just inherited a fortune. Apparently, a distant relative has died a few days ago and left all his wealth to him.</p>", "<p>Did you hear the news? My uncle has just inherited a fortune. Apparently, a distant relative has died a few days ago and left all his wealth to him.</p>", "<p>Have you heard the news? My uncle just inherited a fortune. Apparently, a distant relative died a few days ago and left all his wealth to him.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}, {"_class": "assessment", "id": 72738474, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the correct option:</p><p><br></p>", "relatedLectureIds": ["40210130"], "feedbacks": ["for the last few years = present perfect", "In the 1990s = past simple", "In the 1990s = past simple, for the last few years = present perfect", "In the 1990s = past simple, for the last few years = present perfect"], "answers": ["<p>In the 1990s, Sally thought it was best to save in gold, but for the last few years, she invested in Bitcoin instead. </p>", "<p>In the 1990s, Sally has thought it was best to save in gold, but for the last few years, she has invested in Bitcoin instead. </p>", "<p>In the 1990s, Sally has thought it was best to save in gold, but for the last few years, she invested in Bitcoin instead. </p>", "<p>In the 1990s, Sally thought it was best to save in gold, but for the last few years, she has invested in Bitcoin instead. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40210130, "title": "Present Perfect V Past Simple + Money", "created": "2023-10-06T12:37:31Z", "is_published": true, "asset": {"_class": "asset", "id": 51853946, "asset_type": "Video", "title": "IMG_4514.MOV", "created": "2023-10-06T18:04:12Z"}, "object_index": 14, "url": "/course/master-english-intermediate/learn/lecture/40210130"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

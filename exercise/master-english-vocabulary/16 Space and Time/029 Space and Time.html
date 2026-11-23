@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46779906, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The internet entered a period of ______ growth for the first two decades of the twentieth century, and even today, the proportion of the world population that use the internet is increasing relentlessly.</p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. A fleeting glimpse/moment", "Wrong collocation. Successive governments", "Inexorable growth (unstoppable growth)", "Wrong collocation. A vast expanse (a wide open space)", "Wrong collocation. A lingering doubt/smell/kiss/suspicion"], "answers": ["<p>fleeting</p>", "<p>successive</p>", "<p>inexorable</p>", "<p>vast</p>", "<p>lingering</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The internet entered a period of ______ growth for the first two decades of the twentieth century, and even today, the proportion of the world population that use the internet is increasing relentlessly.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46779930, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I reckon that sofa __________ far too much space in this poky little room. I might replace it with something smaller. </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. (The stadium was packed out = crowded with people)", "Wrong collocation. (makes up = 1) composes 2) become friends after a disagreement)", "To take up too much space = to occupy too much space", "Wrong collocation. (The buildings are spread out over a vast area)", "Wrong collocation. (This photo summons up dim and distant memories)"], "answers": ["<p>packs out</p>", "<p>makes up</p>", "<p>takes up</p>", "<p>spreads out</p>", "<p>summons up</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "I reckon that sofa __________ far too much space in this poky little room. I might replace it with something smaller.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780030, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The city centre _____________ tourists of all ages, ambling along the streets, babbling on about the local attractions, and gazing in wonder at the most grandiose and most impressive buildings. </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. (Churches are scattered all over the countryside)", "Wrong collocation. (was crammed with = correct. A room is cramped/poky (not much space)", "Good. To be teeming/crammed/packed with sb (= to be crowded with lots of sb)", "Wrong collocation. (I squeezed/packed/crammed all my books into my rucksack)", "Wrong collocation. (A confined space)"], "answers": ["<p>was scattered with</p>", "<p>was cramped with</p>", "<p>was teeming with</p>", "<p>was squeezed with</p>", "<p>was confined with</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The city centre _____________ tourists of all ages, ambling along the streets, babbling on about the local attractions, and gazing in wonder at the most grandiose and most impressive buildings.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780126, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A massive crowd of Liverpool fans _________ out of the stadium in high spirits, singing songs and hurling insults at the fans from the opposing team. </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. (the buildings are spread out across a vast area)", "When people flood/pour out of sw, they leave that place in large numbers", "Wrong collocation. (Churches are scattered all over the countryside)", "To be teeming/crammed/rammed/packed with sb (= to be crowded with lots of sb)", "To be teeming/crammed/rammed/packed with sb (= to be crowded with lots of sb)", "To be teeming/crammed/rammed/packed with sb (= to be crowded with lots of sb)"], "answers": ["<p>spread </p>", "<p>flooded </p>", "<p>scattered</p>", "<p>rammed</p>", "<p>crammed</p>", "<p>teemed</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "A massive crowd of Liverpool fans _________ out of the stadium in high spirits, singing songs and hurling insults at the fans from the opposing team.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780186, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He has vehemently denied the _____ rumours that he keeps most of his money abroad, in offshore accounts, far away from the taxman's claws. </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["A persistent rumour/headache/cough/offender", "Wrong collocation. Protracted negotiations/argument/discussion", "Wrong collocation. Extensive damage/coverage/flooding/experience/renovations/refurbishments/facilities", "Wrong collocation. Inevitable (sure to happen) collapse/ruin/war/consequences", "Wrong collocation. Vast experience/expanse/area/majority"], "answers": ["<p>persistent</p>", "<p>protracted</p>", "<p>extensive</p>", "<p>inevitable</p>", "<p>vast</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "He has vehemently denied the _____ rumours that he keeps most of his money abroad, in offshore accounts, far away from the taxman's claws.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780224, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Our new colleague claims to have had _______ experience with this software, but I still have a _____ doubt.</p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. Inevitable (sure to happen) war, conflict, collapse, ruin", "Wrong collocation. Spacious garden/bedroom", "Wrong collocation. Protracted negotiation/argument/discussion", "Wrong collocation. Fleeting glimpse/moment", "Good. Vast/extensive experience. A lingering doubt (one which won't go away)"], "answers": ["<p>extensive, inevitable</p>", "<p>spacious, lingering</p>", "<p>vast, protracted</p>", "<p>extensive, fleeting</p>", "<p>vast, lingering</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Our new colleague claims to have had _______ experience with this software, but I still have a _____ doubt.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780650, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My early career included a _____ stint as a proof reader, but I found the work tremendously tedious, so I resigned after a few months.&nbsp; </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["Wrong collocation. A fleeting glimpse/moment", "Wrong collocation. A protracted negotiation/argument/discussion", "Wrong collocation. A lingering doubt/suspicion/perfume/smell", "Wrong collocation. Ample space/room/ for sth", "Wrong collocation. Limited space/room for sth", "Wrong collocation. A tight space", "A brief stint/spell/respite/encounter"], "answers": ["<p>fleeting</p>", "<p>protracted</p>", "<p>lingering</p>", "<p>ample</p>", "<p>limited</p>", "<p>tight</p>", "<p>brief</p>"]}, "correct_response": ["g"], "section": "", "question_plain": "My early career included a _____ stint as a proof reader, but I found the work tremendously tedious, so I resigned after a few months.&nbsp;", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}, {"_class": "assessment", "id": 46780690, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I attempted to back my car into the parking space, but it was such&nbsp; ______ space, that I had to give up, and find a different one. </p>", "relatedLectureIds": ["31870272"], "feedbacks": ["'A tight space' is appropriate for parking spaces that are very small", "Empty is NOT a problem!", "Vacant is NOT a problem!", "We describe spaces as 'confined' when they have little space to move the body. The body is confined in a small space. Parking spaces are not confined. ", "A parking space is a countable noun, so it needs an article", "A parking space is a countable noun, so it needs an article", "A parking space is a countable noun, so it needs an article", "A parking space is a countable noun, so it needs an article"], "answers": ["<p>a tight</p>", "<p>an empty</p>", "<p>a vacant</p>", "<p>a confined</p>", "<p>tight</p>", "<p>empty</p>", "<p>vacant</p>", "<p>confined</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "I attempted to back my car into the parking space, but it was such&nbsp; ______ space, that I had to give up, and find a different one.", "related_lectures": [{"_class": "lecture", "id": 31870272, "title": "Space and Time", "created": "2022-04-18T16:02:25Z", "is_published": true, "asset": {"_class": "asset", "id": 40847826, "asset_type": "Video", "title": "IMG_2654.MOV", "created": "2022-04-18T16:42:33Z"}, "object_index": 31, "url": "/course/master-english-vocabulary/learn/lecture/31870272"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

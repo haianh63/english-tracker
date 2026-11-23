@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 73116974, "assessment_type": "multiple-choice", "prompt": {"question": "<strong>Please look at the image and answer the question:</strong><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-05_15-38-20-b8cb6aa53f4329b16365142fdd34a663.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["Faint = pass out = lose consciousness", "a bruise = a red/purple mark, usually caused by blunt force", "to be concussed = to have a concussion", "Donate = give kindly (donate blood, donate money to charity)", "resuscitate sb = bring sb back to life"], "answers": ["<p>While he was relaxing by the beach, he drank too much in the summer heat, then fainted.</p>", "<p>While he was relaxing by the beach, he drank too much in the summer heat, then bruised</p>", "<p>While he was relaxing by the beach, he drank too much in the summer heat, then concussed</p>", "<p>While he was relaxing by the beach, he drank too much in the summer heat, then donated</p>", "<p>While he was relaxing by the beach, he drank too much in the summer heat, then resuscitated</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please look at the image and answer the question:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73117662, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the image and answer the question:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-05_15-58-08-7223ea79e131c85d9ca8ca505f754a41.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["A blister comes from repeated rubbing, and a burn comes from heat", "I can see a plaster, BUT his arm is not in plaster (uncountable). When you break your arm, it is often put in plaster. When you have a small cut or a scratch, you put a plaster on it to stop the bleeding", "I can see a plaster, BUT his arm is not in bandages", ""], "answers": ["<p>After he fell down the stairs, his arm was covered in burns and blisters.</p>", "<p>After he fell down the stairs, his arm was covered in plaster</p>", "<p>After he fell down the stairs, his arm was covered in bandages</p>", "<p>After he fell down the stairs, his arm was covered in scratches and bruises.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please look at the image and answer the question:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73117770, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the image and answer the question:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-05_16-13-15-90829947905639c3653ab5d2ac2008d3.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["plaster (uncountable) = the material a broken leg/arm is put into (it is also used in the walls/ceiling of a house)", "a plaster = a small, sticky patch that covers a small cut", "A scar = a mark that remains on the skin after a deep cut", ""], "answers": ["<p>She wrapped plaster around her son's hand to stop the bleeding</p>", "<p>She wrapped a plaster around her son's hand to stop the bleeding</p>", "<p>She wrapped a scar around her son's hand to stop the bleeding</p>", "<p>She wrapped a bandage around her son's hand to stop the bleeding</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please look at the image and answer the question:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73195796, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_10-24-19-a52f28dcdd33b6b77a640dadef8e03cc.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["Choke = stop breathing because something is blocking the passage to your lungs", "rehabilitate = to return someone to good health (often if they have an alcohol/drug problem)", "", "Donate sth to sb = to give kindly (donate blood, donate money to charity)"], "answers": ["<p>The paramedics taught us how to choke someone if they stop breathing. </p>", "<p>The paramedics taught us how to rehabilitate someone if they stop breathing. </p>", "<p>The paramedics taught us how to resuscitate someone if they stop breathing. </p>", "<p>The paramedics taught us how to donate someone if they stop breathing. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73199502, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_10-42-15-d7ecf488ea3e520a002b4645ff7717b5.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["throw sth away = dispose of sth (put it in the bin)", "throw sb out / kick sb out = exclude sb (He was thrown out of school for bad behaviour)", "throw sb down = throw sb to the floor", ""], "answers": ["<p>I started feeling dizzy shortly after dinner; since then, I have thrown away twice and had diarrhoea too. I think it's food poisoning</p>", "<p>I started feeling dizzy shortly after dinner; since then, I have thrown out twice and had diarrhoea too. I think it's food poisoning</p>", "<p>I started feeling dizzy shortly after dinner; since then, I have thrown down twice and had diarrhoea too. I think it's food poisoning</p>", "<p>I started feeling dizzy shortly after dinner; since then, I have thrown up twice and had diarrhoea too. I think it's food poisoning</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73200822, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct&nbsp;sentence:</strong></p><p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_11-01-12-c3b64de7adca49c925adebd82377946a.jpg\"></p>", "relatedLectureIds": ["40276198"], "feedbacks": ["Come out with (strange comments, nasty remarks) = say sth unexpected", "", "Come up with (a good idea, an interesting suggestion) = think of a new idea/suggestion/plan", "Come away with (an impression) = be left with (an impression). 'I came away with the feeling that "], "answers": ["<p>Whenever she comes out with flu, she likes to wrap herself up in blankets and drink green tea with lemon.</p>", "<p>Whenever she comes down with flu, she likes to wrap herself up in blankets and drink green tea with lemon.</p>", "<p>Whenever she comes up with flu, she likes to wrap herself up in blankets and drink green tea with lemon.</p>", "<p>Whenever she comes away with flu, she likes to wrap herself up in blankets and drink green tea with lemon.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct&nbsp;sentence:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73200964, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct sentence:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_11-17-03-d3a4560d9b7193c6422431c398d55900.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["pills = tablets", "pills = tablets", "", "Cure = something that makes anyone fully recover. Medicine is rarely 'a cure', as it isn't 100% effective"], "answers": ["<p>Although we assure you that these pills are safe and effective, there are some unpleasant side effects that you ought to be aware of. </p>", "<p>Although we assure you that these tablets are safe and effective, there are some unpleasant side effects that you ought to be aware of. </p>", "<p>Although we assure you that this treatment is safe and effective, there are some unpleasant side effects that you ought to be aware of. </p>", "<p>Although we assure you that this cure is safe and effective, there are some unpleasant side effects that you ought to be aware of. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct sentence:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}, {"_class": "assessment", "id": 73201162, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-07_11-23-55-8e20ad5dbbb03f16c948d382fd52e685.jpg\">", "relatedLectureIds": ["40276198"], "feedbacks": ["to cure sb = to make sb completely recover", "Cuts/scars/wounds/injuries take time to heal", "to treat sb = to try to help sb recover", "to be injured = to receive physical trauma (often from an accident or sport)"], "answers": ["<p>The patient required surgery on his heart, and the scar on his chest has taken several weeks to cure</p>", "<p>The patient required surgery on his heart, and the scar on his chest has taken several weeks to heal</p>", "<p>The patient required surgery on his heart, and the scar on his chest has taken several weeks to treat</p>", "<p>The patient required surgery on his heart, and the scar on his chest has taken several weeks to injure</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40276198, "title": "Health + have done/have been doing - PART 2", "created": "2023-10-10T18:28:32Z", "is_published": true, "asset": {"_class": "asset", "id": 51940282, "asset_type": "Video", "title": "Health B.mp4", "created": "2023-10-10T18:45:26Z"}, "object_index": 18, "url": "/course/master-english-intermediate/learn/lecture/40276198"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

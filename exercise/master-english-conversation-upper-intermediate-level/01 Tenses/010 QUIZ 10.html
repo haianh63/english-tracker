@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80460946, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_11-21-24-befac0889f7ca53d635407955105c9fc.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["How many times is often a signal for present perfect. If we mean 'how many times in your whole life', then we must use present perfect.   How many times = perfect simple (have seen).  See = stative verb, so we must use perfect simple.", "How many times is often a signal for present perfect. If we mean 'how many times in your whole life', then we must use present perfect.   How many times = perfect simple (have seen).  See = stative verb, so we must use perfect simple.", "How many times is often a signal for present perfect. If we mean 'how many times in your whole life', then we must use present perfect.   How many times = perfect simple (have seen).  See = stative verb, so we must use perfect simple.", "How many times is often a signal for present perfect. If we mean 'how many times in your whole life', then we must use present perfect.   How many times = perfect simple (have seen).  See = stative verb, so we must use perfect simple."], "answers": ["<p>How many times do you see Titanic?</p>", "<p>How many times did you see Titanic?</p>", "<p>How many times have you seen Titanic?</p>", "<p>How many times have you been seeing Titanic?</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80460948, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_11-23-01-195655d11fe3ae8d07794483e7d57ec2.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["This is an unintentional result, and drive is a dynamic verb, so perfect continuous works best. Please note that we use present perfect continuous if the first verb is in the present tense, but past perfect continuous if the first verb is in past tense. Compare the following sentences:  The tyres are covered in mud because we've been driving off-road The tyres were covered in mud because we'd been driving off-road", "This is an unintentional result, and drive is a dynamic verb, so perfect continuous works best. Please note that we use present perfect continuous if the first verb is in the present tense, but past perfect continuous if the first verb is in past tense. Compare the following sentences:  The tyres are covered in mud because we've been driving off-road The tyres were covered in mud because we'd been driving off-road", "This is an unintentional result, and drive is a dynamic verb, so perfect continuous works best. Please note that we use present perfect continuous if the first verb is in the present tense, but past perfect continuous if the first verb is in past tense. Compare the following sentences:  The tyres are covered in mud because we've been driving off-road The tyres were covered in mud because we'd been driving off-road", "This is an unintentional result, and drive is a dynamic verb, so perfect continuous works best. Please note that we use present perfect continuous if the first verb is in the present tense, but past perfect continuous if the first verb is in past tense. Compare the following sentences:  The tyres are covered in mud because we've been driving off-road The tyres were covered in mud because we'd been driving off-road", "This is an unintentional result, and drive is a dynamic verb, so perfect continuous works best. Please note that we use present perfect continuous if the first verb is in the present tense, but past perfect continuous if the first verb is in past tense. Compare the following sentences:  The tyres are covered in mud because we've been driving off-road The tyres were covered in mud because we'd been driving off-road"], "answers": ["<p>The tyres were covered in mud because we'd been driving off-road</p>", "<p>The tyres were covered in mud because we've been driving off-road</p>", "<p>The tyres were covered in mud because we drove off-road</p>", "<p>The tyres were covered in mud because we've driven off-road</p>", "<p>The tyres were covered in mud because we'd driven off-road</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80460964, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_11-26-50-02b4a677d4f497ac5a1fa8ba33bf4b8d.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["This is reported speech. Have you been drinking becomes had you been drinking in reported speech.   We must use perfect simple when we say how many beers we have drunk:  He has drunk 6 pints (NOT has been drinking) I have written 3 emails (NOT have been writing) I have read this book twice (NOT have been reading)", "This is reported speech. Have you been drinking becomes had you been drinking in reported speech.   We must use perfect simple when we say how many beers we have drunk:  He has drunk 6 pints (NOT has been drinking) I have written 3 emails (NOT have been writing) I have read this book twice (NOT have been reading)", "This is reported speech. Have you been drinking becomes had you been drinking in reported speech.   We must use perfect simple when we say how many beers we have drunk:  He has drunk 6 pints (NOT has been drinking) I have written 3 emails (NOT have been writing) I have read this book twice (NOT have been reading)", "This is reported speech. Have you been drinking becomes had you been drinking in reported speech.   We must use perfect simple when we say how many beers we have drunk:  He has drunk 6 pints (NOT has been drinking) I have written 3 emails (NOT have been writing) I have read this book twice (NOT have been reading)"], "answers": ["<p>The policeman asked the driver if he was drinking, and he replied that he had only been drinking half a pint of beer.</p>", "<p>The policeman asked the driver if he had drunk, and he replied that he had only drunk half a pint of beer.</p>", "<p>The policeman asked the driver if he has been drinking, and he replied that he has only been drinking half a pint of beer.</p>", "<p>The policeman asked the driver if he had been drinking, and he replied that he had only drunk half a pint of beer.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80462296, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_12-30-35-fa7d6ac3353f7bc526dd1a088eeb433d.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["If the first verb is in present tense, then we need present perfect, but if it is in past tense, we need past perfect. Here are two correct examples:  We knew that the boy had been eating cake because there were crumbs all around his mouth We know that the boy has been eating cake because there are crumbs all around his mouth", "If the first verb is in present tense, then we need present perfect, but if it is in past tense, we need past perfect. Here are two correct examples:  We knew that the boy had been eating cake because there were crumbs all around his mouth We know that the boy has been eating cake because there are crumbs all around his mouth", "If the first verb is in present tense, then we need present perfect, but if it is in past tense, we need past perfect. Here are two correct examples:  We knew that the boy had been eating cake because there were crumbs all around his mouth We know that the boy has been eating cake because there are crumbs all around his mouth", "If the first verb is in present tense, then we need present perfect, but if it is in past tense, we need past perfect. Here are two correct examples:  We knew that the boy had been eating cake because there were crumbs all around his mouth We know that the boy has been eating cake because there are crumbs all around his mouth"], "answers": ["<p>We knew that the boy has been eating cake because there were crumbs all around his mouth</p>", "<p>We knew that the boy had been eating cake because there were crumbs all around his mouth</p>", "<p>We knew that the boy has eaten cake because there were crumbs all around his mouth</p>", "<p>We know that the boy had been eating cake because there had been crumbs all around his mouth</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80462614, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_12-32-36-27a0a318c18c062ee7ba84ea2a70c051.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion.", "Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion.", "Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion.", "Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion.", "Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion.", "Peter wasn't feeling and Peter didn't feel are both correct (feel = stative AND dynamic)  We have started in past tense, so we need past perfect rather than present perfect  We MUST use perfect simple (had eaten), not perfect continuous (had been eating), because we are focusing on completion (he had eaten ALL the soup). Had been eating focuses on duration rather than completion."], "answers": ["<p>Peter wasn't feeling hungry any more, because he has eaten all of his soup.</p>", "<p>Peter didn't feel hungry any more, because he ate all of his soup.</p>", "<p>Peter wasn't feeling hungry any more, because he had eaten all of his soup.</p>", "<p>Peter didn't feel hungry any more, because he had been eating all of his soup.</p>", "<p>Peter didn't feel hungry any more, because he was eating all of his soup.</p>", "<p>Peter wasn't feeling hungry any more, because he has been eating all of his soup.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80462642, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_12-34-48-9d293c3d93594b8a1b93961a77c3c7d4.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["Shakespeare is dead, so we use past simple.  We can't use perfect continuous (had been writing, has been writing) if we know how many times (39...154)", "Shakespeare is dead, so we use past simple.  We can't use perfect continuous (had been writing, has been writing) if we know how many times (39...154)", "Shakespeare is dead, so we use past simple.  We can't use perfect continuous (had been writing, has been writing) if we know how many times (39...154)", "Shakespeare is dead, so we use past simple.  We can't use perfect continuous (had been writing, has been writing) if we know how many times (39...154)", "Shakespeare is dead, so we use past simple.  We can't use perfect continuous (had been writing, has been writing) if we know how many times (39...154)"], "answers": ["<p>Shakespeare wrote 39 plays and 154 sonnets</p>", "<p>Shakespeare has written 39 plays and 154 sonnets</p>", "<p>Shakespeare was writing 39 plays and 154 sonnets</p>", "<p>Shakespeare had been writing 39 plays and 154 sonnets</p>", "<p>Shakespeare has been writing 39 plays and 154 sonnets</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80462770, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_12-36-35-5aecc8abd794663d8f63535c4f341725.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["For finished periods (with for) use past simple or past perfect  They were married for 3 years, but then they got divorced last month. I found out that they had been married for 3 years.", "For finished periods (with for) use past simple or past perfect  They were married for 3 years, but then they got divorced last month. I found out that they had been married for 3 years.", "For finished periods (with for) use past simple or past perfect  They were married for 3 years, but then they got divorced last month. I found out that they had been married for 3 years.", "For finished periods (with for) use past simple or past perfect  They were married for 3 years, but then they got divorced last month. I found out that they had been married for 3 years.", "For finished periods (with for) use past simple or past perfect  They were married for 3 years, but then they got divorced last month. I found out that they had been married for 3 years."], "answers": ["<p>I have played rugby in my school team for three years, but I don't play any team sports nowadays.</p>", "<p>I have been playing rugby in my school team for three years, but I don't play any team sports nowadays.</p>", "<p>I had played rugby in my school team for three years, but I don't play any team sports nowadays.</p>", "<p>I played rugby in my school team for three years, but I don't play any team sports nowadays.</p>", "<p>I had been playing rugby in my school team for three years, but I don't play any team sports nowadays.</p><p><br></p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}, {"_class": "assessment", "id": 80462808, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Please choose the <strong>CORRECT </strong>answer:</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_12-40-53-2907f1dfd63d8c4c5c7d84fc3bb7d73a.jpg\">", "relatedLectureIds": ["42682786"], "feedbacks": ["The sun is still going down in the photo, so was going is better than went. If we use went, then it sounds like we headed to the beach AFTER the sun had gone down. This is illogical, as we want to enjoy the view.  Here we have 2 past actions, but 1 is long (going down) and the other short (headed), so past simple and past continuous is best", "The sun is still going down in the photo, so was going is better than went. If we use went, then it sounds like we headed to the beach AFTER the sun had gone down. This is illogical, as we want to enjoy the view.  Here we have 2 past actions, but 1 is long (going down) and the other short (headed), so past simple and past continuous is best", "The sun is still going down in the photo, so was going is better than went. If we use went, then it sounds like we headed to the beach AFTER the sun had gone down. This is illogical, as we want to enjoy the view.  Here we have 2 past actions, but 1 is long (going down) and the other short (headed), so past simple and past continuous is best", "The sun is still going down in the photo, so was going is better than went. If we use went, then it sounds like we headed to the beach AFTER the sun had gone down. This is illogical, as we want to enjoy the view.  Here we have 2 past actions, but 1 is long (going down) and the other short (headed), so past simple and past continuous is best", "The sun is still going down in the photo, so was going is better than went. If we use went, then it sounds like we headed to the beach AFTER the sun had gone down. This is illogical, as we want to enjoy the view.  Here we have 2 past actions, but 1 is long (going down) and the other short (headed), so past simple and past continuous is best"], "answers": ["<p>When the sun was going down, we headed to the beach so we could get the best views</p>", "<p>When the sun went down, we headed to the beach so we could get the best views</p>", "<p>When the sun had gone down, we headed to the beach so we could get the best views</p>", "<p>When the sun had been going down, we headed to the beach so we could get the best views</p>", "<p>When the sun has gone down, we headed to the beach so we could get the best views</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the CORRECT answer:", "related_lectures": [{"_class": "lecture", "id": 42682786, "title": "Perfect Tenses - Part 3", "created": "2024-03-07T10:53:37Z", "is_published": true, "asset": {"_class": "asset", "id": 55145426, "asset_type": "Video", "title": "Perfect Tenses 3.mp4", "created": "2024-03-07T11:03:18Z"}, "object_index": 10, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42682786"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

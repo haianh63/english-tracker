@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 73363866, "assessment_type": "multiple-choice", "prompt": {"question": "<p>They live in a _____ house, so they have neighbours on both sides; unfortunately, a lot of the noise travels through the walls.</p><p>Please choose the correct option:</p>", "relatedLectureIds": ["40391188"], "feedbacks": ["", "", "", "Cottage is a noun, and it means a pretty house (often old) in the countryside", "Bungalow is a noun, and it means a house with no upstairs.", "A studio flat is a 1 room flat"], "answers": ["<p>detached</p>", "<p>semi-detached</p>", "<p>terraced</p>", "<p>cottage</p>", "<p>bungalow</p>", "<p>studio</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "They live in a _____ house, so they have neighbours on both sides; unfortunately, a lot of the noise travels through the walls.Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73363934, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct answer:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_09-24-25-9480578cd84f9e55cd9206d3fc18257e.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["A mansion is a large expensive house. This was built for defence.", "", "A studio flat is a flat with only one main room", "Council housing is cheap housing that was built by the state. ", "A bungalow is a house with no upstairs"], "answers": ["<p>If I were a millionaire, I would live in a mansion</p>", "<p>If I were a millionaire, I would live in a castle</p>", "<p>If I were a millionaire, I would live in a studio flat</p>", "<p>If I were a millionaire, I would live in council housing</p>", "<p>If I were a millionaire, I would live in a bungalow</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Look at the picture and choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73364348, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Look at the picture and choose the correct answer:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_09-48-02-37e5241962eaaac8d1cdf5629710be5f.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["open-plan kitchen = kitchen with no walls (so it joins onto the lounge/living room)", "semi-detached house = house joined on one side to another house", "Utility room = very small room (more like a cupboard) with a washing machine (or diswasher) inside", "Studio flat = flat with only 1 main room (and there might be a bedroom on the right, which means this is not a studio flat)"], "answers": ["<p>This is a perfect example of an open-plan kitchen</p>", "<p>This is a perfect example of a semi-detached kitchen</p>", "<p>This is a perfect example of a utility kitchen</p>", "<p>This is a perfect example of a studio kitchen</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Look at the picture and choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73365084, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the picture and choose the correct option:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_09-56-31-393e11d11b7b8c77fffd4f92316ef978.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["", "The landing is always at the top of the stairs. ", "Bungalow = a house without stairs.", "The cloakroom is for coats, so it is usually at the bottom of the stairs, by the front door."], "answers": ["<p>At the bottom of the stairs we find the hall, but at the top of the stairs, we find the landing. </p>", "<p>At the bottom of the stairs we find the landing, but at the top of the stairs, we find the hall. </p>", "<p>At the bottom of the stairs we find the hall, but at the top of the stairs, we find the bungalow. </p>", "<p>At the bottom of the stairs we find the hall, but at the top of the stairs, we find the cloakroom. </p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73365222, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the picture and choose the correct option:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_10-06-20-440e62a8b12699e83fc7289cc4132ee0.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["", "Cottages can have 2 (or more) floors", "A mansion is a very large and expensive house", "A castle is built with many high walls and military defences. They are usually historical buildings. "], "answers": ["<p>When a house has no upstairs, we call it a bungalow</p>", "<p>When a house has no upstairs, we call it a cottage</p>", "<p>When a house has no upstairs, we call it a mansion</p>", "<p>When a house has no upstairs, we call it a castle</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73365256, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the picture and choose the correct option:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_10-09-56-9a6a317704002997320c0290b29cb29d.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["Curtains are made of cloth, but they also hang in front of the window", "Tiles are often ceramic, and we find them on the floor ", "", "A rug = a small carpet"], "answers": ["<p>Please close the curtains; the sunlight is reflecting on my monitor, so I can't see what I am reading. </p>", "<p>Please close the tiles; the sunlight is reflecting on my monitor, so I can't see what I am reading. </p>", "<p>Please close the blinds; the sunlight is reflecting on my monitor, so I can't see what I am reading. </p>", "<p>Please close the rug; the sunlight is reflecting on my monitor, so I can't see what I am reading. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73365404, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the picture and choose the correct option:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_10-15-13-39b0c2da2cbeda6533f147d640cdd6a5.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["Ceramic = material. Tiles are often ceramic, and we find them on the floor. ", "Cramped = not much space", "Spacious = lots of space. We need the antonym of spacious", "Cosy = warm and comfortable. We need to say that there isn't much space"], "answers": ["<p>There is so much junk in my shed that it feels very ceramic to work in. </p>", "<p>There is so much junk in my shed that it feels very cramped to work in. </p>", "<p>There is so much junk in my shed that it feels very spacious to work in. </p>", "<p>There is so much junk in my shed that it feels very cosy to work in. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}, {"_class": "assessment", "id": 73365436, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please look at the picture and choose the correct option:</strong></p><p><br></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-12-11_10-19-25-d607987086bc7a994febd93a31a854da.jpg\">", "relatedLectureIds": ["40391188"], "feedbacks": ["A rug is a small carpet. There is often a bathroom rug that you stand on when you exit the shower or bath, but I can't see a rug on the photo. ", "That is not wood! Wood comes from trees. ", "", "NEVER use a carpet in the bathroom. It is unhygienic! "], "answers": ["<p>I'm glad that we hired a professional to put down the rug in our bathroom. It would have looked awful if I had done it. </p>", "<p>I'm glad that we hired a professional to put down the wooden floor in our bathroom. It would have looked awful if I had done it. </p>", "<p>I'm glad that we hired a professional to put down the ceramic tiles in our bathroom. It would have looked awful if I had done it. </p>", "<p>I'm glad that we hired a professional to put down the carpet in our bathroom. It would have looked awful if I had done it. </p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please look at the picture and choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40391188, "title": "Houses and Property", "created": "2023-10-17T15:41:42Z", "is_published": true, "asset": {"_class": "asset", "id": 52093560, "asset_type": "Video", "title": "Houses A.mp4", "created": "2023-10-17T18:19:27Z"}, "object_index": 25, "url": "/course/master-english-intermediate/learn/lecture/40391188"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

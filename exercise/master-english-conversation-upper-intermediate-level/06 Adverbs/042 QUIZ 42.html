@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 81060024, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_10-37-17-a7863a464484ea924df1b11031ceb30b.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["a spate of + (crime).  harsh/severe punishment (opposite of lenient punishment)", "a spate of + (crime).  harsh/severe punishment (opposite of lenient punishment)", "a spate of + (crime).  harsh/severe punishment (opposite of lenient punishment)"], "answers": ["<p>The new mayor plans to <strong>bring a stop to</strong> the spate of burglaries with harsher prison sentences for offenders.</p>", "<p>The new mayor plans to <strong>call a stop to</strong> the spate of burglaries with harsher prison sentences for offenders.</p>", "<p>The new mayor plans to <strong>put a stop to</strong> the spate of burglaries with harsher prison sentences for offenders.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060062, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_10-42-34-63366a2f365eb6ee0a69b4c7b4699e14.png\">", "relatedLectureIds": ["42782958"], "feedbacks": ["", "", "", ""], "answers": ["<p>We have <strong>entered in an agreement</strong> with our suppliers which is mutually beneficial.</p>", "<p>We have <strong>entered on an agreement</strong> with our suppliers which is mutually beneficial.</p>", "<p>We have <strong>entered into an agreement</strong> with our suppliers which is mutually beneficial.</p>", "<p>We have <strong>entered onto an agreement</strong> with our suppliers which is mutually beneficial.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060076, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_10-44-40-4a67d72078c0739a03dcf9ecd0d017b6.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["to abandon (a policy, a child, a building)", "to quell (a rebellion, an uprising, the unrest, the riots)", ""], "answers": ["<p>The government <strong>has failed to abandon</strong> any measures that might discourage illegal immigration</p>", "<p>The government <strong>has failed to quell</strong> any measures that might discourage illegal immigration</p>", "<p>The government <strong>has failed to instigate</strong> any measures that might discourage illegal immigration</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060090, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_10-46-24-b7a0e6e51734043f728f45add4e2abea.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["", "Life/traffic came to a standstill", "bring sth to a halt, come to a halt"], "answers": ["<p>There was <strong>a lull in the fighting</strong> in Christmas of 1914, when an unofficial ceasefire was declared</p>", "<p>There was <strong>a standstill in the fighting</strong> in Christmas of 1914, when an unofficial ceasefire was declared</p>", "<p>There was <strong>a halt in the fighting</strong> in Christmas of 1914, when an unofficial ceasefire was declared</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060190, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["42782958"], "feedbacks": ["bring sth to a halt (The trade union has brought the strike to a halt = correct)", "Life/traffic comes to a standstill", ""], "answers": ["<p>The teaching trade union has<strong> brought a halt to </strong>the strike</p>", "<p>The teaching trade union has<strong> called a standstill to </strong>the strike</p>", "<p>The teaching trade union has<strong> called a halt to </strong>the strike</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060308, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_10-56-15-df77afbcb04c44a8b19eb44861a4e66f.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["Break up / split up (when a romantic relationship finishes). Break up into sth = correct. All great empires ultimately break up into a collection of smaller states = correct", "", "Break up / split up (when a romantic relationship finishes). Break up into sth = correct. All great empires ultimately break up into a collection of smaller states = correct"], "answers": ["<p>All great empires ultimately <strong>break up,</strong> and they usually do so for economic reasons</p>", "<p>All great empires ultimately <strong>collapse,</strong> and they usually do so for economic reasons</p>", "<p>All great empires ultimately <strong>split up</strong>, and they usually do so for economic reasons</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060480, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_11-04-35-6e87686bd7fd5506a026d838ddd4ba41.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["spark fears = precipitate (cause) fears, but in this sentence, we want to say that the minister is trying to alleviate fears", "A tax hike = an increase in tax", "a lull (brief pause) in the fighting / conversation "], "answers": ["<p>The minister has done his best <strong>to spark the public's fears</strong> of a tax hike</p>", "<p>The minister has done his best <strong>to allay the public's fears</strong> of a tax hike</p>", "<p>The minister has done his best <strong>to lull the public's fears</strong> of a tax hike</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}, {"_class": "assessment", "id": 81060504, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_11-07-01-c093e7ff43caa69c1704d05e72428190.jpg\">", "relatedLectureIds": ["42782958"], "feedbacks": ["A contract sets out the terms and conditions. ", "", "Winter sets in. Rain sets in. (start and continue for a long time)", "a raging inferno = a large fire (set off bombs, alarms, fireworks)"], "answers": ["<p>The smoke did <strong>set out the fire alarm</strong>, so all the residents were able to escape the raging inferno</p>", "<p>The smoke did <strong>set on the fire alarm</strong>, so all the residents were able to escape the raging inferno</p>", "<p>The smoke did <strong>set in the fire alarm</strong>, so all the residents were able to escape the raging inferno</p>", "<p>The smoke did <strong>set off the fire alarm</strong>, so all the residents were able to escape the raging inferno</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42782958, "title": "Collocations - Part 12", "created": "2024-03-13T18:23:57Z", "is_published": true, "asset": {"_class": "asset", "id": 55277198, "asset_type": "Video", "title": "Collocations 12.mp4", "created": "2024-03-13T18:50:33Z"}, "object_index": 43, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42782958"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

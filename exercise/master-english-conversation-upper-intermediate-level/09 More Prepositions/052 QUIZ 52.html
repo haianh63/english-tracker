@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 81203202, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-39-39-3d7e156b034f9aa6eedf97d2cd0d95b3.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["Please note well that we CAN use a perfect to + infinitive after an adjective, and I recommend it if you are preparing for an academic exam.  It was very generous of you to have lent me 70 Euros yesterday", "generous/kind/polite/stupid/silly/rude of sb to do sth", "generous/kind/polite/stupid/silly/rude of sb to do sth"], "answers": ["<p>It was very generous <strong>of</strong> you to lend me 70 Euros yesterday</p>", "<p>It was very generous <strong>for</strong> you to lend me 70 Euros yesterday</p>", "<p>It was very generous <strong>to</strong> you to lend me 70 Euros yesterday</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81203626, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-42-32-0626802b1657e2406c5b9d8466ac5212.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["sorry for/about sth", "sorry for/about sth", "Again, please note that we CAN use a perfect form (perfect gerund, because this is after a preposition), as the shouting has already been completed:  I'm really sorry for having shouted at you earlier; please accept my profuse apologies."], "answers": ["<p>I'm really sorry <strong>of</strong> shouting at you earlier; please accept my profuse apologies.</p>", "<p>I'm really sorry <strong>from</strong> shouting at you earlier; please accept my profuse apologies.</p>", "<p>I'm really sorry <strong>for</strong> shouting at you earlier; please accept my profuse apologies.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81203730, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-45-58-fe2a9d1223fac9fa88a3ac07e77b8279.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["take pride in sth, but be proud of sth", "good/bad/terrible/wonderful/brilliant at sth", "good/bad/terrible/wonderful/brilliant at sth, be proud of sth", "good/bad/terrible/wonderful/brilliant at sth, be proud of sth"], "answers": ["<p>Our son has always been brilliant <strong>at </strong>mathematics, and we are, of course, extremely proud <strong>in</strong> him</p>", "<p>Our son has always been brilliant <strong>in </strong>mathematics, and we are, of course, extremely proud <strong>of</strong> him</p>", "<p>Our son has always been brilliant <strong>at </strong>mathematics, and we are, of course, extremely proud <strong>of</strong> him</p>", "<p>Our son has always been brilliant <strong>in </strong>mathematics, and we are, of course, extremely proud <strong>with</strong> him</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81204050, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-47-45-67d1895bfa0e568ef18b84c0e98fe9d7.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["Bad/good/brilliant/terrible at sth, I think that you will hear natives occasionally using polite/rude with sb, but polite/rude to sb is more common", "", "polite to sb. I think that you will hear natives occasionally using polite/rude with sb, but polite/rude to sb is more common"], "answers": ["<p>He's very <strong>good in</strong> his job because he knows how to be <strong>polite with</strong> all the customers.</p>", "<p>He's very <strong>good at</strong> his job because he knows how to be <strong>polite to</strong> all the customers.</p>", "<p>He's very <strong>good at</strong> his job because he knows how to be <strong>polite for</strong> all the customers.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81204362, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-50-26-82db3a5744649183e3e26e83f8795204.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["feel sorry for sb", "good/bad/terrible/brilliant/hopeless at sth", "good/bad/terrible/brilliant/hopeless at sth, feel sorry for sb", "good/bad/terrible/brilliant/hopeless at sth, feel sorry for sb"], "answers": ["<p>His colleagues <strong>felt really sorry about</strong> him when he was fired, but he had been <strong>hopeless at</strong> his job</p>", "<p>His colleagues <strong>felt really sorry for</strong> him when he was fired, but he had been <strong>hopeless in</strong> his job</p>", "<p>His colleagues <strong>felt really sorry about</strong> him when he was fired, but he had been <strong>hopeless in</strong> his job</p>", "<p>His colleagues <strong>felt really sorry for</strong> him when he was fired, but he had been <strong>hopeless at</strong> his job</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81204402, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-52-54-7509ddd68bc938a80b211212d2a161b8.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["", "", "", ""], "answers": ["<p>He is the captain, so he is directly <strong>responsible of</strong> the safety of his passengers</p>", "<p>He is the captain, so he is directly <strong>responsible for</strong> the safety of his passengers</p>", "<p>He is the captain, so he is directly <strong>responsible on</strong> the safety of his passengers</p>", "<p>He is the captain, so he is directly <strong>responsible about</strong> the safety of his passengers</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81204426, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-54-57-b0303343c9fcf126ce051978f767577d.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["Famous for sth", "Famous for sth. We usually say an essay / work / lecture on (+ topic)  I wrote my essay on Martin Chuzzlewit by Dickens  Yesterday I went to a lecture on Plato", "Famous for sth"], "answers": ["<p>Newton is most <strong>famous in</strong> his ground-breaking work on the force of gravity</p>", "<p>Newton is most <strong>famous for</strong> his ground-breaking work on the force of gravity</p>", "<p>Newton is most <strong>famous with</strong> his ground-breaking work on the force of gravity</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}, {"_class": "assessment", "id": 81204458, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-05-02_14-57-30-e773f03f954f61897695f76457e4c409.jpg\">", "relatedLectureIds": ["43044292"], "feedbacks": ["disappointed with (sth you receive),  disappointed in/with sb  I am disappointed with/in him", "disappointed with (sth you receive),  disappointed in/with sb  I am disappointed with/in him", "disappointed at/about (a situation)", "disappointed in/with sb  I am disappointed with/in him"], "answers": ["<p>She was very <strong>disappointed by</strong> her new shirt, since there was a large stain on the front</p>", "<p>She was very <strong>disappointed with</strong> her new shirt, since there was a large stain on the front</p>", "<p>She was very <strong>disappointed at</strong> her new shirt, since there was a large stain on the front</p>", "<p>She was very <strong>disappointed in</strong> her new shirt, since there was a large stain on the front</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 43044292, "title": "Adjective + Preposition", "created": "2024-03-28T17:59:48Z", "is_published": true, "asset": {"_class": "asset", "id": 55612530, "asset_type": "Video", "title": "IMG_4973.MOV", "created": "2024-03-28T19:23:47Z"}, "object_index": 55, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/43044292"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

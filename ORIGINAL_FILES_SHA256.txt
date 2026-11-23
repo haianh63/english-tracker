@@ -1,0 +1,184 @@
+# SHA256 các tệp nguyên bản trong exercise.zip.
+c25e28e431414b93aaf32e9041bb1facddcc5837c486e58c38d11b76f086565c  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/001 QUIZ 1.html
+0243da726234e2c321453dbdcdc38746fdb34d111a7cc477182d552f2b076f7d  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/002 QUIZ 2.html
+621894415ba0367136819a047477026e0f4224c79cb90488f2e62103c9938486  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/003 QUIZ 3.html
+7980ae4a2b1f792c843ffbdf39c9ad85f11f42a7b6e695f6cc141e593bb0a2fa  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/004 QUIZ 4.html
+8926b663176142b97656dbd9190c462b43031ea0288ef81160866ab87fff12d6  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/005 QUIZ 5.html
+4776178c88cc6b7bcb6b99d99ad4cfee3fa6061b922d24dda6bad877f138a022  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/006 QUIZ 6.html
+044b1f56fddaa36a97062a5db70bf43d5e7bd6b86a9b113dd4cf23371b3eb6a1  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/007 QUIZ 7.html
+222b5ade5ac381b3b8436eba63187b9e68443087bb280fb82bd2d7d0506eb712  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/008 QUIZ 8.html
+a166037eb81a1f88d3048baaa693825d11bdc7d5a3fff3c862d07ed5b23c106d  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/009 QUIZ 9.html
+cd820725bb55944b706aaa49aa8a11e9d5dc96212c67f793772f137ad7636ebd  exercise/master-english-conversation-upper-intermediate-level/01 Tenses/010 QUIZ 10.html
+8f7082d2c4f00542f6a601285743a08ce6f0b15cb55add1b5b1a9bb72164f7ea  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/011 QUIZ 11.html
+0a1f062e96b639be31bd890963799bc2bf1e4bb813ffec707d877e48c40c1b83  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/012 QUIZ 12.html
+0c685e93d7efdb986e716a2716b956f2d4a080657a4c8b2adf5fe1dc25585f63  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/013 QUIZ 13.html
+821c842d5fc27aff6445346153ea533ef29ed8a254ba686d642032ac64f496db  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/014 QUIZ 14.html
+a409fb9c58602d14f68193c985aa808420699e5ce11a9987872313140dfd2dc3  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/015 QUIZ 15.html
+48f2dfa5d54ef42147f6af000fbd834b8da89dbad689f9b3f3926b613484308c  exercise/master-english-conversation-upper-intermediate-level/02 Linking Words/016 QUIZ 16.html
+9dfeffce7ee6b05a646a95d459cb8a98919fffd6d8d52a68bec826a818565d53  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/017 QUIZ 17.html
+e8ac4c05fee835c151648d1ee87c8051973e55b26b5ab3066159b618ddc9d424  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/018 QUIZ 18.html
+e6454aaf5d760fbcd0244dc6f5850b5685d3e460ae2d78729eda167af30b5488  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/019 QUIZ 19.html
+57b96f230c72fa611e77a5cb041ddbc5cc0b8e6a7d2d2bbb783e2072aa7d953d  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/020 QUIZ 20.html
+b0421b27288152ee2d9c35f22010cfcdabdfff7893a73eed442b8b6f3d9244e2  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/021 QUIZ 21.html
+7266536275332ce99f9082a764ae6d10da26702a97a24facd62609c16788fd86  exercise/master-english-conversation-upper-intermediate-level/03 Gerund or Infinitive/022 QUIZ 22.html
+9699cc046320acf06fb6d794306d4945f8e29009e0dae3df2dd7a1693a7e556b  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/023 QUIZ 23.html
+46521941f28329318f9b081497b1c725b162e68aa49501ab9a5aaf2db66c306d  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/024 QUIZ 24.html
+41b32fa4c16a7869a882431580e39eced1bc5697824becaa9e733eb685c0389a  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/025 QUIZ 25.html
+2d672da8ad3ea83d7bf209ed468c0273de2c5f5b9aa90aaad0374b5603e72c30  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/026 QUIZ 26.html
+5590aa2318ff90cbd15387049c3e54e4e7e060c9df8f83cd71dbf8f895af7e0b  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/027 QUIZ 27.html
+9b532085043113a034f929c5852c25c46bf488020c49f27d9d33fbfb0a202526  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/028 QUIZ 28.html
+67283541eb05365e227b704700572e959982e780c9681ff84a64a3e12bf8d509  exercise/master-english-conversation-upper-intermediate-level/04 Modal Verbs/029 QUIZ 29.html
+b9de073dbd0e4b272f56d319a296ca89f54c05027f491638d5f4df117786e5f4  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/030 QUIZ 30.html
+71a11b3944063b31e71ab4eb3800b708879610a586a5b020a2c4ff05187787f1  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/031 QUIZ 31.html
+2463340885c10ffadd9d7eaefdcf6a214dcbd6462a848b69368474bdd6f51ca1  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/032 QUIZ 32.html
+6e10f84fbd4de5645cd83b47ef38deb25cd58ed2b613438730e5f1854294e8d3  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/033 QUIZ 33.html
+1da1b7f3ead24b694116ce66ad768f4202272ef30a52339e034237567871de26  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/034 QUIZ 34.html
+93fc0dd3989da20eebf397882adacfdf209db14ba2c0e04423a9a6f1df630358  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/035 QUIZ 35.html
+a48be65436e7ce88ada117944515fa303296a9cd45f2812fc6a1a7c2cf6be328  exercise/master-english-conversation-upper-intermediate-level/05 Go Phrases/036 QUIZ 36.html
+cb8de7b8edf35098fe3b788fc9d6cfeb7f32cd0981c70696fb039e8d65a0025a  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/037 QUIZ 37.html
+e60c40dad4ac59935ead4cc58cba6a848a17cc3577236ed83c77f5202b88657a  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/038 QUIZ 38.html
+5715e142f23e98960843b61cd95135677822c3eb627af17a50d154522fe40500  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/039 QUIZ 39.html
+caaa8344349ed1e2f84cc3a3feb6f39bf25c2c26f74e2f1460da113eb6379330  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/040 QUIZ 40.html
+67c64e9275ac7c3ab10986bcb1d65920361ee9ae2ee08c0c12ad4d6b4bbba80e  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/041 QUIZ 41.html
+70b4ce093359b50047ae36aa1cd58a10615e70e6f4a49f1188d9f62969fa390e  exercise/master-english-conversation-upper-intermediate-level/06 Adverbs/042 QUIZ 42.html
+0f82ee2203c6edd886985c7a9947b87f2ef399970f73b027b255959dcc5011bc  exercise/master-english-conversation-upper-intermediate-level/07 Articles/043 QUIZ 43.html
+9a4c7fa6b51f73af79784f8b608f156969c327a6b8561650510b380ecd6098de  exercise/master-english-conversation-upper-intermediate-level/07 Articles/044 QUIZ 44.html
+67cf80fc3a731d48f0a42335906b1c5ab7f843acb7cd5c88fce30cdb43ae4fa3  exercise/master-english-conversation-upper-intermediate-level/07 Articles/045 QUIZ 45.html
+b038d800c7836d587a21ef332cc2d9e8db8109f8715946ccf8e052ec3ea5fe16  exercise/master-english-conversation-upper-intermediate-level/08 Prepositions/046 QUIZ 46.html
+b112db36ecaaaf3814e73523ac6e009f11cf3dd5ad49d8334d81d54e6be2d7ed  exercise/master-english-conversation-upper-intermediate-level/08 Prepositions/047 QUIZ 47.html
+c367aca9df0fd3389d90e9a34742aff93037c2cc1dca80d34e41794f262fe054  exercise/master-english-conversation-upper-intermediate-level/08 Prepositions/048 QUIZ 48.html
+fbde4a5fd871d8255d2bece85fc13e5a04a5e71f7afc8fcee4cb39543fbd6619  exercise/master-english-conversation-upper-intermediate-level/08 Prepositions/049 QUIZ 49.html
+d1c770c04f60c9f0cabf2fcc3849b49a606b84ddcfbc13c237cd5190ce840b09  exercise/master-english-conversation-upper-intermediate-level/09 More Prepositions/050 QUIZ 50.html
+f9652c43dcb8cc778e83efbf8d9f649a839e9123eced31a06e6159ce4e533694  exercise/master-english-conversation-upper-intermediate-level/09 More Prepositions/051 QUIZ 51.html
+fd9780b85d32c1a39df76bf9b2742df47c90f1b261c86a91568618e896f18c2c  exercise/master-english-conversation-upper-intermediate-level/09 More Prepositions/052 QUIZ 52.html
+d28d3b2d44b0f131ae77104198ed70bac27039c7188fa82c0669f703aba8bbfb  exercise/master-english-conversation-upper-intermediate-level/09 More Prepositions/053 QUIZ 53.html
+98e7e37e59c718c8b09fa069b61f4f4c34c459439e37f1e48eb538624acd9ced  exercise/master-english-conversation-upper-intermediate-level/course_content.txt
+ff472b4504df6b0fe4fddc14c22165c2ea879a31305946cf77cb6f78413575b9  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/001 Simple V Continuous + Food and Drink.html
+d3af2bcdb2b434357e1e3e8503f9d3d16152fce3a66f90bc6caba302b09ae080  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/002 Perfect Scrambled Eggs.html
+e51561114dcc65588fbe3885268d7ada29234fdd4c86b2f18ae49f30749401d1  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/003 Simple V Continuous - Questions.html
+f8094b0e32e93bf5866b20b20a43470e5e63ebf75cfc5b5849ef355a6a0d6f94  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/004 Perfect Roast Potatoes.html
+e51b9b0a7f5537dbfe9662d19714c04752dce4f3468120a988c3a723ee8095f8  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/005 Describe three photos.html
+b8111b55dcc8bfdde754c368b301f6a32a3048ba25818dc5b8010bf95f3ea16d  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/006 Make V Do.html
+baf93fe858aad41fa8a0f4e04813f50e0141364af8bd3ea65520b0eeefa50b89  exercise/master-english-intermediate/01 Present Simple V Continuous, Food and Drink/007 The Scarlet Letter - Chapter 1.html
+8d56e4c07b960b6b398460cc3c2d7229cd0fd2e217bc10609c7c647a40eedcdc  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/008 Past Simple V Continuous.html
+2daf490bd2a6ba452307f6a2cb1ea4c6ef1e44033fb10525c7d49f676a77d26c  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/009 Common Verb Phrases - Part 1.html
+674bd3d4e11ba8d75e10347abc11cce82a2ef8be12dd7c19c7de58c239d36cfd  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/010 Driving - Lesson 1.html
+cbd94db5d0ec29d9dc2e9f386c7db5472e7bb1cf87e809cf95a3fb40ac7022a7  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/011 Driving - Lesson 2.html
+72fc0a032b513a6a131284ec2ddbf19d59e4e20e2a55d140d551addef9e2eb68  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/012 Driving - Lesson 3.html
+ead5858cbad2b7de2b8ec7e41097856a5d6d1313a5d48304ee7b8d72f72ffe43  exercise/master-english-intermediate/02 Sport, Driving, Past Simple V Past Continuous V Past Perfect/013 The Scarlet Letter - Chapter 2.html
+b4d8fe3ec403edddb05e9b0c744d9dc16b0307cc37a33fb33edb67c8e1959324  exercise/master-english-intermediate/03 Present Perfect V Past Simple, Comparatives and Superlatives, Money, Transport/014 Present Perfect V Past Simple + Money.html
+ecb949a5a386977598e051c4c6b20390a25d1eaeebb454897ba0d853282ff1c9  exercise/master-english-intermediate/03 Present Perfect V Past Simple, Comparatives and Superlatives, Money, Transport/015 Common Verb Phrases - Part 2.html
+3956984a35397f6cf84837c04bc407c5855abdfca7b324bcc9cfb32b690dc9e2  exercise/master-english-intermediate/03 Present Perfect V Past Simple, Comparatives and Superlatives, Money, Transport/016 Comparatives, Superlatives, and Transport.html
+ca5490e0734f24d929ccc10d5e0b64aadde6a28c86cb2b712d3ad6d1e52c6268  exercise/master-english-intermediate/04 Perfect Simple V Perfect Continuous, Health, Reported Speech/017 Health + have donehave been doing.html
+1f74f0b86c0adc750a6dd53de586570d80a5fb2dcf79856099be920d5977da8a  exercise/master-english-intermediate/04 Perfect Simple V Perfect Continuous, Health, Reported Speech/018 Health + have donehave been doing - PART 2.html
+5360b4f539493a8066fcdefa30cf80dea2d0cb9f9614372e33184443a699c2f9  exercise/master-english-intermediate/04 Perfect Simple V Perfect Continuous, Health, Reported Speech/019 Reported Speech and Complaints - Part 1.html
+21908f4cdf649f6a4ea67e2bdf5850db8f2c485e8b7f0fde1f5e93784171dad8  exercise/master-english-intermediate/04 Perfect Simple V Perfect Continuous, Health, Reported Speech/020 Reported Speech and Complaints - Part 2.html
+e3dcafacdf84c5050776f3b4e3ed92ae16d4338757a5726f66aa723faf1cb4da  exercise/master-english-intermediate/04 Perfect Simple V Perfect Continuous, Health, Reported Speech/021 Reported Speech and Complaints - Part 3.html
+74177eb5a94aaef439a47bf1448b3bb058ed38b1a30c0ef85b6969e874e72d13  exercise/master-english-intermediate/05 Personality, Auxiliary Verbs and Future Tenses/022 Personality and Auxiliary Verbs.html
+46af5b845bfbfb1630a3cfc5fb6ceb6b7318139d885116d60f42b30a5cb7aa3e  exercise/master-english-intermediate/05 Personality, Auxiliary Verbs and Future Tenses/023 Future Tenses.html
+25d02ab8125f7979ce763ad9509f68a068c67db164882187fff791dacef51fa2  exercise/master-english-intermediate/05 Personality, Auxiliary Verbs and Future Tenses/024 Questions.html
+d5f33b888f9c64b87b5beba4e37ee5887d301b924f59de66514592e854e2e7aa  exercise/master-english-intermediate/06 Conditionals and Houses/025 Houses and Property.html
+17bdd9bf28793520a8d7207b4c29fc7a78976c5aad57aa544bb71feaee849d20  exercise/master-english-intermediate/06 Conditionals and Houses/026 Houses and Property - Part 2.html
+f19bc19daa7e35c90f416d559085f2df5d125f6d62007b915760f4bb9644f721  exercise/master-english-intermediate/06 Conditionals and Houses/027 Houses and Property - Part 3.html
+2f13afba15644f0fa1a8524de90fb81ed9637d8c48ecf4d9798d5b0513741b06  exercise/master-english-intermediate/06 Conditionals and Houses/028 Third Conditional.html
+7c91a76837102716861ac5cb599da232e682398241a146dac8b4c51687f22039  exercise/master-english-intermediate/07 Modal Verbs and History/029 Modal Verbs of Obligation - Part 1.html
+8d205aec8597cd71d86ef9d75863e22daa88e551aeaa7e4cfca43db88622cd63  exercise/master-english-intermediate/07 Modal Verbs and History/030 Modal Verbs of Obligation - Part 2.html
+9b233debc9ee9cff0f4a14838012c3e87f58efa1183514646607e804e5202fea  exercise/master-english-intermediate/07 Modal Verbs and History/031 Past Modals and History - Part 1.html
+c90a566eb88e3c3147b4fdecfef31d0060882211ed7ba18102f52fcae2652a87  exercise/master-english-intermediate/07 Modal Verbs and History/032 Past Modals and History - Part 2.html
+9896769784057a94457bd3f4d2efa6095cff74fb176ff2500cafc63373885062  exercise/master-english-intermediate/08 Articles and Education/033 Education - Part 1.html
+3e865aebed09695bd721c325a493ea440309309a50722c5b871c5bdad473c4d3  exercise/master-english-intermediate/08 Articles and Education/034 Education - Part 2.html
+751c74318b5e2dd37108623430f374febb3d6a89cb4471185978525145483df7  exercise/master-english-intermediate/08 Articles and Education/035 Education - Part 3.html
+cf4c4e80205101afe78995ae343a99b41699d4c0ac957185f4fe228f1d48f42c  exercise/master-english-intermediate/08 Articles and Education/036 Education - Part 4.html
+a43619970990593bb6b76b82ad2a3191fa2eb114d605204b07e69a91ad7ff595  exercise/master-english-intermediate/09 Quantifiers and Science/037 Science - Part 1.html
+bcb6f34fe5b1ed3198f3441e658993cb71c0f958ed82d6e425e44bf9d08c56af  exercise/master-english-intermediate/09 Quantifiers and Science/038 Science - Part 2.html
+ee384277c189508fea36c6c72130f7c916ad57a516a47f99e9039fd6faab5d0a  exercise/master-english-intermediate/09 Quantifiers and Science/039 Science - Part 3.html
+284dc4911faf1edf2ee7c685cc372381e3bedbdf124479ea62b563e6be99e5e2  exercise/master-english-intermediate/10 Passive and Cinema/040 The Cinema (1).html
+51cf6bce23dbe35bea38634dc722927654fe62fe7c4e07e503292425733550f1  exercise/master-english-intermediate/10 Passive and Cinema/041 The Cinema (2).html
+6a0be0ac74ef88f1a2183fe250ab9159c85d9e9df4cabac9d37a3f50d2042ecc  exercise/master-english-intermediate/10 Passive and Cinema/042 The Cinema (3).html
+814afb67f767ef8a68698d51d1c090686fae6381f137df4a900b9904a28889c2  exercise/master-english-intermediate/11 Work and Gerunds  Infinitives/043 Work - Part 1.html
+3e57ca76fa9071a9d9de53ee34c8b32a88422a71cb61e64ba1074bdf31d3ec16  exercise/master-english-intermediate/11 Work and Gerunds  Infinitives/044 Work - Part 2.html
+bb5a500c865d447d310a87e3726abd1add818c803580fc899272835f2d924af5  exercise/master-english-intermediate/11 Work and Gerunds  Infinitives/045 Work - Part 3.html
+5d274f5707e07c5db49ca048a94d74ad520480526dbbf13ef7e2e2bfe5b91dfd  exercise/master-english-intermediate/12 Reporting Verbs and Crime/046 Crime - Part 1.html
+dc2285ef8f69f16f43fc4a767d4e451e57a24340e474e40a136709d713ef2701  exercise/master-english-intermediate/12 Reporting Verbs and Crime/047 Crime - Part 2.html
+9162a210bbdbb177c09c2a589dee045910f41b57c60c3965dc4a68cce1554d83  exercise/master-english-intermediate/12 Reporting Verbs and Crime/048 Crime - Part 3.html
+0edca28a8afe7f20cafac690c37ff8a1ddad0fa21c2395bb2a552d1acc130e91  exercise/master-english-intermediate/13 Weather and Phrasal Verbs/049 Weather - Part 1.html
+7d1ab7a1d443bb9dbad8c1c39a84fd6dc2c2f0eca586736091810e5e33da79ab  exercise/master-english-intermediate/13 Weather and Phrasal Verbs/050 Weather - Part 2.html
+06015547e72bf9586062980f5a165f4b222fdd07ee1e3167b483357cfc7c2b3d  exercise/master-english-intermediate/13 Weather and Phrasal Verbs/051 Weather - Part 3.html
+1685057d95206096787982c8027ce2aad563523f6db666440cdcbfcad2dcad21  exercise/master-english-intermediate/course_content.txt
+c8d1cf40b3f34d85b45c7b6688e162af16ad7a9ae7169092b103da06ba0ebc70  exercise/master-english-vocabulary/01 Work/001 Work - Lesson 1.html
+0ef715d9f3314907a1fe621cad7d74b41ba56793d381311a42586adab0783cca  exercise/master-english-vocabulary/01 Work/002 Quiz Work - Lesson 1.html
+5b67b4d3361de0d0e195c48698e050d87ac9b3049d7f25794c12dc90568a973e  exercise/master-english-vocabulary/01 Work/002 Work - Lesson 2.html
+08a1ba8e48e71035651e836551083845ca2dcbe383cf3e6983baeb535ae37aaa  exercise/master-english-vocabulary/01 Work/004 Quiz Work - Lesson 2.html
+aa70117d2e0da8de199f0d20bb0386ab6c857f780ef85bf803ec98353ef7de48  exercise/master-english-vocabulary/02 Money/002 Quiz Money - Lesson 1.html
+efb6f453cb362c94c0f4d556b5ed9e2468f019c5d92aa750c33ea4188e41edef  exercise/master-english-vocabulary/02 Money/003 Money - Lesson 1.html
+c57eed075a83cd0c92d88da21b4042517fcb0a52a917a1ca39620aa669d487cb  exercise/master-english-vocabulary/02 Money/004 Money - Lesson 2.html
+a06dc42daa59513f4ef545be4c2aa27f275cdd5ab5fbac0b14ca756fa81b5e49  exercise/master-english-vocabulary/02 Money/004 Quiz Money - Lesson 2.html
+5a29ca96d9b5747ffc997077124fd51c93da2340d1a5b823d47eb01eb28525d9  exercise/master-english-vocabulary/02 Money/005 Money - Lesson 3.html
+73240ce64248b6017cf07ebf06d7813353119f4aef7f3ebc17892acdb25d42f3  exercise/master-english-vocabulary/02 Money/006 Quiz Money - Lesson 3.html
+41fe16faca29514b59032116c4436f3e16f2dfce70d733bfbc55273f7e13b52d  exercise/master-english-vocabulary/03 Crime/002 Quiz Crime - Lesson 1.html
+07047774ab4ca438b646be8c3956bf99599f2904e180a521cdf22b4b727aa0f3  exercise/master-english-vocabulary/03 Crime/004 Quiz Crime - Lesson 2.html
+396a6e97a461dde23f44c5df9dcc4ec4c5120f2563e0641bb310145f987f812a  exercise/master-english-vocabulary/03 Crime/006 Crime - Lesson 1.html
+86d6e82ceb5707395d7efe3e9ca9a22ef97a5b89b54961817e233da06c6a4df1  exercise/master-english-vocabulary/03 Crime/006 Quiz Crime - Lesson 3.html
+5e4d635def6f78ec841695d13ed025890ed785d4b718d21a140f0cf444ee75a5  exercise/master-english-vocabulary/03 Crime/007 Crime - Lesson 2.html
+10e12d7ee4db2b760d93a796a2a621a16c601707fd80433780395877413b7a68  exercise/master-english-vocabulary/03 Crime/008 Crime - Lesson 3.html
+4198088fa16e1a7bea0b42bce1f6f57e4800f40211966c66ad2692b53ef06dbf  exercise/master-english-vocabulary/04 Health/002 Quiz Health - Lesson 1.html
+ca204886ef91b5e85521b6fd2ff1ff1fc03d352a9e5381fb4def83f76eac8d7a  exercise/master-english-vocabulary/04 Health/004 Quiz Health - Lesson 2.html
+7488dbc48fe8fe568e84e6a4d01193f75c7007aea7f6ab92f8d107ee9f040d12  exercise/master-english-vocabulary/04 Health/006 Quiz Health - Lesson 3.html
+a391460df4c8d3ff577688d063145871ae50fc9bf445747dae29d83af9ca834d  exercise/master-english-vocabulary/04 Health/009 Health - Lesson 1.html
+9e21d489b7477040ffabb45126042a639a86393c41bc2ea8045f5154ec3bf815  exercise/master-english-vocabulary/04 Health/010 Health - Lesson 2.html
+6618ac1470321691fbfa6b166afec2b683544e65ac61e80e3d64b4f0c85de73b  exercise/master-english-vocabulary/04 Health/011 Health - Lesson 3.html
+9ba80b7325822ac06acb2502b4b28e159db9998678c84db4a2042c82cf957f83  exercise/master-english-vocabulary/05 Driving/002 Quiz Driving - Lesson 1.html
+6210cab05716e3a43b24fd20e56a5dd5bb7625efbc76ae6fbd0aa6f8f6d22685  exercise/master-english-vocabulary/05 Driving/004 Quiz Driving - Lesson 2.html
+ec8d984fdbd3c1632896e588405d2117e02bd3de5c3a6c7c9a03ee720c8a571a  exercise/master-english-vocabulary/05 Driving/006 Quiz Driving - Lesson 3.html
+15a0b993705a01bcdebea91582ecc9a813dbf35c4be58bcd5870b1432b2fa51f  exercise/master-english-vocabulary/05 Driving/012 Driving - Lesson 1.html
+ff400ba522c991d102504a92143587c25855fea0fb010dd54d421fc59785271f  exercise/master-english-vocabulary/05 Driving/013 Driving - Lesson 2.html
+b1dfcc429f36f85af4185e1f6eacb05d0edbef1aa2e26b55ea0044c1c4de30d8  exercise/master-english-vocabulary/05 Driving/014 Driving - Lesson 3.html
+6c26a67cee998c93b37f9580aaf5b0e91aea95f7deb0930fcd6d97634f2451c7  exercise/master-english-vocabulary/06 Binomials/002 Quiz Binomials - Lesson 1.html
+be4080089ff373d6c80214331fab83fbec5fd0a3bafa38ddad3a0fc21ea2df65  exercise/master-english-vocabulary/06 Binomials/004 Quiz Binomials - Lesson 2.html
+bfb789add1da3885b829058aa78ede043939ced906506f1168bf61a2a6ce0b65  exercise/master-english-vocabulary/06 Binomials/006 Quiz Trinomials.html
+b4ece19a8b01ffe68468f5b6b778c6297556c367233d761f79758f85bee4a078  exercise/master-english-vocabulary/06 Binomials/015 Binomials - Lesson 1.html
+86c480324cf34bfaa34961a2bfa7567eb9dae7852dee465425d4700d404a1213  exercise/master-english-vocabulary/06 Binomials/016 Binomials - Lesson 2.html
+46c593f7f81965d014f12fcb89572e1c55f08736e437c4b9fd397476d4d9c3c3  exercise/master-english-vocabulary/06 Binomials/017 Trinomials.html
+698c174a5470537b2af428c3d7a3f7c012fd3b95de4dc1c92f4b3b18c2123818  exercise/master-english-vocabulary/07 War and Peace/002 Quiz War and Peace.html
+641af4edcad2fd9bdac4910c7a65133a6fb03181e0891e5d9bf64faf68de0918  exercise/master-english-vocabulary/07 War and Peace/018 War and Peace.html
+87a335ebd2e7a73041320d0f5d4955bc74ce6e45271df8d5387223626970fd3c  exercise/master-english-vocabulary/08 News/002 Quiz News.html
+e93cd00cfa5ad30ffdbf8f2ee355d004e31b215e4a2aa1616025a1229709de32  exercise/master-english-vocabulary/08 News/019 News.html
+d03b5604233450e359a392661be2def24f8a4fcf61d60fd3584ce4454f239d40  exercise/master-english-vocabulary/09 Quantity/002 Quiz Quantity.html
+2058aba22947cf27e165aef6d8fba525b73fec77318bd356216fc925fcef3008  exercise/master-english-vocabulary/09 Quantity/020 Quantity.html
+1f3a307a55f8aad978ee47cbe1b3474fe4bd32035e62667461b7b2891c99a8b5  exercise/master-english-vocabulary/10 Ideas/002 Quiz Ideas.html
+4273f20ac9a1ac0b1fc1909b4dbc1bfd2674bec45693fe4262ebc70b7c39199b  exercise/master-english-vocabulary/10 Ideas/021 Ideas.html
+221b9f9fd8069a57053037e6bac289bd6d2c7d6b7a5ca02f834b92ec0d996cb7  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/002 Quiz Ways of Walking.html
+d24f2a6e6944293c06c61070339720daaed85509733e730457b2b6b7217d305b  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/004 Quiz Ways of Talking.html
+dd1ea8f106f8ac665d58ade5f54ee27fe7057323273309488343926bdae7bbdd  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/006 Quiz Ways of Looking.html
+6a0c4c631d453a9c2353b5ef7b08b7bae5f6f1a9fbb989b7566c26fad82a9bf0  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/022 Ways of Walking.html
+62b5712e11704a6d8dc32ac8fc29177a96d1d6a795d86d59414056f0ac5d0a7f  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/023 Ways of Talking.html
+98252bf2b18157e9957b67f1d19eabbc6ccaad5098f29f980569892a7ba89608  exercise/master-english-vocabulary/11 Ways of walking, talking, and looking/024 Ways of Looking.html
+22bcd195181d11d78d6f1f6b08e509655decf2ebd3f8e689e70b4c4f3a1ecd8b  exercise/master-english-vocabulary/12 Feelings/002 Quiz Feelings and Personality.html
+df87b390589f7c720de788e729e6576b072403d87d7025465696503ee453e593  exercise/master-english-vocabulary/12 Feelings/025 Feelings and Personality.html
+9467d2e214dd78e3fca0062d575376490ffef81d2c49bf95e3aee89bd7424dc0  exercise/master-english-vocabulary/13 Cause and Effect/002 Quiz Cause and Effect.html
+776c6b54e63954f03ba0782ffadcd34a76154eab68bcf9f038ebce72d74881d0  exercise/master-english-vocabulary/13 Cause and Effect/026 Cause and Effect.html
+39644183997decd377be952fe47b9c1c7dbdee9621eac0fad8e6c1c550fe9c41  exercise/master-english-vocabulary/14 Difficulties and Problems/002 Quiz Difficulties and Problems.html
+71cd56637268d61e055e6ecfe690f806bf69f02448f1faf44a80351e3c4f0314  exercise/master-english-vocabulary/14 Difficulties and Problems/027 Difficulties and Problems.html
+a7782cc07121014e503347876ba54a185b45de0e6a69636562576fa44135b5ce  exercise/master-english-vocabulary/15 Compare and Contrast/002 Quiz Compare and Contrast.html
+aafe982c0058016bd22674e18fd1e48db74b99466e5a9ac756dfeb1aac00d894  exercise/master-english-vocabulary/15 Compare and Contrast/028 Compare and Contrast.html
+fc7cbb2516b4b1d48a951c38ed3300573604c7483d6b0f632fbc6fbaf40989dd  exercise/master-english-vocabulary/16 Space and Time/002 Quiz Space and Time.html
+32bc3c9308d1f3e25fde49315441fd50b7d9e521e29b2cab63ebd6e390997023  exercise/master-english-vocabulary/16 Space and Time/029 Space and Time.html
+f409e06bb3dd247d9da711f17613f1297b5ae7c469f8ba0e491f923817ec39df  exercise/master-english-vocabulary/17 Plans and Decisions/002 Quiz Plans and Decisions.html
+72c41f4d52a829967d43fe9f4afed38abef15e0c65311f0dc3decfb28a152265  exercise/master-english-vocabulary/17 Plans and Decisions/030 Plans and Decisions.html
+f7034bd2f9b5174ddba7976c6866af2a0494d6ab0344c8e13099acd66e943a25  exercise/master-english-vocabulary/18 Appearance and Body/002 Quiz Appearance.html
+e1e2c682f164d5ae3da4ffd5190f7d69c677920bb36e11174e1085ef2adb33d1  exercise/master-english-vocabulary/18 Appearance and Body/004 Quiz Body.html
+adef6a965dc1343716b2d093441abcd23a820ed8a0614015794f6c73fde16571  exercise/master-english-vocabulary/18 Appearance and Body/031 Appearance.html
+87f5a3886ed6df3b0b797ccdd5ef9635c140f1a433cc914ca0410106f4b9ad0b  exercise/master-english-vocabulary/18 Appearance and Body/032 Body.html
+9a89613047866741125091ffa3b5c662f8566c61f9fa00ccc63a6fac79d2f6ba  exercise/master-english-vocabulary/19 Life and Death/002 Quiz Life and Death.html
+cc9be7f93a409c60cd3faff5faeec6c3b28c5244b1c2488f153a60a89cfd4758  exercise/master-english-vocabulary/19 Life and Death/033 Life and Death.html
+79e09f4c165c8a128923f057521a01b2587d4a6fac8a3b2921ff727b74420c63  exercise/master-english-vocabulary/20 Clothes and Fashion/002 Quiz Clothes and Fashion.html
+c5fa2976257b0a2a5b4e7e5da426becc0d8758c7c3eca5e4d0bbf420d20f6e61  exercise/master-english-vocabulary/20 Clothes and Fashion/034 Clothes and Fashion.html
+8c31785be1f3f579b1b418559b8386cb8bb461ad8a2ed41ea6fa9306f2188079  exercise/master-english-vocabulary/21 Food and Cooking/002 Quiz Food and Cooking.html
+c074e367942ae84c07f51453f45dc08df6eb03ed06789f3c0caf62b49d7a4c7c  exercise/master-english-vocabulary/21 Food and Cooking/035 Food and Cooking.html
+c34e622349c6b06dcf77b8b27d8a45ae94817d4cf66594213709bcfdfbbf5e65  exercise/master-english-vocabulary/22 Weather and Climate/002 Quiz Weather and Climate.html
+20b98bbd7a264080aba6216759e63b970af5d81bcb0e4cc90b6fcb2d1591f2bb  exercise/master-english-vocabulary/22 Weather and Climate/036 Weather and Climate.html
+a428c68a75c5e77480b19528bb69ce500111bc255a2b605160fde0a463874866  exercise/master-english-vocabulary/23 Animals and Plants/002 Quiz Animals and Plants.html
+1e8c26fa27134b39001320ed7361cb3e56a1c20b205df3347cc6116c8e009b31  exercise/master-english-vocabulary/23 Animals and Plants/037 Animals and Plants.html
+25cf1248c2dc7b280bb9940224b22497ef6d4a7f0c535b815d0254f50dbed4bf  exercise/master-english-vocabulary/26 Secret and Lies/002 Quiz Secret and Lies.html
+51f735973077ab5e80fe5ecbdd6011de7301f8d8217b875f55e469a14b8a5ee9  exercise/master-english-vocabulary/26 Secret and Lies/038 Secret and Lies.html
+ce4fc099ba2bc91d541a568788eebd19e14bae73535678e732580d3c9f39cb67  exercise/master-english-vocabulary/course_content.txt

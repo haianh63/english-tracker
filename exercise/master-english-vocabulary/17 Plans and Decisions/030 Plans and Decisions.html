@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46767392, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Before I act on your recommendation, I will consider all the potential pitfalls that might _____ our plans.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong meaning. To shelve a plan means to delay implementing it until a future moment.", "To scupper/foil/derail/thwart plans (make the plan unsuccessful) ", "Wrong meaning. To come up with a plan means to think of a plan", "Wrong meaning. To draw up a plan means to make a plan", "Wrong meaning. To stick to a plan means not to diverge from the plan"], "answers": ["<p>shelve</p>", "<p>scupper</p>", "<p>come up with</p>", "<p>draw up</p>", "<p>stick to</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Before I act on your recommendation, I will consider all the potential pitfalls that might _____ our plans.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46780848, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My manager leaves a lot of the decisions to our _________, as he prefers to delegate responsibility.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong collocation. Act on a suggestion/recommendation/complaint", "Wrong collocation. Act on a suggestion/recommendation/complaint", "To leave sth to sb's discretion = to allow them to decide that sth", "Wrong collocation. To offer constructive criticism ", "Wrong collocation. To reach a compromise", "Wrong collocation. To reach/arrive at/come to the conclusion"], "answers": ["<p>recommendation</p>", "<p>suggestion</p>", "<p>discretion</p>", "<p>criticism</p>", "<p>compromise</p>", "<p>conclusion</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "My manager leaves a lot of the decisions to our _________, as he prefers to delegate responsibility.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46780862, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The jury made a _______ and wise decision when they found the accused guilty of the heinous crime. The judge was pleased that they had all come to the same conclusion, and he sentenced the defendant to seven years imprisonment.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["A hasty decision does not sound wise. It is a decision taken too quickly", "Wrong collocation. A feasible/viable plan", "Wrong collocation. A feasible/viable plan", "Good. A unanimous decision is one on which everyone agrees", "Wrong collocation. To make minor/modest/substantial concessions", "Wrong meaning. A tentative decision is uncertain or not agreed upon yet."], "answers": ["<p>hasty</p>", "<p>feasible</p>", "<p>viable</p>", "<p>unanimous</p>", "<p>substantial</p>", "<p>tentative</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The jury made a _______ and wise decision when they found the accused guilty of the heinous crime. The judge was pleased that they had all come to the same conclusion, and he sentenced the defendant to seven years imprisonment.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46780876, "assessment_type": "multiple-choice", "prompt": {"question": "<p>It's important that we cover every ______ in today's meeting, because if we don't consider all the potential _____, we won't be able to mitigate the risks. </p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong collocations", "To cover every eventuality = to consider all the potential pitfalls", "Wrong collocation (reach/arrive at/come to a conclusion)", "Wrong collocation (reach/arrive at/come to a conclusion)"], "answers": ["<p>pitfall, eventualities</p>", "<p>eventuality, pitfalls</p>", "<p>conclusion, pitfalls</p>", "<p>eventuality, conclusions</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "It's important that we cover every ______ in today's meeting, because if we don't consider all the potential _____, we won't be able to mitigate the risks.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46781032, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We might have to make a few _____ concessions in order to conclude the negotiations before the deadline, but nothing major, just a couple of slight changes to the original contract.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong meaning. Substantial = major concessions (these are minor)", "Wrong meaning. Momentous = major concessions (these are minor)", "Wrong meaning. We want to say that these concessions will not be major", "Wrong meaning. We want to say that these concessions will not be major", "Wrong meaning. We want to say that these concessions will not be major", "To make minor/modest/substantial concessions"], "answers": ["<p>substantial</p>", "<p>momentous</p>", "<p>unanimous</p>", "<p>hasty</p>", "<p>controversial</p>", "<p>modest</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "We might have to make a few _____ concessions in order to conclude the negotiations before the deadline, but nothing major, just a couple of slight changes to the original contract.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46781082, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Because she is expecting to give birth very soon, she can only make ______ plans. (uncertain plans)</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Good. A tentative plan/suggestion/decision is uncertain", "feasible doesn't mean uncertain (feasible/viable = doable, workable)", "controversial doesn't mean uncertain (controversial = likely to cause fierce argument)", "substantial doesn't mean uncertain. (substantial = considerably big)", "modest doesn't mean uncertain. (a modest amount of money = not too much money)"], "answers": ["<p>tentative</p>", "<p>feasible</p>", "<p>controversial</p>", "<p>substantial</p>", "<p>modest</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Because she is expecting to give birth very soon, she can only make ______ plans. (uncertain plans)", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46787418, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When we put forward our proposals to senior management, our tentative suggestions were _____ out of hand.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong collocation (we can't refuse a suggestion, but we can refuse offers)", "Wrong collocation (we can't deny out of hand)", "Good. To reject sth out of hand = to not accept sth at all", "Wrong collocation (shelve a plan)", "Wrong collocation. (abandon a plan)"], "answers": ["<p>refused</p>", "<p>denied</p>", "<p>rejected</p>", "<p>shelved</p>", "<p>abandoned</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "When we put forward our proposals to senior management, our tentative suggestions were _____ out of hand.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}, {"_class": "assessment", "id": 46787428, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We ought to _____ all our options, then after careful deliberation, we can make an informed decision.</p>", "relatedLectureIds": ["31870320"], "feedbacks": ["Wrong collocation (offer constructive criticism)", "Wrong collocation. reach/come to/arrive at the conclusion", "Wrong collocation (compromise on sth)", "Wrong collocation (act on recommendations, suggestions, information, complaints)", "Wrong collocation (to toy with an idea)", "To asses/examine/explore/investigate your options"], "answers": ["<p>offer</p>", "<p>reach</p>", "<p>compromise</p>", "<p>act on</p>", "<p>toy with</p>", "<p>assess</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "We ought to _____ all our options, then after careful deliberation, we can make an informed decision.", "related_lectures": [{"_class": "lecture", "id": 31870320, "title": "Plans and Decisions", "created": "2022-04-18T16:06:49Z", "is_published": true, "asset": {"_class": "asset", "id": 40863638, "asset_type": "Video", "title": "IMG_2658.MOV", "created": "2022-04-19T12:06:15Z"}, "object_index": 32, "url": "/course/master-english-vocabulary/learn/lecture/31870320"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

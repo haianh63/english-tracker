@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80466688, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How does the word <strong>since</strong> function in the following example?</p><p><em>I haven't seen him </em><strong><em>since</em></strong><em> Tuesday morning's fiasco</em></p>", "relatedLectureIds": ["42050372"], "feedbacks": ["Since doesn't function as a coordinating or correlative conjunction", "Since doesn't function as a coordinating or correlative conjunction", "Since + clause (subject + verb) = subordinating conjunction. 'I haven't seen him since I came home from work' (I came = subject + verb)", "Since + noun = preposition. 'I haven't seen him since Tuesday's fiasco' (fiasco = noun)"], "answers": ["<p>It is a coordinating conjunction</p>", "<p>It is a correlative conjunction</p>", "<p>It is a subordinating conjunction</p>", "<p>It is a preposition</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "How does the word since function in the following example?I haven't seen him since Tuesday morning's fiasco", "related_lectures": [{"_class": "lecture", "id": 42050372, "title": "Linking Words - Part 1", "created": "2024-01-29T17:53:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54296954, "asset_type": "Video", "title": "Linking Words Part 1.mp4", "created": "2024-01-29T19:05:28Z"}, "object_index": 13, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42050372"}]}, {"_class": "assessment", "id": 80466726, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following sentences is written in the best style? Please remember that correlative conjunctions (<strong>not only X but also Y</strong>) join <strong>equal</strong> parts:</p>", "relatedLectureIds": ["42683866"], "feedbacks": ["He\u2019s not only intelligent (adjective) but also has a great sense of humor (verb phrase). = unbalanced", "Not only is he intelligent (clause) but also has a great sense of humor (verb phrase). = unbalanced", "Intelligent (adjective) funny (adjective). 2 equal parts (adjectives). He is not only X but also Y", "Not only is he intelligent (clause) but also funny (adjective). = unbalanced", "Not only he is intelligent (clause) but also has a great sense of humor (verb phrase). = unbalanced. This option is also incorrect because we MUST use inversion (is he) after fronted negative adverbials (Not only..., At no time...., Under no circumstances)"], "answers": ["<p>He\u2019s not only intelligent but also has a great sense of humor.</p>", "<p>Not only is he intelligent but also has a great sense of humor.</p>", "<p>He's not only intelligent, but also funny</p>", "<p>Not only is he intelligent but also funny.</p>", "<p>Not only he is intelligent but also has a great sense of humor.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Which of the following sentences is written in the best style? Please remember that correlative conjunctions (not only X but also Y) join equal parts:", "related_lectures": [{"_class": "lecture", "id": 42683866, "title": "Collocations - Part 4", "created": "2024-03-07T12:06:18Z", "is_published": true, "asset": {"_class": "asset", "id": 55146988, "asset_type": "Video", "title": "Collocations 2b.mp4", "created": "2024-03-07T12:18:04Z"}, "object_index": 12, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42683866"}]}, {"_class": "assessment", "id": 80466832, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How does the word <strong><em>for</em></strong> function in the following sentence:</p><p>The position of the enemy posed a serious threat to our own troops, <strong><em>for</em></strong> we were running out of food, fresh water, and ammunition.</p>", "relatedLectureIds": ["42683866"], "feedbacks": ["Main Clause , (fanboys) Main Clause. When the 'for' connects two main clauses, it is a coordinating conjunction (it joins equal parts). We don't often hear for used as a conjunction in everyday conversation, but we often see it in literature.", "Correlative conjunctions are made of two parts (both X and Y, either X or Y, not only X but also Y), so 'for' can't be in this group. ", "For is joining two equal parts (Main Clause , (fanboys) Main Clause), so it can't be a subordinating conjunction, which join inequal parts (often, a subordinate clause to a main clause)", "We usually see for functioning as a preposition (+ noun) in everyday English, but in this sentence, it is joining twop clauses together"], "answers": ["<p>It is a coordinating conjunction</p>", "<p>It is a correlative conjunction</p>", "<p>It is a subordinating conjunction</p>", "<p>It is a preposition</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "How does the word for function in the following sentence:The position of the enemy posed a serious threat to our own troops, for we were running out of food, fresh water, and ammunition.", "related_lectures": [{"_class": "lecture", "id": 42683866, "title": "Collocations - Part 4", "created": "2024-03-07T12:06:18Z", "is_published": true, "asset": {"_class": "asset", "id": 55146988, "asset_type": "Video", "title": "Collocations 2b.mp4", "created": "2024-03-07T12:18:04Z"}, "object_index": 12, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42683866"}]}, {"_class": "assessment", "id": 80467168, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How should the following sentence be punctuated in an exam?</p>", "relatedLectureIds": ["42683866"], "feedbacks": ["The first part of this sentence contains a long subordinate clause (incomplete thought). When we start a sentence with a subordinate clause, it is tradition to separate it from the main clause with a comma", "", "Semicolons separate main clauses from other main clauses, so this is incorrect. ", "This (who has been penalised for parking in the car park ) is a defining relative clause, so we don't use a comma before who. We are defining what type of permit holder (one who has been punished for parking in a car park)"], "answers": ["<p>If you are a permit holder who has been penalised for parking in the car park whilst correctly displaying your permit don't hesitate to get in touch.</p>", "<p>If you are a permit holder who has been penalised for parking in the car park whilst correctly displaying your permit, don't hesitate to get in touch.</p>", "<p>If you are a permit holder who has been penalised for parking in the car park; whilst correctly displaying your permit, don't hesitate to get in touch.</p>", "<p>If you are a permit holder, who has been penalised for parking in the car park whilst correctly displaying your permit, don't hesitate to get in touch.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "How should the following sentence be punctuated in an exam?", "related_lectures": [{"_class": "lecture", "id": 42683866, "title": "Collocations - Part 4", "created": "2024-03-07T12:06:18Z", "is_published": true, "asset": {"_class": "asset", "id": 55146988, "asset_type": "Video", "title": "Collocations 2b.mp4", "created": "2024-03-07T12:18:04Z"}, "object_index": 12, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42683866"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

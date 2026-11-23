@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80474372, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-14-31-fe22877e84f178a6ef1b0d57f9df5ab4.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["", "slur = drunken speech", "stutter = a speech impediment in which you find it difficult to say the whole word, so you involuntarily repeat the same part of the word.", "gibber = hysterical and incomprehensible speech"], "answers": ["<p>Whenever we go for a long drive with the kids, they always start<strong> <em>bickering over</em></strong> the tablet.</p>", "<p>Whenever we go for a long drive with the kids, they always start<strong> <em>slurring over</em></strong> the tablet.</p>", "<p>Whenever we go for a long drive with the kids, they always start<strong> <em>stuttering over</em></strong> the tablet.</p>", "<p>Whenever we go for a long drive with the kids, they always start<strong> <em>gibbering over</em></strong> the tablet.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80474428, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-16-44-4275441782620fb3d8d72b1a179f46cc.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["mutter = say sth quietly (often to yourself or under your breath)", "murmur = say sth quietly (often to yourself or under your breath)", "", "babble = speak incoherently"], "answers": ["<p>While enjoying tea and cakes, the ladies <strong><em>muttered away</em></strong> for hours and caught up on the latest juicy gossip.</p>", "<p>While enjoying tea and cakes, the ladies <strong><em>murmured away</em></strong> for hours and caught up on the latest juicy gossip.</p>", "<p>While enjoying tea and cakes, the ladies <strong><em>nattered away</em></strong> for hours and caught up on the latest juicy gossip.</p>", "<p>While enjoying tea and cakes, the ladies <strong><em>babbled away</em></strong> for hours and caught up on the latest juicy gossip.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80474542, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-20-06-71d4427208484b1985dffc630527f47b.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["broach a (difficult) subject = bring up (mention) a sore subject. (Broach on about = incorrect)", "swear = use profane language OR promise (swear about = incorrect)", "speak (come) out against = publicly denounce sth (say in public that you are against sth).", ""], "answers": ["<p>We spend far too much time listening to our professor <strong><em>broach on about </em></strong>(boring, monotonous voice) the theory, and far too little time putting the theory into practice.</p>", "<p>We spend far too much time listening to our professor <strong><em>swear about </em></strong>(boring, monotonous voice) the theory, and far too little time putting the theory into practice.</p>", "<p>We spend far too much time listening to our professor <strong><em>speak out against</em></strong> (boring, monotonous voice) the theory, and far too little time putting the theory into practice.</p>", "<p>We spend far too much time listening to our professor <strong><em>drone on about</em></strong> (boring, monotonous voice) the theory, and far too little time putting the theory into practice.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80474934, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-22-04-263f41431f1167de38827fdca1652f32.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["We don't say 'a gibberish wreck', BUT we do say talk gibberish, which means talk (hysterical) nonsense", "We don't say 'a babbling wreck', but babble does mean speak incoherently", "We don't say 'a gabbling wreck', but gabble does mean speak quickly and incoherently", ""], "answers": ["<p>The incessant artillery fire had turned the soldier into <strong><em>a gibberish wreck </em></strong>(speaking incoherently and hysterically)</p>", "<p>The incessant artillery fire had turned the soldier into <strong><em>a babbling wreck </em></strong>(speaking incoherently and hysterically)</p>", "<p>The incessant artillery fire had turned the soldier into <strong><em>a gabbling wreck </em></strong>(speaking incoherently and hysterically)</p>", "<p>The incessant artillery fire had turned the soldier into <strong><em>a gibbering wreck </em></strong>(speaking incoherently and hysterically)</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80475038, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-25-07-a77c96542f735ddbfc6e903b2657db90.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["to open up to sb = to speak to them sincerely", "", "engage in a stimulating conversation", "bombard sb with (a barrage of) questions"], "answers": ["<p>As soon as my back is turned, my colleagues start <strong><em>opening up vicious rumours</em></strong> about me.</p>", "<p>As soon as my back is turned, my colleagues start <strong><em>spreading vicious rumours</em></strong> about me.</p>", "<p>As soon as my back is turned, my colleagues start <strong><em>engaging in vicious rumours</em></strong> about me.</p>", "<p>As soon as my back is turned, my colleagues start <strong><em>bombarding vicious rumours</em></strong> about me.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80475670, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-26-53-8a9e124ee400666c314f2edcb217a2dd.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["stutter = speech impediment (repeat the same part of a word involuntarily)", "stammer = repeat words nervously (not necessarily a speech impediment)", "", "mutter / murmur sth (to yourself or under your breath)"], "answers": ["<p>By the time that he had downed his 8th whiskey, he was <strong><em>stuttering</em></strong> his words and staggering around the room.</p>", "<p>By the time that he had downed his 8th whiskey, he was <strong><em>stammering</em></strong> his words and staggering around the room.</p>", "<p>By the time that he had downed his 8th whiskey, he was <strong><em>slurring</em></strong> his words and staggering around the room.</p>", "<p>By the time that he had downed his 8th whiskey, he was <strong><em>murmuring</em></strong> his words and staggering around the room.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80475682, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-28-42-9085f55065786fd9253b65d2f5fd19df.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["have a stutter = you involuntarily repeat part of the same word", "have a stutter = you involuntarily repeat part of the same word", "", "have a stammer = you nervously repeat part of the same word"], "answers": ["<p>Speech therapy can be very effective if you <strong><em>have a stutter</em></strong>, which is characterized by the mispronunciation of the S sound.</p>", "<p>Speech therapy can be very effective if you <strong><em>have a stur</em></strong>, which is characterized by the mispronunciation of the S sound.</p>", "<p>Speech therapy can be very effective if you <strong><em>have a lisp</em></strong>, which is characterized by the mispronunciation of the S sound.</p>", "<p>Speech therapy can be very effective if you <strong><em>have a stammer</em></strong>, which is characterized by the mispronunciation of the S sound.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}, {"_class": "assessment", "id": 80475694, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-18_18-30-22-3b4b21ff7d8d080841c5fba5e3174320.jpg\">", "relatedLectureIds": ["42689526"], "feedbacks": ["to whistle = to make a high-pitched noise with your lips (or to blow a whistle if you use a device)", "to whinge = to complain (very similar to whine)", "to whine = to complain (very similar to whinge)", ""], "answers": ["<p>She swore that she wouldn't tell anybody, so he <strong><em>whistled </em></strong>the secret in her ear.</p>", "<p>She swore that she wouldn't tell anybody, so he <strong><em>whinged </em></strong>the secret in her ear.</p>", "<p>She swore that she wouldn't tell anybody, so he <strong><em>whined </em></strong>the secret in her ear.</p>", "<p>She swore that she wouldn't tell anybody, so he <strong><em>whispered </em></strong>the secret in her ear.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42689526, "title": "Collocations - Part 5", "created": "2024-03-07T18:08:58Z", "is_published": true, "asset": {"_class": "asset", "id": 55154834, "asset_type": "Video", "title": "Collocations talking a.mp4", "created": "2024-03-07T18:46:28Z"}, "object_index": 17, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42689526"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

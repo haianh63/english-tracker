@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46804682, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The jackal, distantly related to a domestic dog, is an omnivore that hunts alone, although it may form a small pack to scavenge a large _______.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["Prey is uncountable. Also, we scavenge that which is already dead", "Jackals don't feed off dead humans", "A dead mammal is called a carcass (animal version of corpse)", "A breed is a subtype of species (a dangerous breed of dog)", "A nest is the home of a bird"], "answers": ["<p>prey</p>", "<p>corpse</p>", "<p>carcass</p>", "<p>breed</p>", "<p>nest</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The jackal, distantly related to a domestic dog, is an omnivore that hunts alone, although it may form a small pack to scavenge a large _______.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46804690, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He has drastically reduced the amount of sugary foods in his diet, in the hope of ______ some weight.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["To lay an egg (The hen laid an egg)", "The egg hatches. We can also hatch an evil plan", "To reap the harvest = to harvest a crop. We can also reap the benefits/rewards of sth OR from sth", "To shed weight/inhibitions/worries/leaves/skin ", "To harvest the crops = to gather the crops", "To breed = to multiply "], "answers": ["<p>laying</p>", "<p>hatching</p>", "<p>reaping</p>", "<p>shedding</p>", "<p>harvesting</p>", "<p>breeding</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "He has drastically reduced the amount of sugary foods in his diet, in the hope of ______ some weight.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46804706, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The idea has firmly taken ____ that any planned construction work in this area of the forest would threaten the natural habitat of badgers, foxes, and deer, so if the local authorities do give permission to build in this nature reserve, we can expect stiff opposition from local residents.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["Wrong collocation. To plant the seeds of doubt/fear/suspicion/revolution", "Wrong collocation. To reap the harvest = to harvest (gather) the crop", "Wrong collocation. To reap the harvest = to harvest (gather) the crop", "When an idea takes root, it becomes widely accepted as true", "Wrong collocation. To reap the harvest = to harvest (gather) the crop. We may also reap the rewards/benefits of something", "Wrong collocation. Stems from = results from", "Wrong collocation. 'To nip sth in the bud' means deal with a problem early, before it gets worse"], "answers": ["<p>seed</p>", "<p>harvest</p>", "<p>crop</p>", "<p>root</p>", "<p>reap</p>", "<p>stem</p>", "<p>nip</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The idea has firmly taken ____ that any planned construction work in this area of the forest would threaten the natural habitat of badgers, foxes, and deer, so if the local authorities do give permission to build in this nature reserve, we can expect stiff opposition from local residents.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46804724, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I forgot to put the bouquet of flowers in a vase when I got home, and once I remembered about them a few hours later, they had already started to _____ .</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["to breed = to multiply", "The snake sheds its skin, and trees shed leaves (and we shed weight/inhibitions/worries)", "A  bee/wasp/hornet might sting you", "", "Stems from = results from", "A  branch is a smaller part of a tree."], "answers": ["<p>breed</p>", "<p>shed</p>", "<p>sting</p>", "<p>wither</p>", "<p>stem</p>", "<p>branch</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I forgot to put the bouquet of flowers in a vase when I got home, and once I remembered about them a few hours later, they had already started to _____ .", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46804744, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Ambling along the road without a care in the world, I suddenly felt a large powerful set of jaws biting me on the back of the leg, and glancing round, I saw that a mad _____ dog had latched onto my calf. Fortunately, I managed to sprint across the road without the dog, and his homeless friends (there were about 7 or 8 in the pack) following me.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["When plants (or gardens) flourish/thrive, they do well. Also used metaphorically (My firm is flourishing)", "When plants (or gardens) flourish/thrive, they do well. Also used metaphorically (My firm is flourishing)", "A domesticated animal lives in the home. These were homeless dogs", "This dog was NOT docile! Docile means calm and peaceful", "A tame animal is a domesticated animal. This animal was not tame.", "Good. A stray dog (or animal) is a homeless dog", "To sow (plant, scatter) seeds"], "answers": ["<p>flourishing</p>", "<p>thriving</p>", "<p>domesticated</p>", "<p>docile</p>", "<p>tame</p>", "<p>stray</p>", "<p>sow</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "Ambling along the road without a care in the world, I suddenly felt a large powerful set of jaws biting me on the back of the leg, and glancing round, I saw that a mad _____ dog had latched onto my calf. Fortunately, I managed to sprint across the road without the dog, and his homeless friends (there were about 7 or 8 in the pack) following me.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46805230, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Our company uses a variety of techniques to _________ the weaker candidates in the first few stages of the interview.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["When a firm or person 'branches out', they start working in a new sphere or direction or industry", "Latch onto = tightly attach yourself onto sth", "To tear/rip sth out = remove by tearing/ripping", "To tear/rip sth out = remove by tearing/ripping", "You can dig sth out of the ground (also dig sth up). You can also dig sth out (your pocket). An animal might dig itself out of the ground", "To weed sth/sb out = find and remove sth because it is inferior "], "answers": ["<p>branch out</p>", "<p>latch out</p>", "<p>rip out</p>", "<p>tear out</p>", "<p>dig out</p>", "<p>weed out</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "Our company uses a variety of techniques to _________ the weaker candidates in the first few stages of the interview.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46805254, "assessment_type": "multiple-choice", "prompt": {"question": "<p>A cat uses its ______ to see if it can fit through narrow openings and get into tight spaces, as they are just a tad longer than its face, and they are very sensitive. (Note well: 'a tad' = 'a tiny bit')</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["A cat scratches you with its claws", "A lion or horse has a mane", "A horse has hooves", "A bird has feathers", "The tail of a cat is far longer than its face", "Good. The cats whiskers are on its face"], "answers": ["<p>claws</p>", "<p>mane</p>", "<p>hooves</p>", "<p>feathers</p>", "<p>tail</p>", "<p>whiskers</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "A cat uses its ______ to see if it can fit through narrow openings and get into tight spaces, as they are just a tad longer than its face, and they are very sensitive. (Note well: 'a tad' = 'a tiny bit')", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}, {"_class": "assessment", "id": 46805754, "assessment_type": "multiple-choice", "prompt": {"question": "<p>At first, the candidate was looking very popular in the polls, but when the media mounted a huge smear campaign against him, which _____ the seeds of doubt in the minds of the voters, and he went on to do very poorly in the elections.</p>", "relatedLectureIds": ["31968214"], "feedbacks": ["Wrong collocation. Deeply rooted in tradition", "Wrong collocation. Breed resentment/anger/mistrust", "To sow/plant/scatter seeds (of doubt, fear, mistrust, suspicion, revolution)", "To prey on sb = to target sb (for a crime or attack)", "Lions prowl the jungle, looking for prey", "Kids and animals scurry (fast, small steps)"], "answers": ["<p>rooted</p>", "<p>bred</p>", "<p>sowed</p>", "<p>preyed</p>", "<p>prowled</p>", "<p>scurried</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "At first, the candidate was looking very popular in the polls, but when the media mounted a huge smear campaign against him, which _____ the seeds of doubt in the minds of the voters, and he went on to do very poorly in the elections.", "related_lectures": [{"_class": "lecture", "id": 31968214, "title": "Animals and Plants", "created": "2022-04-25T10:09:34Z", "is_published": true, "asset": {"_class": "asset", "id": 40986278, "asset_type": "Video", "title": "IMG_2680.MOV", "created": "2022-04-25T18:21:36Z"}, "object_index": 39, "url": "/course/master-english-vocabulary/learn/lecture/31968214"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

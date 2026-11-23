@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 72378242, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_15-30-47-b8f4928f9e54d065fd5782f8ab4e7171.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["the hood (US) = the bonnet (UK). The bonnet usually contains the engine, and has no space for a spare wheel", "The glove compartment is too small for a spare wheel", "the boot = the place where you keep your luggage", "The bonnet usually contains the engine, and has no space for a spare wheel"], "answers": ["<p>Do you keep a spare wheel in the hood in case you get a puncture?</p>", "<p>Do you keep a spare wheel in the glove compartment in case you get a puncture?</p>", "<p>Do you keep a spare wheel in the boot in case you get a puncture?</p>", "<p>Do you keep a spare wheel in the bonnet in case you get a puncture?</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379074, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-12-11-6bf06d1a224d564d25385177cc7f3434.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["Bear right / left are NOT accidental. ", "Veer off is often accidental", "bear / bore / born ", "This isn't a steep hill. It's a sharp bend"], "answers": ["<p>As he was overtaking his competitor on a steep hill, he lost control of the steering wheel and bore off the track.</p>", "<p>As he was overtaking his competitor on a sharp bend, he lost control of the steering wheel and veered off the track.</p>", "<p>As he was overtaking his competitor on a sharp bend, he lost control of the steering wheel and beared off the track.</p>", "<p>As he was overtaking his competitor on a steep hill, he lost control of the steering wheel and veered off the track.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379114, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-15-53-fa856871ade0c4c8b4aefabd1819dbb8.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["get out of / into (cars/vans/lorries) get on / off (everything else)", "get out of / into (cars/vans/lorries) get on / off (everything else)", "get out of / into (cars/vans/lorries) get on / off (everything else)", "get out of / into (cars/vans/lorries) get on / off (everything else)"], "answers": ["<p>I was running out of petrol, so I pulled into the petrol station, went out of my car, then filled up.</p>", "<p>I was running out of petrol, so I pulled into the petrol station, went off my car, then filled up.</p>", "<p>I was running out of petrol, so I pulled into the petrol station, got off of my car, then filled up.</p>", "<p>I was running out of petrol, so I pulled into the petrol station, got out of my car, then filled up.</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379140, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-19-29-83b5dd133bdbd8aecd6406b5a722a7ce.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["Surely, you ran over the deer while you were in the middle of driving?", "Surely, you ran over the deer while you were in the middle of driving?", "run over = short and finished. drive = long and interrupted", "run over = short and finished. drive = long and interrupted"], "answers": ["<p>We ran over a deer when we had driven along the motorway</p>", "<p>We were running over a deer when we drove along the motorway</p>", "<p>We were running over a deer when we were driving along the motorway</p>", "<p>We ran over a deer when we were driving along the motorway</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379220, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-25-45-344f6cb3df7b60b601748cde7a5df90a.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["Pull up = come to a stop sw", "Pull out of (exit) / pull into (enter). E.g. We pulled out of the petrol station and continued our journey", "Pull off (the motorway/a road) = leave that motorway or road (to go to a smaller road)", "Pull sb over = (when police) stop sb on the road"], "answers": ["<p>The policeman pulled us up as he thought we were driving recklessly</p>", "<p>The policeman pulled us out as he thought we were driving recklessly</p>", "<p>The policeman pulled us off as he thought we were driving recklessly</p>", "<p>The policeman pulled us over as he thought we were driving recklessly</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379782, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-31-50-8f72986345dd7381d491b087a8d79965.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["a pull up/ a press up - these are types of exercise that people to to keep fit", "to pile into sb, crash into sb (a pile up)", "a pull up/ a press up - these are types of exercise that people to to keep fit", "to pick sb up from sw (give sb a lift), drop sb off at sw"], "answers": ["<p>Many tests are performed on new vehicles in order to improve safety in the event of a pull up. </p>", "<p>Many tests are performed on new vehicles in order to improve safety in the event of a pile up. </p>", "<p>Many tests are performed on new vehicles in order to improve safety in the event of a press up. </p>", "<p>Many tests are performed on new vehicles in order to improve safety in the event of a pick up. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72379896, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-35-07-d871d656b4617b25a287c1388c95c588.jpg\"><p><strong>Please choose the correct option:</strong></p><p><br></p>", "relatedLectureIds": ["40565804"], "feedbacks": ["GET on / off (transport). GET into / out of (cars)", "GET on / off (transport). GET into / out of (cars)", "GET on / off (transport). GET into / out of (cars)", "GET on / off (transport). GET into / out of (cars)"], "answers": ["<p>The pilot told us as soon as we went on the plane that we would be waiting on the runway for at least another 45 minutes. </p>", "<p>The pilot told us as soon as we had gone on the plane that we would be waiting on the runway for at least another 45 minutes. </p>", "<p>The pilot told us as soon as we had gone in the plane that we would be waiting on the runway for at least another 45 minutes. </p>", "<p>The pilot told us as soon as we had got on the plane that we would be waiting on the runway for at least another 45 minutes. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}, {"_class": "assessment", "id": 72380404, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-11-21_16-41-03-366d956da204871a270ec6951386cc3f.jpg\">", "relatedLectureIds": ["40565804"], "feedbacks": ["Traffic/noise eases off OR dies down. When a species 'dies off' it dies slowly (one by one), and when it 'dies out', it goes extinct", "Traffic/noise eases off OR dies down. When a species 'dies off' it dies slowly (one by one), and when it 'dies out', it goes extinct", "Traffic/noise eases off OR dies down. When a species 'dies off' it dies slowly (one by one), and when it 'dies out', it goes extinct", "Die away = wrong"], "answers": ["<p>Traffic usually builds up at 5 o clock, and it doesn't die off until eight o clock. The roads are often heavily congested at these times, so avoid the rush; otherwise, you'll get stuck in a traffic jam. </p>", "<p>Traffic usually builds up at 5 o clock, and it doesn't die down until eight o clock. The roads are often heavily congested at these times, so avoid the rush; otherwise, you'll get stuck in a traffic jam. </p>", "<p>Traffic usually builds up at 5 o clock, and it doesn't die out until eight o clock. The roads are often heavily congested at these times, so avoid the rush; otherwise, you'll get stuck in a traffic jam. </p>", "<p>Traffic usually builds up at 5 o clock, and it doesn't die away until eight o clock. The roads are often heavily congested at these times, so avoid the rush; otherwise, you'll get stuck in a traffic jam. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 40565804, "title": "Driving - Lesson 2", "created": "2023-10-27T13:27:27Z", "is_published": true, "asset": {"_class": "asset", "id": 52321552, "asset_type": "Video", "title": "Driving B.mp4", "created": "2023-10-27T14:49:12Z"}, "object_index": 11, "url": "/course/master-english-intermediate/learn/lecture/40565804"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

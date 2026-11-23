@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80381176, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct option:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["We usually see past perfect in reported speech. We must use past perfect if the action (had met, had spoken) took place before the reporting verb (asked). It is true that in informal English, you might hear natives breaking this rule, and using past simple (met, spoke) instead; nevertheless, I want you to speak better than the natives.", "We usually see past perfect in reported speech. We must use past perfect if the action (had met, had spoken) took place before the reporting verb (asked). It is true that in informal English, you might hear natives breaking this rule, and using past simple (met, spoke) instead; nevertheless, I want you to speak better than the natives.", "We usually see past perfect in reported speech. We must use past perfect if the action (had met, had spoken) took place before the reporting verb (asked). It is true that in informal English, you might hear natives breaking this rule, and using past simple (met, spoke) instead; nevertheless, I want you to speak better than the natives.", "We can't use past perfect continuous (had been meeting, had been speaking) when we ask (or say) how many times the action occurred."], "answers": ["<p>I asked my colleague how many times he <strong><em>had met</em></strong> our suppliers, and he replied that he <strong><em>had only spoken</em></strong> to them once.</p>", "<p>I asked my colleague how many times he <strong><em>met</em></strong> our suppliers, and he replied that he <strong><em>had only spoken</em></strong> to them once.</p>", "<p>I asked my colleague how many times he <strong><em>met</em></strong> our suppliers, and he replied that he only<strong><em> spoke</em></strong> to them once.</p>", "<p>I asked my colleague how many times he <strong><em>had been meeting</em></strong> our suppliers, and he replied that he <strong><em>had only been speaking</em></strong> to them once.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct option:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80381208, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["When 'when' refers to past events, we need past tenses; however, for future events we see when + present tense in the subordinate clause, and future tense (will) in the main clause. For example:  When I am 65 (sub clause), I will retire (main clause). When you see the boss, will you tell him?", "For suggestions (will you tell him?), promises, and offers, we use will rather than present continuous or future continuous", "When 'when' refers to past events, we need past tenses; however, for future events we see when + present tense in the subordinate clause, and future tense (will) in the main clause. For example:  When I am 65 (sub clause), I will retire (main clause). When you see the boss, will you tell him?", "When 'when' refers to past events, we need past tenses; however, for future events we see when + present tense in the subordinate clause, and future tense (will) in the main clause. For example:  When I am 65 (sub clause), I will retire (main clause). When you see the boss, will you tell him?"], "answers": ["<p>I've just heard that Peter is sick today, so he won't be coming in. <strong><em>Will you tell</em></strong> the boss when <strong><em>you will be seeing</em></strong> him?</p>", "<p>I've just heard that Peter is sick today, so he won't be coming in. <strong><em>Are you telling</em></strong> the boss when <strong><em>you see</em></strong> him?</p>", "<p>I've just heard that Peter is sick today, so he won't be coming in. <strong><em>Will you tell</em></strong> the boss when <strong><em>you will see</em></strong> him?</p>", "<p>I've just heard that Peter is sick today, so he won't be coming in. <strong><em>Will you tell</em></strong> the boss when <strong><em>you see</em></strong> him?</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80382414, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>\u200bPlease choose the correct answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["will have been having = extremely rare. It focuses on duration, so it is incorrect", "We mustn't use ANY present perfect tense (has had, has been having) with specific finished moments (on Saturday, last week, 4 years ago, at 3:30)", "Many future tenses are possible here:  He told me that on Saturday he'll be having lunch with Peter. (correct, and very common in spoken English) He told me that on Saturday he's having lunch with Peter. (correct) He told me that on Saturday he will have lunch with Peter.(correct) He told me that on Saturday he's going to have lunch with Peter. (correct)", "This means he will have finished having lunch with Peter, which is odd", "We mustn't use ANY present perfect tense (has had, has been having) with specific finished moments (on Saturday, last week, 4 years ago, at 3:30)"], "answers": ["<p>He told me that on Saturday <strong><em>he'll have been having</em></strong> lunch with Peter.</p>", "<p>He told me that on Saturday <strong><em>he has been having</em></strong> lunch with Peter.</p>", "<p>He told me that on Saturday <strong><em>he'll be having</em></strong> lunch with Peter.</p>", "<p>He told me that on Saturday <strong><em>he'll have had</em></strong> lunch with Peter.</p>", "<p>He told me that on Saturday <strong><em>he has had</em></strong> lunch with Peter.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "\u200bPlease choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80382726, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct (and most natural) answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["Here, it is most likely that you will be in the middle of sleeping, so future continuous (will be sleeping) sounds the most natural.", "Here, it is most likely that you will be in the middle of sleeping, so future continuous (will be sleeping) sounds the most natural.", "Here, it is most likely that you will be in the middle of sleeping, so future continuous (will be sleeping) sounds the most natural.", "Here, it is most likely that you will be in the middle of sleeping, so future continuous (will be sleeping) sounds the most natural.", "Here, it is most likely that you will be in the middle of sleeping, so future continuous (will be sleeping) sounds the most natural."], "answers": ["<p>At half past twelve, I <strong><em>will probably have been sleeping</em></strong>, so please don't disturb me with a phone call.</p>", "<p>At half past twelve, I <strong><em>will probably sleep</em></strong>, so please don't disturb me with a phone call.</p>", "<p>At half past twelve, I<strong><em> will probably be sleeping</em></strong>, so please don't disturb me with a phone call</p>", "<p>At half past twelve, I <strong><em>am probably going to be sleeping</em></strong>, so please don't disturb me with a phone call</p>", "<p>At half past twelve, I <strong><em>am probably going to be sleeping</em></strong>, so please don't disturb me with a phone call</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct (and most natural) answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80383610, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["How many times (referring to how many times an action took place in the past, until the present moment) requires present perfect simple (have you watched). We need perfect simple when we say how many times (or even how much in terms of km or kg)  I have written 6 emails We have driven 50km They have each eaten half a kilo of beef.", "How many times (referring to how many times an action took place in the past, until the present moment) requires present perfect simple (have you watched). We need perfect simple when we say how many times (or even how much in terms of km or kg)  I have written 6 emails We have driven 50km They have each eaten half a kilo of beef.", "How many times (referring to how many times an action took place in the past, until the present moment) requires present perfect simple (have you watched). We need perfect simple when we say how many times (or even how much in terms of km or kg)  I have written 6 emails We have driven 50km They have each eaten half a kilo of beef.", "How many times (referring to how many times an action took place in the past, until the present moment) requires present perfect simple (have you watched). We need perfect simple when we say how many times (or even how much in terms of km or kg)  I have written 6 emails We have driven 50km They have each eaten half a kilo of beef.", "How many times (referring to how many times an action took place in the past, until the present moment) requires present perfect simple (have you watched). We need perfect simple when we say how many times (or even how much in terms of km or kg)  I have written 6 emails We have driven 50km They have each eaten half a kilo of beef."], "answers": ["<p>How many times <strong><em>have you watched</em></strong> this film?</p>", "<p>How many times <strong><em>have you been watching</em></strong> this film?</p>", "<p>How many times <strong><em>did you watch</em></strong> this film?</p>", "<p>How many times <strong><em>are you watching</em></strong> this film?</p>", "<p>How many times <strong><em>do you watch</em></strong> this film?</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80383618, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct (and most natural) answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["I think you might hear other options in informal speech, but with by the end of the year we tend to use future continuous (for an unfinished future action) or future perfect (for a complete future action). I would like to have already earned all 3 million by the end of the year, so future perfect (will have earned) is best.", "I think you might hear other options in informal speech, but with by the end of the year we tend to use future continuous (for an unfinished future action) or future perfect (for a complete future action). I would like to have already earned all 3 million by the end of the year, so future perfect (will have earned) is best.", "I think you might hear other options in informal speech, but with by the end of the year we tend to use future continuous (for an unfinished future action) or future perfect (for a complete future action). I would like to have already earned all 3 million by the end of the year, so future perfect (will have earned) is best.", "I think you might hear other options in informal speech, but with by the end of the year we tend to use future continuous (for an unfinished future action) or future perfect (for a complete future action). I would like to have already earned all 3 million by the end of the year, so future perfect (will have earned) is best."], "answers": ["<p>Dave hopes that he<strong><em> will be earning</em></strong> 3 million pounds (at least) by the end of the year.</p>", "<p>Dave hopes that he<strong><em> will have earned</em></strong> 3 million pounds (at least) by the end of the year.</p>", "<p>Dave hopes that he<strong><em> is going to earn</em></strong> 3 million pounds (at least) by the end of the year.</p>", "<p>Dave hopes that he<strong><em> is earning</em></strong> 3 million pounds (at least) by the end of the year.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct (and most natural) answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80383922, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["You were probably in the middle of driving fast when the police stopped you. Past continuous (unfinished) and past simple (complete) for simultaneous actions.", "You were probably in the middle of driving fast when the police stopped you. Past continuous (unfinished) and past simple (complete) for simultaneous actions.", "You were probably in the middle of driving fast when the police stopped you. Past continuous (unfinished) and past simple (complete) for simultaneous actions.", "You were probably in the middle of driving fast when the police stopped you. Past continuous (unfinished) and past simple (complete) for simultaneous actions.", "You were probably in the middle of driving fast when the police stopped you. Past continuous (unfinished) and past simple (complete) for simultaneous actions."], "answers": ["<p><strong><em>Did you drive</em></strong><em> </em>fast when the police <strong><em>stopped</em></strong> you?</p>", "<p><strong><em>Were you driving</em></strong><em> </em>fast when the police <strong><em>stopped</em></strong> you?</p>", "<p><strong><em>Did you drive</em></strong><em> </em>fast when the police <strong><em>were stopping</em></strong> you?</p>", "<p><strong><em>Have you been driving</em></strong><em> </em>fast when the police <strong><em>stopped</em></strong> you?</p>", "<p><strong><em>Have you driven</em></strong><em> </em>fast when the police <strong><em>stopped</em></strong> you?</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}, {"_class": "assessment", "id": 80383932, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["42171590"], "feedbacks": ["cut = dynamic verb (and we cut the onions multiple times), so perfect continuous (had been cutting) is better than perfect simple (had cut)", "Looks and has been cutting are not compatible with the final clause (that's why his eyes were still watery and red)", "cut = dynamic verb (and we cut the onions multiple times), so perfect continuous (had been cutting) is better than perfect simple (had cut)", "Looks and has been cutting are not compatible with the final clause (that's why his eyes were still watery and red)"], "answers": ["<p>Peter <strong><em>looked</em> </strong>really upset but <strong><em>he'd just been cutting </em></strong>onions; that's why his eyes were still watery and red.</p>", "<p>Peter <strong><em>looks</em> </strong>really upset but <strong><em>he'd just been cutting </em></strong>onions; that's why his eyes were still watery and red.</p>", "<p>Peter <strong><em>looked</em> </strong>really upset but <strong><em>he'd just cut </em></strong>onions; that's why his eyes were still watery and red.</p>", "<p>Peter <strong><em>looks</em> </strong>really upset but <strong><em>he's just been cutting </em></strong>onions; that's why his eyes were still watery and red.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42171590, "title": "Tenses and Signal Words - Part 2", "created": "2024-02-05T19:22:25Z", "is_published": true, "asset": {"_class": "asset", "id": 54460030, "asset_type": "Video", "title": "Tense signal 2.mp4", "created": "2024-02-05T19:31:22Z"}, "object_index": 2, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171590"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

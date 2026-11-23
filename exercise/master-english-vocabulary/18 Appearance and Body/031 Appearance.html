@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46787784, "assessment_type": "multiple-choice", "prompt": {"question": "<p>His hair started _____ when he was only in his 20s, so he is worried that he will go bald very early. </p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Wrong collocation (your shoulder/skin is peeling)", "Wrong collocation (He started sweating profusely)", "His hair was receding = he had started to lose his hair", "Wrong collocation (raise an eyebrow/hand/question/issue/money/kids)", "Wrong collocation (clench your fist/muscles)", "Wrong collocation (scowl at sb = glare at sb = look at sb angrily)"], "answers": ["<p>peeling</p>", "<p>sweating</p>", "<p>receding</p>", "<p>raising</p>", "<p>clenching</p>", "<p>scowling</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "His hair started _____ when he was only in his 20s, so he is worried that he will go bald very early.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46788532, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He was wearing a _____ , worn-out jacket, ripped jeans, and old trainers, and his hair looked as though it had never been brushed.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Wrong meaning. How can a worn-out jacket be smart?", "Wrong meaning. How can a worn-out jacket glow?", "Wrong meaning. How can a worn-out jacket be spikey? (spikey hair)", "Wrong meaning. How can a worn-out jacket be ginger? (ginger hair)", "Scruffy = untidy or not well-dressed"], "answers": ["<p>smart</p>", "<p>glowing</p>", "<p>spikey</p>", "<p>ginger</p>", "<p>scruffy</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "He was wearing a _____ , worn-out jacket, ripped jeans, and old trainers, and his hair looked as though it had never been brushed.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46788860, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He waltzed out of the room with a _____ grin on his face, looking extremely pleased with himself.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Wrong collocation (a slim lady/girl/woman)", "Wrong collocation (a svelte athlete)", "Wrong collocation (a slender lady/waist)", "Good. A smug (self-satisfied) grin", "Wrong collocation (shrug your shoulders)", "Wrong collocation (a stout man)"], "answers": ["<p>slim</p>", "<p>svelte</p>", "<p>slender</p>", "<p>smug</p>", "<p>shrug</p>", "<p>stout</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "He waltzed out of the room with a _____ grin on his face, looking extremely pleased with himself.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46789160, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The putrid smell was so revolting that I immediately _____ in disgust.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Wrong meaning. To scowl at sb = to look angrily at sb (frown at, glare at)", "Wrong meaning.  To pout your lips = 1) use your lips top look attractive 2) look moody using your lips", "To grimace = to screw up your face in agony or in disgust", "Wrong meaning. To clench = to tense your muscles (clench your fist)", "Wrong meaning. To shrug (your shoulders) = to raise then lower shoulders (to show you don't know or don't care)"], "answers": ["<p>scowled</p>", "<p>pouted</p>", "<p>grimaced</p>", "<p>clenched</p>", "<p>shrugged</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The putrid smell was so revolting that I immediately _____ in disgust.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46789166, "assessment_type": "multiple-choice", "prompt": {"question": "<p>In the summer, pretty _____ are scattered across her rosy cheeks, adding colour to her glowing complexion, but they tend to fade away when the winter comes. </p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Dimples are the lines on your face when you smile", "Sideburns are patches of hair that come down from the ear to the cheeks (Elvis Presley has famous sideburns)", "Wrinkles are lines on the face caused by ageing", "Freckles are pretty, and they appear in summer but disappear in winter", "Spots are neither desirable nor attractive, and they crop up all year round. ", "Warts are neither desirable nor attractive, and they crop up all year round. "], "answers": ["<p>dimples</p>", "<p>sideburns</p>", "<p>wrinkles</p>", "<p>freckles</p>", "<p>spots</p>", "<p>warts</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "In the summer, pretty _____ are scattered across her rosy cheeks, adding colour to her glowing complexion, but they tend to fade away when the winter comes.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46789858, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He lie there helplessly on the hospital bed, unable to move a muscle, his face _____, his skin pale, his eyes weary, and his hair unkempt.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Older people are stout (bulky chest)", "Gaunt (face) = a sick, thin, pale face", "Radiant / glowing (face/complexion) = healthy and attractive ", "Svelte = thin, athletic, and in good shape", "Gangly (arms/legs) = thin, long, and awkward arms/legs", "a chubby face/cheeks/baby = plump (slightly fat) face/cheeks/baby"], "answers": ["<p>stout</p>", "<p>gaunt</p>", "<p>radiant</p>", "<p>svelte</p>", "<p>gangly</p>", "<p>chubby</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "He lie there helplessly on the hospital bed, unable to move a muscle, his face _____, his skin pale, his eyes weary, and his hair unkempt.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46791160, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Along the street came three short, _____&nbsp; security guards, each one with broad-shoulders and a stout chest.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["Scrawny/gangly arms/legs/person = long, thin arms and legs (possibly awkward/clumsy)", "A lanky guy = a tall, thin, and clumsy guy", "A petite woman (small, thin, and attractive)", "A curvaceous woman (a woman with lots of curves)", "A stocky man is small and powerful, with broad shoulders and a stout chest ", "A slender woman/waist = thin and attractive"], "answers": ["<p>scrawny</p>", "<p>lanky</p>", "<p>petite</p>", "<p>curvaceous</p>", "<p>stocky</p>", "<p>slender</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Along the street came three short, _____&nbsp; security guards, each one with broad-shoulders and a stout chest.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}, {"_class": "assessment", "id": 46792086, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The detective interrogating the witness asked if the perpetrator had any distinguishing ______, and she replied that the culprit had a long, deep scar above his right eye.</p>", "relatedLectureIds": ["31887414"], "feedbacks": ["A distinguishing feature/mark = a noticeable aspect of your appearance (e.g. tattoo, scar)", "A spot = a zit (a small skin infection that fills with pus)", "Freckles are the pretty marks that appear on the cheeks in summer, but disappear in the winter", "Dimples are the lines on your face when you smile", "Wrinkles are the lines on your face caused by ageing"], "answers": ["<p>features</p>", "<p>spots</p>", "<p>freckles</p>", "<p>dimples</p>", "<p>wrinkles</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "The detective interrogating the witness asked if the perpetrator had any distinguishing ______, and she replied that the culprit had a long, deep scar above his right eye.", "related_lectures": [{"_class": "lecture", "id": 31887414, "title": "Appearance", "created": "2022-04-19T18:56:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40871012, "asset_type": "Video", "title": "IMG_2661.MOV", "created": "2022-04-19T19:22:04Z"}, "object_index": 33, "url": "/course/master-english-vocabulary/learn/lecture/31887414"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

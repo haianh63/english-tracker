@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46643288, "assessment_type": "multiple-choice", "prompt": {"question": "<p>If you are going to get married, you have to be prepared to stick together through _____________</p>", "relatedLectureIds": ["31736932"], "feedbacks": ["to go to rack and ruin = to fall into a state of disrepair / destruction (usually about buildings)", "Odds and ends = bits and pieces", "to stay together through thick and thin = stay together even in the difficult times", "3 o clock give or take (a few minutes) = roughly 3 o clock", "through and through = completely, in every way"], "answers": ["<p>rack and ruin</p>", "<p>odds and ends</p>", "<p>thick and thin</p>", "<p>give or take</p>", "<p>and through</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "If you are going to get married, you have to be prepared to stick together through _____________", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643354, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Students often ___________ about how astronomically expensive their tuition fees are. </p>", "relatedLectureIds": ["31736932"], "feedbacks": ["Hustle and bustle means the exciting and busy life (often referring to life in a city)", "'Give and take' describes mutual compromise between two parties", "'Pick and choose' emphasizes that you had a lot of choice. ", "'Wax and wane' means increase and decrease (over time)", "Rant and rave about sth means to talk angrily (or excitedly) about sth"], "answers": ["<p>hustle and bustle</p>", "<p>give and take</p>", "<p>pick and choose</p>", "<p>wax and wane</p>", "<p>rant and rave</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Students often ___________ about how astronomically expensive their tuition fees are.", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643372, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Memorizing hundreds of thousands of collocations is _____________ of becoming fluent in a second language. </p>", "relatedLectureIds": ["31736932"], "feedbacks": ["When sth happens ' in dribs and drabs', it happens slowly and in small quantities", "'The ebb and flow' refers to the cyclical movements (e.g of time, of the tide)", "Odds and ends = bits and pieces", "Part and parcel of sth = an essential part of sth", "To progress in leaps and bounds = to make swift progress"], "answers": ["<p>dribs and drabs</p>", "<p>the ebb and flow</p>", "<p>odds and ends</p>", "<p>part and parcel</p>", "<p>leaps and bounds</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Memorizing hundreds of thousands of collocations is _____________ of becoming fluent in a second language.", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643382, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Jack spilt a glass of wine all over my new trousers, but I was not surprised: he has always been all ______________ .</p>", "relatedLectureIds": ["31736932"], "feedbacks": ["To go back and forth means to move quickly in one direction, then another, repeatedly", "To rock to and fro means to move to one side, then to the other. ", "To be all fingers and thumbs = to be clumsy", "When 2 things are like chalk and cheese, they are totally different", "If someone is out and about, then they are doing things outside"], "answers": ["<p>back and forth</p>", "<p>to and fro</p>", "<p>fingers and thumbs</p>", "<p>chalk and cheese</p>", "<p>out and about</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Jack spilt a glass of wine all over my new trousers, but I was not surprised: he has always been all ______________ .", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643402, "assessment_type": "multiple-choice", "prompt": {"question": "<p>His flat looked as though a bomb had hit it. The place had been going to _____________ ever since he moved in.</p>", "relatedLectureIds": ["31736932"], "feedbacks": ["To let something (a building) go to rack and ruin = allow it to fall into a state of disrepair", "'To rant and rave about sth' = talk excitedly or angrily about sth", "'To wine and dine sb' = to take sb out to a restaurant", "If you can 'pick and choose', then you have lots of choice", "Give and take refers to mutual compromise"], "answers": ["<p>rack and ruin</p>", "<p>rant and rave</p>", "<p>wine and dine</p>", "<p>pick and choose</p>", "<p>give and take</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "His flat looked as though a bomb had hit it. The place had been going to _____________ ever since he moved in.", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643416, "assessment_type": "multiple-choice", "prompt": {"question": "<p>You can tell that he is a Londoner _________ - he has such a thick London accent, so he must have grown up there. </p>", "relatedLectureIds": ["31736932"], "feedbacks": ["'To be out and about' means to be doing things outside", "To be a born and bred Londoner, means to have grown up in London, and therefore to be a perfect example of a Londoner. ", "'To be down and out' means to be penniless/broke (and possibly homeless)", "A prim and proper person is overly formal", "A rough and ready person is unsophisticated yet effective"], "answers": ["<p>out and about</p>", "<p>born and bred</p>", "<p>down and out</p>", "<p>prim and proper</p>", "<p>rough and ready</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "You can tell that he is a Londoner _________ - he has such a thick London accent, so he must have grown up there.", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643434, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When compelling evidence was presented that ballot boxes had been tampered with and voting forms had been faked, the election was declared __________ .</p>", "relatedLectureIds": ["31736932"], "feedbacks": ["A rough and ready person is unsophisticated yet effective", "'Null and void' means no longer accepted (as having legal force)", "When 2 things are 'like chalk and cheese', they are totally different", "'Ups and downs' are good times and bad times"], "answers": ["<p>rough and ready</p>", "<p>null and void</p>", "<p>chalk and cheese</p>", "<p>ups and downs</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "When compelling evidence was presented that ballot boxes had been tampered with and voting forms had been faked, the election was declared __________ .", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}, {"_class": "assessment", "id": 46643464, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I can't find my keys anywhere!&nbsp; I have looked in every _________________ of this flat, but they seem to have vanished into thin air.</p>", "relatedLectureIds": ["31736932"], "feedbacks": ["To be part and parcel of sth = to be an essential part of sth", "Odds and ends = bits and pieces", "'every nook and cranny (of sth)' = every small hidden part of sth", "Hustle and bustle means an exciting and busy life (often referring to life in a city)"], "answers": ["<p>part and parcel</p>", "<p>odds and ends</p>", "<p>nook and cranny</p>", "<p>hustle and bustle</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "I can't find my keys anywhere!&nbsp; I have looked in every _________________ of this flat, but they seem to have vanished into thin air.", "related_lectures": [{"_class": "lecture", "id": 31736932, "title": "Binomials - Lesson 1", "created": "2022-04-08T17:05:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40665756, "asset_type": "Video", "title": "IMG_2615.MOV", "created": "2022-04-08T17:33:24Z"}, "object_index": 15, "url": "/course/master-english-vocabulary/learn/lecture/31736932"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

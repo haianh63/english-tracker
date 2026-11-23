@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 81077970, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_14-51-08-77c8f5234e200d4fb372b3275aea9aee.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["There is only one audience in a theatre or cinema, so we would always say 'the audience' (we know which one).", "There is only one audience in a theatre or cinema, so we would always say 'the audience' (we know which one).", "Audience is countable and singular, so it needs an article."], "answers": ["<p>At the end of the performance, <strong>an audience</strong> gave the singer a standing ovation</p>", "<p>At the end of the performance, <strong>the audience</strong> gave the singer a standing ovation</p>", "<p>At the end of the performance,<strong> audience</strong> gave the singer a standing ovation</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81077976, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_14-52-28-78d700c79b24c9faac8f9d16de48dda4.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["The + adjective for groups of people (the rich, the poor, the unemployed, the homeless, the French, the Spanish)", "The + adjective for groups of people (the rich, the poor, the unemployed, the homeless, the French, the Spanish)", "The + adjective for groups of people (the rich, the poor, the unemployed, the homeless, the French, the Spanish)"], "answers": ["<p>He volunteers for a charity that raises money for<strong> homeless</strong></p>", "<p>He volunteers for a charity that raises money for <strong>the homeless</strong></p>", "<p>He volunteers for a charity that raises money for <strong>a homeless</strong></p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81078106, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_14-57-57-1b8fabad09f567354af04545e10e5f10.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["have breakfast (no article) ", "We say the kids, because I mean my kids (you know which ones I mean)", "We say the kids, because I mean my kids (you know which ones I mean).  have breakfast (no article). at school (no article) - the kids are pupils at school, so we use no article (hospital, school, university, prison, church)", "at school (no article) - the kids are pupils at school, so we use no article (hospital, school, university, prison, church)", "At a school = it doesn't matter which school (?!?!)"], "answers": ["<p>Every Friday, after <strong>the<em> </em>kids</strong> have had <strong>a breakfast</strong>, I drop them off <strong>at school</strong>.</p>", "<p>Every Friday, after<em> </em><strong>kids</strong> have had <strong>breakfast</strong>, I drop them off <strong>at the school.</strong></p>", "<p>Every Friday, after <strong>the<em> </em>kids</strong> have had <strong>breakfast</strong>, I drop them off <strong>at school</strong>.</p>", "<p>Every Friday, after <strong>the<em> </em>kids</strong> have had <strong>breakfast</strong>, I drop them off<strong> at the school.</strong></p>", "<p>Every Friday, after <strong>the<em> </em>kids</strong> have had <strong>a breakfast</strong>, I drop them off <strong>at a school</strong>.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81078270, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-01-13-2be07e89af26a54397449fd33f7d811e.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["a taxi (we don't know which taxi and it doesn't matter which one). We can't use no article, because taxi is singular and countable. We would say 'the taxi' if we have already mentioned it in a previous sentence.  the cheek (we usually use the for body parts, even when we have two of them. He was shot in the eye. He tapped me on the shoulder)", "Taxi is countable and singular, so it needs an article. ", "the cheek (we usually use the for body parts, even when we have two of them. He was shot in the eye. He tapped me on the shoulder)", "the cheek (we usually use the for body parts, even when we have two of them. He was shot in the eye. He tapped me on the shoulder)", "Taxi and cheek are both countable and singular, so they both need an article. "], "answers": ["<p>While they were waiting for <strong>a<em> </em>taxi</strong>, he kissed her on <strong>the<em> </em>cheek</strong></p>", "<p>While they were waiting for<strong><em> </em>taxi</strong>, he kissed her on <strong>the<em> </em>cheek</strong></p>", "<p>While they were waiting for <strong>a<em> </em>taxi</strong>, he kissed her on <strong>a cheek</strong></p>", "<p>While they were waiting for <strong>the<em> </em>taxi</strong>, he kissed her on <strong>a<em> </em>cheek</strong></p>", "<p>While they were waiting for <strong>taxi</strong>, he kissed her on <strong>cheek</strong></p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81078306, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-08-31-f3abe2f5bb57ce76a79a054994d7ba6a.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["Here, you make it sound as though it doesn't matter which bed, but the speaker means his own bed, so he would usually say 'the bed'", "Bed is ONLY used without an article in the phrases 'go to bed' (= sleep) and 'in bed' but NOT 'on the bed' or 'under the bed' or 'next to the bed'", "Here, you make it sound as though it doesn't matter which bedroom, but the speaker means his own bedroom, so he would usually say 'the bedroom'", "Here, you make it sound like a specific cup of coffee which the listener knows about, which is highly unlikely. ", "cup, table, bedroom, and bed* are all countable and singular, so they need an article.   Bed is uncountable when used in the phrases go to bed (= go to sleep) or in bed (He is lying in bed)"], "answers": ["<p>Every morning, I make <strong>a cup</strong> of coffee, take it to <strong>the bedroom</strong>, and put it on <strong>the<em> </em>table</strong> next to <strong>a<em> </em>bed</strong>.</p>", "<p>Every morning, I make <strong>a cup</strong> of coffee, take it to <strong>the bedroom</strong>, and put it on <strong>the<em> </em>table</strong> next to <strong>bed</strong>.</p>", "<p>Every morning, I make <strong>a cup</strong> of coffee, take it to <strong>a bedroom</strong>, and put it on <strong>the<em> </em>table</strong> next to <strong>the<em> </em>bed</strong>.</p>", "<p>Every morning, I make <strong>the cup</strong> of coffee, take it to <strong>the bedroom</strong>, and put it on <strong>the<em> </em>table</strong> next to <strong>the<em> </em>bed</strong>.</p>", "<p>Every morning, I make <strong>a cup</strong> of coffee, take it to <strong>the bedroom</strong>, and put it on <strong>the<em> </em>table</strong> next to <strong>the<em> </em>bed</strong>.</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81078818, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-17-59-f8b87fe71db0657594d3835f83fe43e7.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["There is a (+ countable noun). When we introduce a countable noun to existence (there is a, what a, such a), we must use a.", "Town centre is countable and singular, so it needs an article", "There is a (+ countable noun). When we introduce a countable noun to existence (there is a, what a, such a), we must use a.  Always the town centre, because a town does not have two centres.  a loaf of (this is a quantitative expression. Please use a with quantifiers: a lot of, a bit of, a few of, a spoonful of, a mouthful of, a kilogram of, a large amount of + uncountable noun, a great number of + countable noun, a cup of, a plate of, a bag of, a ton of, a load of, a stroke of, a spate of, a pinch of, a swarm of, a sprinkling of). It doesn't matter which loaf", "a loaf of (this is a quantitative expression. Please use 'a' with quantifiers: a lot of, a bit of, a few of, a spoonful of, a mouthful of, a kilogram of, a large amount of + uncountable noun, a great number of + countable noun, a cup of, a plate of, a bag of, a ton of, a load of, a stroke of, a spate of, a pinch of, a swarm of, a sprinkling of). It doesn't matter which loaf", "Bakers is countable and singular, even if it looks plural. "], "answers": ["<p>There is <strong>the</strong><em> </em>wonderful <strong>bakers</strong> in <strong>the<em> </em>town centre</strong> where you can buy <strong>a</strong> delicious <strong>loaf</strong> of bread</p>", "<p>There is <strong>a</strong><em> </em>wonderful <strong>bakers</strong> in<strong><em> </em>town centre</strong> where you can buy <strong>the</strong> delicious <strong>loaf</strong> of bread</p>", "<p>There is <strong>a</strong><em> </em>wonderful <strong>bakers</strong> in <strong>the<em> </em>town centre</strong> where you can buy <strong>a</strong> delicious <strong>loaf</strong> of bread</p>", "<p>There is <strong>a</strong><em> </em>wonderful <strong>bakers</strong> in <strong>the<em> </em>town centre</strong> where you can buy <strong>the</strong> delicious <strong>loaf</strong> of bread</p>", "<p>There is wonderful <strong>bakers</strong> in <strong>the<em> </em>town centre</strong> where you can buy <strong>a</strong> delicious <strong>loaf</strong> of bread</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81079064, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-21-38-31b251f9ad1261a4dec023700c64545b.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["Barclay's Bank = name (no articles for names). Send sb to prison, go to prison (if you are a prisoner)", "Send sb to prison, go to prison (if you are a prisoner)", "a branch of = this is one of many branches, and in this sentence, it does not matter which branch he robbed. The point is that he broke the law. Compare with 'a cup of, a plate of, a spoonful of...' etc..", "a branch of = this is one of many branches, and in this sentence, it does not matter which branch he robbed. The point is that he broke the law. Compare with 'a cup of, a plate of, a spoonful of...' etc..  Barclay's Bank = name (no articles for names). Send sb to prison, go to prison (if you are a prisoner)", "a branch of = this is one of many branches, and in this sentence, it does not matter which branch he robbed. The point is that he broke the law. Compare with 'a cup of, a plate of, a spoonful of...' etc..  Barclay's Bank = name (no articles for names)"], "answers": ["<p>He robbed <strong>a branch</strong> of <strong>the</strong> <strong>Barclay's Bank</strong>, and was sent <strong>to the prison</strong> for 7 years</p>", "<p>He robbed <strong>a branch</strong> of <strong>Barclay's Bank</strong>, and was sent <strong>to the prison</strong> for 7 years</p>", "<p>He robbed <strong>the branch</strong> of <strong>Barclay's Bank</strong>, and was sent <strong>to prison</strong> for 7 years</p>", "<p>He robbed <strong>a branch</strong> of <strong>Barclay's Bank</strong>, and was sent <strong>to prison</strong> for 7 years</p>", "<p>He robbed <strong>the branch</strong> of <strong>the</strong> <strong>Barclay's Bank</strong>, and was sent <strong>to prison</strong> for 7 years</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81079086, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-26-13-60f3f1a911c6f32b034861b455796997.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["Which children? Which adults? If you mean any children/adults, then it doesn't matter which ones, and we need no article. ", "Which second language? If you mean any language, then it doesn't matter which one, and we need no article. ", "If you mean any children/adults/language, then it doesn't matter which one(s), and we need no article for plural BUT 'the' for singular", "Which children? Which adults? Which second language? If you mean any children/adults/language, then it doesn't matter which one(s), and we need no article for plural BUT 'the' for singular"], "answers": ["<p>It is thought that <strong>the</strong> <strong>children</strong> learn <strong>a second language</strong> faster than <strong>the</strong> <strong>adults</strong>, but I totally disagree.</p>", "<p>It is thought that <strong>children</strong> learn <strong>the second language</strong> faster than <strong>adults</strong>, but I totally disagree.</p>", "<p>It is thought that <strong>children</strong> learn <strong>a second language</strong> faster than <strong>adults</strong>, but I totally disagree.</p>", "<p>It is thought that<strong> the</strong> <strong>children</strong> learn <strong>the second language</strong> faster than <strong>the</strong> <strong>adults</strong>, but I totally disagree.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81079240, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-31-29-feb7702ec5a89bfa38d4c1db362b7e4b.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["After there was + countable noun, we must use 'a' for any countable noun (introduce it to existence), not the. Compare with the following sentence, in which both a and the are possible, as now we have the verb notice (not there was). The only difference is that the sounds more specific.   When he spoke about Sarah, I noticed a flicker of emotion in his eyes, a glimmer of interest on his face, and a touch of sadness in his voice. (correct, and more frequently used)  When he spoke about Sarah, I noticed the flicker of emotion in his eyes, the glimmer of interest on his face, and the touch of....", "Flicker, glimmer, and touch are all countable and singular, so they need an article. ", ""], "answers": ["<p>When he spoke about Sarah, there was <strong>the flicker</strong> of emotion in his eyes, <strong>the glimmer </strong>of interest on his face, and<strong> the touch</strong> of sadness in his voice.</p>", "<p>When he spoke about Sarah, there was<strong> flicker</strong> of emotion in his eyes, <strong>glimmer </strong>of interest on his face, and<strong> touch</strong> of sadness in his voice.</p>", "<p>When he spoke about Sarah, there was <strong>a flicker</strong> of emotion in his eyes, <strong>a glimmer</strong> of interest on his face, and<strong> a touch </strong>of sadness in his voice.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}, {"_class": "assessment", "id": 81079382, "assessment_type": "multiple-choice", "prompt": {"question": "<p><strong>Please choose the correct answer:</strong></p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2024-04-30_15-33-30-46db27bd72f207fa8606213b45a3044b.jpg\">", "relatedLectureIds": ["42978578"], "feedbacks": ["We define which woman (the one who performed in the restaurant), so we need the (definite article). ", "We define which woman (the one who performed in the restaurant), so we need the (definite article). We know which restaurant (the one we ate at last night), we need the.  Such a + countable noun (there is/was a, such a, what a) = introduce to existence", "We define which woman (the one who performed in the restaurant), so we need the (definite article). We know which restaurant (the one we ate at last night), we need the.", "Such a + countable noun (there is/was a, such a, what a) = introduce to existence"], "answers": ["<p><strong>A woman</strong> who performed in <strong>the restaurant</strong> last night was such <strong>a great violinist</strong></p>", "<p><strong>The woman</strong> who performed in <strong>the restaurant</strong> last night was such <strong>a great violinist</strong></p>", "<p><strong>A woman</strong> who performed in <strong>a restaurant</strong> last night was such <strong>a great violinist</strong></p>", "<p><strong>The woman</strong> who performed in <strong>the restaurant</strong> last night was such <strong>the great violinist</strong></p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 42978578, "title": "Articles - Part 2", "created": "2024-03-25T12:39:23Z", "is_published": true, "asset": {"_class": "asset", "id": 55523762, "asset_type": "Video", "title": "Articles 2.mp4", "created": "2024-03-25T12:49:55Z"}, "object_index": 47, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42978578"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

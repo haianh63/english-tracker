@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46792836, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I've been _____ my brains all day, but I just can't remember his wife's name.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["To clutch your chest = to grab your ribs (often in agony, while you double over)", "To clench your muscles/fists = to tighten your muscles/fists", "You can scratch your chin or your forehead. If something itches, you scratch it. ", "'To rack your brains' = to think very hard (to remember sth or solve a problem)", "To squirm (uncomfortably in your chair) = to make awkward movements with your face due to disgust or pain. ", "To grimace = to screw your face up due to disgust or pain. "], "answers": ["<p>clutching</p>", "<p>clenching</p>", "<p>scratching</p>", "<p>racking</p>", "<p>squirming</p>", "<p>grimacing</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I've been _____ my brains all day, but I just can't remember his wife's name.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46792860, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Even though it is technically against the law to ride a bike on the pavement, the police seem to turn a _________ to those doing it, especially youngsters. </p>", "relatedLectureIds": ["31914244"], "feedbacks": ["", "To bury your head in the sand = to ignore a blatant and obvious truth (perhaps because it's painful)", "To turn a blind eye to sth = to ignore a minor crime/mistake/sin, allowing it to go unpunished", "You might crack your knuckles before a fight", "Your stomach rumbles when you are hungry"], "answers": ["<p>deaf ear</p>", "<p>buried head</p>", "<p>blind eye</p>", "<p>cracked knuckle</p>", "<p>rumbled stomach</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Even though it is technically against the law to ride a bike on the pavement, the police seem to turn a _________ to those doing it, especially youngsters.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46793470, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I couldn't ____ working as a paramedic - I would grimace at the sight of every open wound.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["To flinch = to recoil (and defend yourself with your arms) in fear", "If you can't stomach something, it means you can't experience it due to a strong disgust/dislike", "To sweat (profusely) = to perspire (a lot)", "To chew = to break down food in the mouth by moving your jaws", "To shrug (your shoulders) = move your shoulders up and down to show you don't know or don't care"], "answers": ["<p>flinch</p>", "<p>stomach</p>", "<p>sweat</p>", "<p>chew</p>", "<p>shrug</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "I couldn't ____ working as a paramedic - I would grimace at the sight of every open wound.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46793634, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When you start ________ incessantly, just stick your fingers in your ears, then hold your breath for as long as possible. This trick always gets rid of them. </p>", "relatedLectureIds": ["31914244"], "feedbacks": ["This method is not for a cough!", "This method is not for a sneeze!", "This method is not for a burp! ", "", "This method is not for a fart! Incessant farting cures itself.....eventually. ", "This method is not for a yawn!"], "answers": ["<p>coughing</p>", "<p>sneezing</p>", "<p>burping</p>", "<p>hiccupping</p>", "<p>farting</p>", "<p>yawning</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "When you start ________ incessantly, just stick your fingers in your ears, then hold your breath for as long as possible. This trick always gets rid of them.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46793676, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He _____ with rage at the thought that his brother had betrayed him.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["To shiver = shake because you are cold", "To flinch = to recoil (or move hands into a defensive position) out of fear", "To tremble with rage = shake with anger", "To smirk at sb = to smile at sb in a nasty/unpleasant way", "To snort = to make a grunting sound when air goes through your nose"], "answers": ["<p>shivered</p>", "<p>flinched</p>", "<p>trembled</p>", "<p>smirked</p>", "<p>snorted</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "He _____ with rage at the thought that his brother had betrayed him.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46793694, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Having swallowed the last spoonful of soup, he _____ his fingers with delight, burped, then lay back in his chair.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["This is unlikely. You usually wag your finger in disapproval", "This is very unlikely!", "You can crack (the bones in) your fingers, but this also seem unlikely", "To lick your fingers", "We usually say 'his finger twitched'. This is unlikely. A twitch is a nervous movement"], "answers": ["<p>wagged</p>", "<p>chewed</p>", "<p>cracked</p>", "<p>licked</p>", "<p>twitched</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Having swallowed the last spoonful of soup, he _____ his fingers with delight, burped, then lay back in his chair.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46794006, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Violently _______, his teeth _____ uncontrollably, he sat there in the pouring rain, absolutely soaked through, with a vacant expression on his face.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["", "Shake doesn't collocate with teeth", "Shake doesn't collocate with teeth", "Wrong for 2 reasons!", "You don't sweat violently"], "answers": ["<p>shivering, chattering</p>", "<p>shivering, shaking</p>", "<p>trembling, shaking</p>", "<p>chattering, trembling</p>", "<p>sweating, chattering</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Violently _______, his teeth _____ uncontrollably, he sat there in the pouring rain, absolutely soaked through, with a vacant expression on his face.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}, {"_class": "assessment", "id": 46794130, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Having been introduced to each other, an incredibly long, awkward silence was all that remained, leaving both of us ________ with embarrassment.</p>", "relatedLectureIds": ["31914244"], "feedbacks": ["To beam at sb = smile at sb", "To smirk at sb = smile in a nasty/unpleasant way", "To snore = make a noise (while asleep) as you breathe through your nose", "To squirm = move in an awkward/embarrassed way (out of fear/disgust/discomfort)", "To sniff = breathe in quickly through your nose. You do this if you have a cold (or even if you ARE cold)"], "answers": ["<p>beaming</p>", "<p>smirking</p>", "<p>snoring</p>", "<p>squirming</p>", "<p>sniffing</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Having been introduced to each other, an incredibly long, awkward silence was all that remained, leaving both of us ________ with embarrassment.", "related_lectures": [{"_class": "lecture", "id": 31914244, "title": "Body", "created": "2022-04-21T12:04:30Z", "is_published": true, "asset": {"_class": "asset", "id": 40917566, "asset_type": "Video", "title": "IMG_2667.MOV", "created": "2022-04-21T23:02:05Z"}, "object_index": 34, "url": "/course/master-english-vocabulary/learn/lecture/31914244"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

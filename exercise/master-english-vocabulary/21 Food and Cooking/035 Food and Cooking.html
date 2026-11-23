@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46803500, "assessment_type": "multiple-choice", "prompt": {"question": "<p>In my schooldays, I bumped into the strictest teacher in our school, Dr. White, and he _____ coffee all over my shirt, then blamed me for it, then punished me for it, but I swear that we were both at fault. Neither of us had been looking where we were going.&nbsp; </p>", "relatedLectureIds": ["31933868"], "feedbacks": ["To pour sth (I poured him a drink of whiskey) is always intentional. Liquid can pour from something too (water poured from the tap)", "To spill sth over sb = accidentally pour liquid over them", "We sprinkle herbs into the mixture", "To simmer = to heat sth to just below boiling point", "To drain sth (rice/pasta) = to remove the water (using a sieve)"], "answers": ["<p>poured</p>", "<p>spilt</p>", "<p>sprinkled</p>", "<p>simmered</p>", "<p>drained</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "In my schooldays, I bumped into the strictest teacher in our school, Dr. White, and he _____ coffee all over my shirt, then blamed me for it, then punished me for it, but I swear that we were both at fault. Neither of us had been looking where we were going.&nbsp;", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803506, "assessment_type": "multiple-choice", "prompt": {"question": "<p>At the wedding, I was one of the ushers, and one of my jobs was to go round and ________ all the guests' glasses, to make sure they were ready for the toasts during the speeches.</p>", "relatedLectureIds": ["31933868"], "feedbacks": ["Wrong phrasal verb (pour out the drinks)", "Wrong phrasal verb (to mix sth up with sth = to confuse sth with sth)", "Wrong phrasal verb (to stir up anger/resentment = to cause anger/resentment)", "To top up their drinks/glasses = keep their glasses filled to the top", "To water sth down = to dilute sth (making it less powerful). This is often used metaphorically (They have watered down the syllabus again)"], "answers": ["<p>pour up</p>", "<p>mix up</p>", "<p>stir up</p>", "<p>top up</p>", "<p>water down</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "At the wedding, I was one of the ushers, and one of my jobs was to go round and ________ all the guests' glasses, to make sure they were ready for the toasts during the speeches.", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803584, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When the rice has boiled, turn the heat down a tad, then leave it to _____ for at least 10 minutes. </p>", "relatedLectureIds": ["31933868"], "feedbacks": ["To drain = to remove the water from pasta/rice (usually in a sieve)", "To thaw = to defrost - I took the chicken out the fridge and left it to thaw (out)", "To bake = cooked in the oven (cakes and biscuits and bread)", "To fry = cooked in the frying pan (often with oil)", "To roast = cooked in the oven (meat and vegetables)", "To simmer = to be heated at just below the boiling point"], "answers": ["<p>drain</p>", "<p>thaw</p>", "<p>bake</p>", "<p>fry</p>", "<p>roast</p>", "<p>simmer</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "When the rice has boiled, turn the heat down a tad, then leave it to _____ for at least 10 minutes.", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803590, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The food in that restaurant can be rather bland, _____, and heavy on the stomach. I don't recommend booking a table. </p>", "relatedLectureIds": ["31933868"], "feedbacks": ["Stodgy food is heavy on the stomach and hard to digest", "Spicy is the opposite of bland (lots of flavour)", "A rare steak is a bloody steak (not cooked for long)", "A medium steak is cooked for a medium period of time", "A well-done steak is cooked for a long period of time", "Peppers might be stuffed with mince, for example. ", "Moreish (adjective) means that you want to eat more and more of this food. "], "answers": ["<p>stodgy</p>", "<p>spicy</p>", "<p>rare</p>", "<p>medium</p>", "<p>well-done</p>", "<p>stuffed</p>", "<p>moreish</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "The food in that restaurant can be rather bland, _____, and heavy on the stomach. I don't recommend booking a table.", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803604, "assessment_type": "multiple-choice", "prompt": {"question": "<p>None of us managed to eat everything up, so we gave _______ to the dog, which had been waiting patiently by the table, gazing at our meat stew with sad, hungry eyes.</p>", "relatedLectureIds": ["31933868"], "feedbacks": ["A second helping is a second portion. The dog was hungry, so this is not a second portion. ", "The ingredients are what must be included in any recipe", "The leftovers are what remains when you have eaten enough", "Biscuits are not meat ", "A top up is used for drinks, and it is when you fill the glass to the top. "], "answers": ["<p>a second helping</p>", "<p>the ingredients</p>", "<p>the leftovers</p>", "<p>the biscuits</p>", "<p>a top up</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "None of us managed to eat everything up, so we gave _______ to the dog, which had been waiting patiently by the table, gazing at our meat stew with sad, hungry eyes.", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803626, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Don't forget to take the chicken out of the freezer when you get home, so that it has time _________ before this evening. I am planning on making a chicken <strong>casserole</strong> (sorry - another spelling mistake in the video class - no one is perfect!)</p>", "relatedLectureIds": ["31933868"], "feedbacks": ["We peel potatoes/oranges/bananas when we remove the skin", "We grate the cheese when we want it in small pieces", "When food goes off, it is inedible (spoilt)", "To thaw out = to defrost. 'To thaw' is also possible", "Conflict can spill over into neighbouring territories. You can spill coffee over sb"], "answers": ["<p>to peel</p>", "<p>to grate</p>", "<p>to go off</p>", "<p>to thaw out</p>", "<p>to spill over</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Don't forget to take the chicken out of the freezer when you get home, so that it has time _________ before this evening. I am planning on making a chicken casserole (sorry - another spelling mistake in the video class - no one is perfect!)", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803632, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How do you like your eggs in the morning? _________ , boiled, or fried?</p>", "relatedLectureIds": ["31933868"], "feedbacks": ["Wrong collocation. We sprinkle herbs into a mixture", "Good. Eggs are scrambled, fried, or boiled. ", "Wrong collocation. Mashed potatoes", "Wrong collocation. Grated cheese", "Wrong collocation. Roast potatoes/carrots", "Wrong collocation. Baked bread/cakes/biscuits"], "answers": ["<p>Sprinkled</p>", "<p>Scrambled</p>", "<p>Mashed</p>", "<p>Grated</p>", "<p>Roasted</p>", "<p>Baked</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "How do you like your eggs in the morning? _________ , boiled, or fried?", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}, {"_class": "assessment", "id": 46803640, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I need a _____ so that I can pour the soup into these 4 bowls.</p>", "relatedLectureIds": ["31933868"], "feedbacks": ["A grater grates cheese (turns the cheese into small pieces)", "A spatula can't hold soup. I use a spatula to flip my burgers (and flip my friend eggs)", "A spoon would take far too long! Grab something bigger", "Never use a frying pan to pour soup. That would be sheer madness", "A sieve has too many holes to pour soup. We use a sieve to drain rice and pasta", "Good. A ladle is more or less a big spoon that we use to serve soup and stew."], "answers": ["<p>grater</p>", "<p>spatula</p>", "<p>spoon</p>", "<p>frying pan</p>", "<p>sieve</p>", "<p>ladle</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "I need a _____ so that I can pour the soup into these 4 bowls.", "related_lectures": [{"_class": "lecture", "id": 31933868, "title": "Food and Cooking", "created": "2022-04-22T18:20:31Z", "is_published": true, "asset": {"_class": "asset", "id": 40933202, "asset_type": "Video", "title": "IMG_2676.MOV", "created": "2022-04-22T18:05:38Z"}, "object_index": 37, "url": "/course/master-english-vocabulary/learn/lecture/31933868"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

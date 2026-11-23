@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46269904, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The wedding ceremony starts in 20 minutes. We will be late if you don't _____ your foot down</p>", "relatedLectureIds": ["31716018"], "feedbacks": ["'...if you don't step on it (the accelerator pedal)' is correct. ", "'To put your foot down' = to step on the accelerator (go faster)", "You can slam the brakes (to stop), and you can slam a door (close it violently)", "", "You can pump up (inflate) the tyres", ""], "answers": ["<p>step</p>", "<p>put</p>", "<p>slam</p>", "<p>turn</p>", "<p>pump</p>", "<p>pull</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "The wedding ceremony starts in 20 minutes. We will be late if you don't _____ your foot down", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46269916, "assessment_type": "multiple-choice", "prompt": {"question": "<p>On the way to the hotel, one of our rear wheels got a _____ , so we had to stop to change the tyre. </p>", "relatedLectureIds": ["31716018"], "feedbacks": ["The boot is where you put your suitcases", "Under the bonnet, you find the engine", "'To get a puncture' = to get a flat tyre", "The clutch is the pedal used for changing gears"], "answers": ["<p>boot</p>", "<p>bonnet</p>", "<p>puncture</p>", "<p>clutch</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "On the way to the hotel, one of our rear wheels got a _____ , so we had to stop to change the tyre.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270132, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Having gone _____ a red light, the driver was pulled over by the police and given a fine.</p>", "relatedLectureIds": ["31716018"], "feedbacks": ["Wrong preposition", "Wrong preposition", "Wrong preposition", "Wrong preposition", "", "Wrong preposition"], "answers": ["<p>past</p>", "<p>over</p>", "<p>at</p>", "<p>into</p>", "<p>through</p>", "<p>by</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Having gone _____ a red light, the driver was pulled over by the police and given a fine.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270146, "assessment_type": "multiple-choice", "prompt": {"question": "<p>We have almost ____ out of petrol. We need to ____ into the next petrol station and fill up. </p>", "relatedLectureIds": ["31716018"], "feedbacks": ["Wrong collocation", "Wrong collocation", "Wrong form of the verb", "", "Wrong collocations"], "answers": ["<p>gone, pull</p>", "<p>run, turn</p>", "<p>ran, pull</p>", "<p>run, pull</p>", "<p>gone, turn</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "We have almost ____ out of petrol. We need to ____ into the next petrol station and fill up.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270214, "assessment_type": "multiple-choice", "prompt": {"question": "<p>It's important to take regular breaks on any long drive; if the driver ____ off at the wheel, the car is likely to ____ off the road. </p>", "relatedLectureIds": ["31716018"], "feedbacks": ["Nod/doze off = fall asleep. Veer off the road = leave the road (often unintentionally)", "Pull off (the road) is intentional (the driver does it on purpose)", "'Sleep off' is not a phrasal verb", "'Sleep off' is not a phrasal verb. Pull off (the road) is intentional (the driver does it on purpose)"], "answers": ["<p>nods, veer</p>", "<p>nods, pull</p>", "<p>sleeps, veer</p>", "<p>sleeps, pull</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "It's important to take regular breaks on any long drive; if the driver ____ off at the wheel, the car is likely to ____ off the road.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270232, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I was _____ down by a traffic policeman, and when I wound down the window, he asked to see my documents. </p>", "relatedLectureIds": ["31716018"], "feedbacks": ["", "", "", "", "'To flag sb down' (or pull sb over) = to stop sb (a driver) "], "answers": ["<p>pulled</p>", "<p>put</p>", "<p>drawn</p>", "<p>rolled</p>", "<p>flagged</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "I was _____ down by a traffic policeman, and when I wound down the window, he asked to see my documents.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270264, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I ________ my van, fastened my seatbelt, checked my mirrors, then pulled out into traffic.</p>", "relatedLectureIds": ["31716018"], "feedbacks": ["Wrong collocation", "Wrong collocation", "To get in(to) a car/lorry/van. BUT get on/off for most other forms of transport", "To get on (train, plane, boat, ship, bike)"], "answers": ["<p>went into</p>", "<p>went in</p>", "<p>got in</p>", "<p>got on</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "I ________ my van, fastened my seatbelt, checked my mirrors, then pulled out into traffic.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}, {"_class": "assessment", "id": 46270284, "assessment_type": "multiple-choice", "prompt": {"question": "<p>As I was _____ out of the parking space, I crashed into another vehicle. I should have checked my rear-view mirror. </p>", "relatedLectureIds": ["31716018"], "feedbacks": ["Wrong collocation", "Wrong collocation", "Wrong collocation", "Good. To back/pull out of sw = to reverse out of sw", "Wrong collocation", "Wrong collocation"], "answers": ["<p>turning</p>", "<p>rolling</p>", "<p>drawing</p>", "<p>backing</p>", "<p>veering</p>", "<p>bearing</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "As I was _____ out of the parking space, I crashed into another vehicle. I should have checked my rear-view mirror.", "related_lectures": [{"_class": "lecture", "id": 31716018, "title": "Driving - Lesson 1", "created": "2022-04-07T08:52:11Z", "is_published": true, "asset": {"_class": "asset", "id": 40645898, "asset_type": "Video", "title": "IMG_2610.MOV", "created": "2022-04-07T18:35:34Z"}, "object_index": 12, "url": "/course/master-english-vocabulary/learn/lecture/31716018"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

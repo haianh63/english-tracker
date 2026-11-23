@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 71178878, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When food hasn't been cooked at all, we call it the following:</p>", "relatedLectureIds": ["40047284"], "feedbacks": ["Spicy means hot. Curry is spicy", "Good. Sushi is raw fish, for example. ", "Sugar is sweet", "Lemons are sour", "Rare is for steak (rare/bloody, medium, well done)", "Fresh means 'recently made/produced'"], "answers": ["<p>spicy</p>", "<p>raw</p>", "<p>sweet</p>", "<p>sour</p>", "<p>rare</p>", "<p>fresh</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "When food hasn't been cooked at all, we call it the following:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71178912, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following is a type of seafood?</p>", "relatedLectureIds": ["40047284"], "feedbacks": ["We eat turkey at Christmas (and thanksgiving in the US), and it is similar to a chicken", "A squid looks like an octopus", "This is a purple vegetable", "Peas are small, round green vegetables", "Garlic has a strong smell, and it is useful if you are attacked by vampires"], "answers": ["<p>turkey</p>", "<p>squid</p>", "<p>aubergine</p>", "<p>peas</p>", "<p>garlic</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which of the following is a type of seafood?", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71178944, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When we have finished eating in a restaurant, we usually ask for the following:</p>", "relatedLectureIds": ["40047284"], "feedbacks": ["A cheque is an old fashioned form of payment. I haven't used a cheque for about 25 years! ", "The receipt is the piece of paper that you get when you buy something. You need it if you want a refund for your purchase", "A prescription is a piece of paper that a doctor gives you; you take it to the chemist, and he gives you your medicine", "Recipe = list of ingredients that you need in order to prepare a specific meal", "Bill = the calculation of how much your meal cost"], "answers": ["<p>the cheque</p>", "<p>the receipt</p>", "<p>the prescription</p>", "<p>the recipe</p>", "<p>the bill</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "When we have finished eating in a restaurant, we usually ask for the following:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71179088, "assessment_type": "multiple-choice", "prompt": {"question": "<p>If you are eating cereal, then you are probably using the following:</p>", "relatedLectureIds": ["40047284"], "feedbacks": ["A plate is too flat to hold cereal", "A cup is for drinks (a cup of tea)", "Good. A bowl of soup or cereal. ", "We cook on the hobs (there are usually 4 hobs on the cooker, and we put frying pans / saucepans on them)", "We need a saucepan if we are cooking soup, but we don't heat cereal, so a saucepan is unnecessary"], "answers": ["<p>a plate</p>", "<p>a cup</p>", "<p>a bowl</p>", "<p>a hob</p>", "<p>a saucepan</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "If you are eating cereal, then you are probably using the following:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71179598, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following is a delicacy? It consists of fish eggs, and sometimes they are red, other times black.&nbsp; </p>", "relatedLectureIds": ["40047284"], "feedbacks": ["Mussels are a type of seafood. You must open the shell to eat the mussel.", "A crab is a crustacean. It is similar to a lobster, but it has a round shape, and it is usually smaller than a lobster", "A lobster is a large crustacean with 2 powerful pincers (claws)", "Red/black caviar = fish eggs", "A cod is a type of fish"], "answers": ["<p>mussels</p>", "<p>crab</p>", "<p>lobster</p>", "<p>caviar</p>", "<p>cod</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Which of the following is a delicacy? It consists of fish eggs, and sometimes they are red, other times black.&nbsp;", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71179732, "assessment_type": "multiple-choice", "prompt": {"question": "<p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_14-24-58-77361a0acc7afbb72382eb0ea3cc7c5a.jpg\"></p><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40047284"], "feedbacks": ["See = stative verb (never use in continuous)", "A second helping is a second portion of food. This food is what someone has left on their plate", "a + singular noun (leftovers = plural)", "", "See = stative verb (never use in continuous)"], "answers": ["<p>In this photo, I'm seeing two birds. They are eating the second helping</p>", "<p>In this photo, I see two birds. They are eating a second helping</p>", "<p>In this photo, I see two birds. They are eating a leftovers</p>", "<p>In this photo, I see two birds. They are eating the leftovers</p>", "<p>In this photo, I'm seeing two birds. They are eating the leftovers</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71180966, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_15-16-47-51f654454f14b7d76cb4437882696728.jpg\"><p><strong>Please choose the correct answer:</strong></p>", "relatedLectureIds": ["40047284"], "feedbacks": ["once a month = present simple", "once a month = present simple", "", "Taste = stative verb (unless you mean the action of tasting, in which case it is dynamic)"], "answers": ["<p>They are eating out once a month; they go to their favourite restaurant and order the local speciality, which is chicken soup. It is tasting delicious.</p>", "<p>They eat out once a month; they are going to their favourite restaurant and ordering the local speciality, which is chicken soup. It tastes delicious.</p>", "<p>They eat out once a month; they go to their favourite restaurant and order the local speciality, which is chicken soup. It tastes delicious.</p>", "<p>They eat out once a month; they go to their favourite restaurant and order the local speciality, which is chicken soup. It is tasting delicious.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}, {"_class": "assessment", "id": 71181082, "assessment_type": "multiple-choice", "prompt": {"question": "<img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2023-10-26_15-32-42-e9aefaa1fc4c971a9e229c95840e42b2.jpg\"><p><strong>Please choose the correct answer:</strong></p><p><br></p>", "relatedLectureIds": ["40047284"], "feedbacks": ["We bake pies/cakes/biscuits, but we roast vegetables and meat", "in this photo = present continuous (for dynamic verbs)", "Every Sunday = present simple", "Every Sunday = present simple. In this photo = present continuous (for dynamic verbs)", "Every Sunday = present simple"], "answers": ["<p>Every Sunday, my mum roasts apple pie; in this photo, she is taking the pie out of the oven. </p>", "<p>Every Sunday, my mum bakes apple pie; in this photo, she takes the pie out of the oven. </p>", "<p>Every Sunday, my mum is baking apple pie; in this photo, she is taking the pie out of the oven. </p>", "<p>Every Sunday, my mum bakes apple pie; in this photo, she is taking the pie out of the oven. </p>", "<p>Every Sunday, my mum is roasting apple pie; in this photo, she is taking the pie out of the oven. </p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Please choose the correct answer:", "related_lectures": [{"_class": "lecture", "id": 40047284, "title": "Simple V Continuous - Questions", "created": "2023-09-26T13:15:39Z", "is_published": true, "asset": {"_class": "asset", "id": 51618658, "asset_type": "Video", "title": "Cooking int 2 B.mp4", "created": "2023-09-26T13:34:21Z"}, "object_index": 3, "url": "/course/master-english-intermediate/learn/lecture/40047284"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

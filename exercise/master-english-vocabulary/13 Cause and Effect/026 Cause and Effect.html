@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46758028, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Video tapes were ______ obsolete with the arrival of DVD technologies</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation (wreak havoc)", "Wrong collocation (spell disaster)", "Wrong collocation (prompt speculation)", "Wrong collocation (breed resentment, contempt)", "To render sth obsolete =  to cause sth not to be used anymore", "Wrong collocation (provoke an outcry)", "Wrong collocation (establish the root/main cause)"], "answers": ["<p>wreaked</p>", "<p>spelt</p>", "<p>prompted</p>", "<p>bred</p>", "<p>rendered</p>", "<p>provoked</p>", "<p>established</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Video tapes were ______ obsolete with the arrival of DVD technologies", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46758418, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The decision to build flats on the edges of the forest has provoked an outcry among local residents, who point out that the project will have dire ______ for the natural habitats of several species of bird. </p>", "relatedLectureIds": ["31842138"], "feedbacks": ["A controversy = a lot of disagreement/argument about sth", "Mitigating/extenuating circumstances = facts that lessen the severity of sb's crime", "Dire consequences = seriously bad consequences (effects)"], "answers": ["<p>controversy</p>", "<p>circumstances</p>", "<p>consequences</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "The decision to build flats on the edges of the forest has provoked an outcry among local residents, who point out that the project will have dire ______ for the natural habitats of several species of bird.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46759326, "assessment_type": "multiple-choice", "prompt": {"question": "<p>It ______ me great pleasure to introduce you all to our Head of Retail banking, Peter Fisher.</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Cause is used with negative nouns (cause trouble, problems, damage, disaster, war)", "Wrong collocation (produce reports, results, evidence)", "To give sb (great) pleasure = to make sb happy", "Wrong collocation (generate profit, income, excitement, enthusiasm, controversy)", "Wrong collocation (precipitate/spark off sth. The economic crisis has precipitated conflict in eastern Europe)  "], "answers": ["<p>causes</p>", "<p>produces</p>", "<p>gives</p>", "<p>generates</p>", "<p>precipitates</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "It ______ me great pleasure to introduce you all to our Head of Retail banking, Peter Fisher.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46762016, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The miserable working conditions and low wages have _____ a great deal of resentment among members of staff.</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation (render obsolete)", "Wrong collocation (generate enthusiasm, interest, profit, complaints, controversy)", "Wrong collocation (fires/diseases/conflicts break out)", "To breed resentment = to cause anger/frustration (also 'cause resentment', and a person can 'harbour resentment')", "Wrong verb form (this verb is irregular)", "Wrong collocation (provoke an outcry)", "Wrong collocation (to plant doubt)"], "answers": ["<p>rendered</p>", "<p>generated</p>", "<p>broken out</p>", "<p>bred</p>", "<p>breeded</p>", "<p>provoked</p>", "<p>planted</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The miserable working conditions and low wages have _____ a great deal of resentment among members of staff.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46763900, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The UK government has failed to _____ compelling evidence that the masks or the social distancing restrictions have any health benefits whatsoever. On the contrary, the weight of evidence demonstrates that both are far more harmful than beneficial.</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation - To generate profits, complaints, controversy, excitement, enthusiasm", "Wrong collocation - To establish/determine the root cause", "Wrong collocation - To establish/determine the root cause", "Bring about = gradually cause", "Produce evidence, results, reports, documents", "Wrong collocation (to precipitate sth/spark sth off = to cause sth to suddenly happen)"], "answers": ["<p>generate</p>", "<p>determine</p>", "<p>establish</p>", "<p>bring about</p>", "<p>produce</p>", "<p>precipitate</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "The UK government has failed to _____ compelling evidence that the masks or the social distancing restrictions have any health benefits whatsoever. On the contrary, the weight of evidence demonstrates that both are far more harmful than beneficial.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46763922, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The loose monetary policies brought in by the government over the course of the pandemic have ______ a global recession that will last for years. </p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation - To generate profits, complaints, controversy, excitement, enthusiasm", "To precipitate sth/spark sth off/trigger = to cause sth to suddenly happen", "Wrong collocation - to provoke an outcry", "Wrong collocation - breed contempt, resentment", "Wrong collocation - render obsolete", "Wrong collocation - wreak havoc"], "answers": ["<p>generated</p>", "<p>precipitated</p>", "<p>provoked</p>", "<p>bred</p>", "<p>rendered</p>", "<p>wrought</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "The loose monetary policies brought in by the government over the course of the pandemic have ______ a global recession that will last for years.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46763952, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The powerful tornado struck in the middle of the night, blowing over lots of trees and ______ havoc.</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation - To generate profits, complaints, controversy, excitement, enthusiasm", "Wrong collocation = Produce evidence, results, reports, documents", "Wrong collocation = to provoke an outcry", "Wrong collocation = to render obsolete", "To wreak havoc = to cause chaos and destruction"], "answers": ["<p>generating</p>", "<p>producing</p>", "<p>provoking</p>", "<p>rendering</p>", "<p>wreaking</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "The powerful tornado struck in the middle of the night, blowing over lots of trees and ______ havoc.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}, {"_class": "assessment", "id": 46763996, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I _____ his terrible behaviour down to his difficult childhood: his parents passed away when he was very young, which must have been devastating.</p>", "relatedLectureIds": ["31842138"], "feedbacks": ["Wrong collocation - to plant doubt", "X comes down to Y = X is caused by Y (His behaviour comes down to his difficult childhood)", "to stem from - to result from (His behaviour stems from his difficult childhood)", "The root cause. (His behaviour is rooted in his difficult childhood)", "Wrong collocation = to prompt speculation", "Good. put X down to Y = claim that X is caused by Y"], "answers": ["<p>plant</p>", "<p>come</p>", "<p>stem</p>", "<p>root</p>", "<p>prompt</p>", "<p>put</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "I _____ his terrible behaviour down to his difficult childhood: his parents passed away when he was very young, which must have been devastating.", "related_lectures": [{"_class": "lecture", "id": 31842138, "title": "Cause and Effect", "created": "2022-04-16T09:12:14Z", "is_published": true, "asset": {"_class": "asset", "id": 40810900, "asset_type": "Video", "title": "Vocabulary CAUSE and EFFECT (Lesson 26).mp4", "created": "2022-04-16T09:14:34Z"}, "object_index": 28, "url": "/course/master-english-vocabulary/learn/lecture/31842138"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

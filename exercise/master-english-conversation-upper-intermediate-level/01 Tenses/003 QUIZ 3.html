@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 80383944, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>CORRECT</strong> sentence</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["For 3 years = present perfect (if you still live here)", "For 3 years = present perfect ('have lived' AND 'have been living' are both correct)", "For 3 years = present perfect (if you still live here)"], "answers": ["<p>I live here for 3 years</p>", "<p>I've been living here for 3 years</p>", "<p>I'm living here for 3 years</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Press choose the CORRECT sentence", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80383962, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>INCORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["We want to either say that he is still in the middle of smoking a cigar, or that he has finished his cigar (focus on present result - he will see you now). It is unlikely that we would like to focus on duration (has been smoking) in this example.", "We want to either say that he is still in the middle of smoking a cigar, or that he has finished his cigar (focus on present result - he will see you now). It is unlikely that we would like to focus on duration (has been smoking) in this example.", "We want to either say that he is still in the middle of smoking a cigar, or that he has finished his cigar (focus on present result - he will see you now). It is unlikely that we would like to focus on duration (has been smoking) in this example."], "answers": ["<p>He's just smoking a cigar; he'll be with you in a second</p>", "<p>He's just smoked a cigar; he'll be with you in a second</p>", "<p>He's just been smoking a cigar; he'll be with you in a second</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Press choose the INCORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80383982, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>INCORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["We can use present simple, past simple, and present perfect simple with never. BUT we can't use present perfect continuous (has never been smoking = incorrect)", "We can use present simple, past simple, and present perfect simple with never. BUT we can't use present perfect continuous (has never been smoking = incorrect)", "We can use present simple, past simple, and present perfect simple with never. BUT we can't use present perfect continuous (has never been smoking = incorrect)"], "answers": ["<p>He has never smoked a cigar in his entire life</p>", "<p>He's never been smoking cigars, but he does like a pipe occasionally</p>", "<p>He never smokes cigars, but he sometimes smokes cigarettes</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Press choose the INCORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80384136, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>CORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["If we want to report that Dave promised, 'I won't smoke for 9 months' (future), then we say 'Dave said that he wouldn't smoke for 9 months'. We don't say 'Dave told me that he isn't smoking for 9 months'", "This is reported speech (Dave told me...) so we use past perfect (hadn't smoked) instead of present perfect (hasn't smoked).", "This is reported speech (Dave told me...), and the period took place before Dave told you something, so you must use past perfect", "Here we are referring to the past. And we have a negative claim. Remember that in positive sentences, we would use present perfect continuous (He's been driving since he was 16. He has been smoking since he was a boy), but in the negative equivalent, we tend to use perfect simple instead (I haven't driven a car since I was a teenager. I haven't smoked for 9 months)", "Here we are referring to the past. And we have a negative claim. Remember that in positive sentences, we would use present perfect continuous (He's been driving since he was 16. He has been smoking since he was a boy), but in the negative equivalent, we tend to use perfect simple instead (I haven't driven a car since I was a teenager. I haven't smoked for 9 months)"], "answers": ["<p>Dave told me yesterday that he isn't smoking for 9 months</p>", "<p>Dave told me yesterday that he doesn't smoke for 9 months</p>", "<p>Dave told me yesterday that he wasn't smoking for 9 months</p>", "<p>Dave told me yesterday that he hadn't been smoking for 9 months</p>", "<p>Dave told me yesterday that he hadn't smoked for 9 months</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "Press choose the CORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80384156, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>CORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["I asked him = reported speech, so we use past perfect instead of present perfect.", "", "Note that this is a positive sentence. When we say how long in a negative sentence, we tend to use perfect simple. (He told me he hadn't driven for five years. She said she hadn't smoked for 6 years)", "How long = perfect signal", "How long = perfect signal", "How long = focus on duration. Drive = dynamic verb. So had been driving is better than had driven"], "answers": ["<p>I asked him how long he's been driving</p>", "<p>I asked him how long he was driving</p>", "<p>I asked him how long he'd been driving</p>", "<p>I asked him how long he is driving</p>", "<p>I asked him how long he drives</p>", "<p>I asked him how long he'd driven</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Press choose the CORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80384310, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>CORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["We don't use will with when, if we are referring to the future. So we say when I am 65, I will retire. We don't say when I will be 65, I will retire. Please be careful to avoid this error. The same is true with other subordinating conjunctions that refer to the future (before, after, if, unless, in case, as soon as, until). For example, I will send him an email before I leave (not will leave)", "We CAN use perfect simple (have got) with when as long as we are referring to the future.", "Will send (FUTURE) does not coordinate with got (PAST)", "We don't mean 'when we are in the middle of getting', so this is incorrect", "We want to emphasize completion, so perfect simple (have got) is best"], "answers": ["<p>We will send you an email when we will get the results. </p>", "<p>We will send you an email when we have got the results. </p>", "<p>We will send you an email when we got the results. </p>", "<p>We will send you an email when we're getting the results. </p>", "<p>We will send you an email when we've been getting the results. </p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Press choose the CORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80384316, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>INCORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["Remember to use present tenses (has finished, finished) after subordinating conjunctions that refers to the future (before, after, when, as soon as, if, in case, until, unless). We don't use will after these conjunctions (e.g. I will tell him when I see him)", "Remember to use present tenses (has finished, finished) after subordinating conjunctions that refers to the future (before, after, when, as soon as, if, in case, until, unless). We don't use will after these conjunctions (e.g. I will tell him when I see him)", "This is incorrect, as we only use 'will' in one clause (not both)"], "answers": ["<p>I'll have a word with him after he finishes his lunch</p>", "<p>I'll have a word with him after he has finished his lunch</p>", "<p>I'll have a word with him after he will finish his lunch</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Press choose the INCORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}, {"_class": "assessment", "id": 80384324, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Press choose the <strong>CORRECT</strong> sentence:</p>", "relatedLectureIds": ["42171836"], "feedbacks": ["By the time that (like before, after, if, when, as soon as, until, in case) uses a present tense (in the subordinate clause) rather than will, even though it refers to the future.", "By the time that (like before, after, if, when, as soon as, until, in case) uses a present tense (in the subordinate clause) rather than will, even though it refers to the future.", "By the time that (like before, after, if, when, as soon as, until, in case) uses a present tense (in the subordinate clause) rather than will, even though it refers to the future.", "By the time that requires future simple (will have done) for a future complete action or future continuous (will be doing) for an incomplete future action. Already always emphasizes completion."], "answers": ["<p>By the time that we get there, he'll already have left</p>", "<p>By the time that we get there, he'll already leave</p>", "<p>By the time that we get there, he's already leaving</p>", "<p>By the time that we'll get there, he'll already have left</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Press choose the CORRECT sentence:", "related_lectures": [{"_class": "lecture", "id": 42171836, "title": "Tenses and Signal Words - Part 3", "created": "2024-02-05T19:39:20Z", "is_published": true, "asset": {"_class": "asset", "id": 54460436, "asset_type": "Video", "title": "Tense signal 3.mp4", "created": "2024-02-05T19:51:33Z"}, "object_index": 3, "url": "/course/master-english-conversation-upper-intermediate-level/learn/lecture/42171836"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

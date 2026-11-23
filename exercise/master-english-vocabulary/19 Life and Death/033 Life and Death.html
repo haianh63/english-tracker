@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+
+  <style>
+    body {
+      font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+        segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol;
+      font-weight: 400;
+      line-height: 22.4px;
+      font-size: 16px;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    code {
+      background-color: #fff;
+      border: 1px solid #d1d7dc;
+      color: #b4690e;
+      font-size: 90%;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .quiz-content {
+      padding: 2.4rem;
+      word-break: break-word;
+      max-width: 86rem;
+      margin: 0 auto;
+    }
+
+    .quiz-container {
+      margin: 0 auto;
+      max-width: 84rem;
+      padding: 0;
+    }
+
+    .question {
+      margin-bottom: 5rem;
+    }
+
+    .question span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .question-prompt {
+      margin-top: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-answer {
+      margin-top: 1.6rem;
+      padding-left: 0;
+      box-sizing: border-box;
+    }
+
+    .question-answer label {
+      max-width: 80rem;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      min-width: 18rem;
+      border: solid #1c1d1f 2px;
+    }
+
+    .question-answer div {
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    .question-answer div:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* .question-answer input {
+      display: none;
+    } */
+
+    .question-answer span {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1.6rem;
+      top: 0;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 0.2rem solid #1c1d1f;
+      position: relative;
+    }
+
+    .selected {
+      background: #1c1d1f;
+      box-shadow: 0 0 0 0.4rem #fff inset;
+    }
+
+    .score {
+      position: fixed;
+      background-color: #b4690e;
+      padding: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <div id="score" class="score">
+    <span>Score: N/A of N/A</span>
+  </div>
+  <div id="quiz-container" class="quiz-content"></div>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46801624, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Having argued bitterly for many months, their marriage ___________ and they filed for a divorce. </p>", "relatedLectureIds": ["31913120"], "feedbacks": ["You can break off a marriage, but the marriage can't break off", "You can break up with your partner, but the relationship can't break up", "Relationships break down. People break off a relationship. People break up with each other. ", "Fires/conflicts/pandemics break out", "Smaller states can break away from a larger union. (The UK broke away from the EU...apparently...)"], "answers": ["<p>broke off</p>", "<p>broke up</p>", "<p>broke down</p>", "<p>broke out</p>", "<p>broke away</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Having argued bitterly for many months, their marriage ___________ and they filed for a divorce.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46801936, "assessment_type": "multiple-choice", "prompt": {"question": "<p>When I converted to the Orthodox faith a few years ago, I was _______ in a small pool of holy water.</p>", "relatedLectureIds": ["31913120"], "feedbacks": ["To chastise sb = to punish sb", "To be baptised / christened = to go through a religious ritual (often involving holy water) in which you are accepted as a member of that church.", "To be buried = to be put under the earth (possibly in a coffin)", "To be cremated = to be burned until only ashes remain (after death...hopefully!)", "When a baby is conceived, the sperm fertilizes the egg. I was not conceived in a pool of holy water! ", "We scatter the ashes/remains of the deceased after the funeral"], "answers": ["<p>chastised</p>", "<p>baptised</p>", "<p>buried</p>", "<p>cremated</p>", "<p>conceived</p>", "<p>scattered</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "When I converted to the Orthodox faith a few years ago, I was _______ in a small pool of holy water.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46801978, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Wanting to _____ in the most romantic way possible, he popped the question by going down on one knee.</p>", "relatedLectureIds": ["31913120"], "feedbacks": ["To adopt (a child) = to become a child's parent permanently, even though you are not the biological parent", "To retire = stop working and start receiving your pension", "To propose = to propose marriage (we often omit the noun)", "To foster (a child) = to look after a child temporarily, and take responsibility for that child", "When a baby is conceived, the sperm fertilizes the egg.", "To mourn/grieve (for sb) = to be sad for the fact that sb has died"], "answers": ["<p>adopt</p>", "<p>retire</p>", "<p>propose</p>", "<p>foster</p>", "<p>conceive</p>", "<p>mourn</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Wanting to _____ in the most romantic way possible, he popped the question by going down on one knee.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46802028, "assessment_type": "multiple-choice", "prompt": {"question": "<p>She met an untimely death when she was only in her 20s; hundreds of mourners came to the funeral to _______ and send their sincere condolences to her family. </p>", "relatedLectureIds": ["31913120"], "feedbacks": ["", "It is unlikely that these mourners will inherit something. Usually close family members inherit property.", "Wrong word (wreck a marriage = destroy a marriage)", "Wrong word (pass on, pass away = die", "To grieve/ mourn (for sb) = to be sad that sb has died"], "answers": ["<p>scatter</p>", "<p>inherit</p>", "<p>wreck</p>", "<p>pass on</p>", "<p>grieve</p>"]}, "correct_response": ["e"], "section": "", "question_plain": "She met an untimely death when she was only in her 20s; hundreds of mourners came to the funeral to _______ and send their sincere condolences to her family.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46802046, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I subscribe to the view that a modest amount of exercise and the regular consumption of red meat are all that you need to live to a _____ old age. </p>", "relatedLectureIds": ["31913120"], "feedbacks": ["Wrong collocation (a stormy/arranged/sham/failed/tempestuous/abusive marriage)", "Wrong collocation (an acrimonious/bitter/messy/amicable divorce)", "Wrong collocation (send your sincere condolences)", "To live to a ripe old age (to live for a long time)", "Wrong collocation. (An untimely death = an early death)", "Wrong collocation. (A premature death/birth = an early death/birth)"], "answers": ["<p>stormy</p>", "<p>acrimonious</p>", "<p>sincere</p>", "<p>ripe</p>", "<p>untimely</p>", "<p>premature</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I subscribe to the view that a modest amount of exercise and the regular consumption of red meat are all that you need to live to a _____ old age.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46802050, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Having tried unsuccessfully for many years to _____ naturally, the couple decided that they would try IVF treatment.</p>", "relatedLectureIds": ["31913120"], "feedbacks": ["To get/become pregnant. Or to get sb pregnant ", "To give birth to a healthy boy/girl, to give birth prematurely", "When a baby is conceived, the sperm fertilizes the egg.", "To grieve/mourn (for sb) = to be sad that sb has died", "The midwife delivers the baby"], "answers": ["<p>pregnant</p>", "<p>birth</p>", "<p>conceive</p>", "<p>grieve</p>", "<p>deliver</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Having tried unsuccessfully for many years to _____ naturally, the couple decided that they would try IVF treatment.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46802092, "assessment_type": "multiple-choice", "prompt": {"question": "<p>In the twentieth week of her pregnancy she had to be rushed to hospital, and sadly, she had a _______. Losing the baby has left her in a state of confusion, depression, and guilt.</p>", "relatedLectureIds": ["31913120"], "feedbacks": ["The embryo develops into a foetus in the womb", "The embryo develops into a foetus in the womb", "A burial is a funeral ceremony in which the deceased is buried (put under the earth, in a coffin)", "We almost NEVER use this word when the foetus dies against the parents wishes. An abortion is a type of operation in which the mother chooses to terminate the pregnancy", "A funeral is a ceremony to celebrate the life of the deceased", "To have a miscarriage (still birth) = to lose a baby in the early stages of pregnancy"], "answers": ["<p>embryo</p>", "<p>foetus</p>", "<p>burial</p>", "<p>abortion</p>", "<p>funeral</p>", "<p>miscarriage</p>"]}, "correct_response": ["f"], "section": "", "question_plain": "In the twentieth week of her pregnancy she had to be rushed to hospital, and sadly, she had a _______. Losing the baby has left her in a state of confusion, depression, and guilt.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}, {"_class": "assessment", "id": 46802202, "assessment_type": "multiple-choice", "prompt": {"question": "<p>They went through ______ divorce, as they were both fighting for custody of the children, and we all know that such battles are fought to the bitter end, and in such battles there are no winners. </p>", "relatedLectureIds": ["31913120"], "feedbacks": ["This does NOT sound like a friendly (amicable) divorce", "An acrimonious divorce = a bitter divorce", "An antenatal class = a class (before birth) that teaches you about the birth", "A caesarean birth is a birth in which the baby must be cut out of the mother", "Wrong collocation (failed marriage)", "Wrong collocation (abusive marriage = violent marriage)", "Wrong collocation (sham marriage = fake marriage)", "Wrong collocation (arranged marriage = one arranged by parents and relatives, rather than by the bride and groom)"], "answers": ["<p>an amicable</p>", "<p>an acrimonious</p>", "<p>an antenatal</p>", "<p>a caesarean</p>", "<p>failed</p>", "<p>abusive</p>", "<p>sham</p>", "<p>arranged</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "They went through ______ divorce, as they were both fighting for custody of the children, and we all know that such battles are fought to the bitter end, and in such battles there are no winners.", "related_lectures": [{"_class": "lecture", "id": 31913120, "title": "Life and Death", "created": "2022-04-21T10:43:44Z", "is_published": true, "asset": {"_class": "asset", "id": 40903872, "asset_type": "Video", "title": "IMG_2666.MOV", "created": "2022-04-21T09:33:58Z"}, "object_index": 35, "url": "/course/master-english-vocabulary/learn/lecture/31913120"}]}]};
+    var correct = 0;
+    var total = 0;
+    const questionData = quizData.questions
+    const passPercent = quizData.pass_percent
+    function kiemTraDapAn(correctMuti, choise) {
+      // Chuyển đổi các số trong choise thành chữ cái tương ứng
+      const choiseLetters = choise.map(num => String.fromCharCode(parseInt(num) + 'a'.charCodeAt(0)));
+      console.log('choiseLetters',choiseLetters)
+      // Kiểm tra điều kiện:
+      // 1. Chiều dài hai mảng phải bằng nhau
+      // 2. Tất cả các phần tử trong choiseLetters phải có trong correctMuti
+      if (
+        choiseLetters.length === correctMuti.length &&
+        choiseLetters.every(c => correctMuti.includes(c))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function main() {
+      total = questionData.length;
+
+      var questions = [];
+      for (var i = 0; i < questionData.length; i++) {
+        var question = questionData[i];
+        var questionText = question.prompt.question;
+        var answers = question.prompt.answers;
+        var correctAnswer = question.correct_response[0];
+        var correctMuti = question.correct_response;
+        var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+        var questionObj = {
+          question: questionText,
+          correctAnswer: correctAnswerText,
+          answers: answers,
+          id: question.id,
+          explanation: question.prompt.explanation,
+          correctMuti
+
+        };
+        questions.push(questionObj);
+      }
+      console.log(questions.filter(i => i.correctMuti.length > 1))
+
+      updateScore();
+
+      // display the questions
+      var questionsContainer = document.getElementById("quiz-container");
+      for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var questionElement = document.createElement("form");
+        questionElement.className = "question";
+        questionElement.innerHTML =
+          "<span>Question " +
+          (i + 1) +
+          ":</span>" +
+          '<div class="question-prompt">' +
+          question.question +
+          "</div>";
+        questionElement.id = question.id;
+        questionElement.classList.add("quiz-container");
+        var answersElement = document.createElement("ul");
+        answersElement.className = "answers";
+        console.log('question.correctMuti', question.correctMuti.length)
+        if (question.correctMuti.length > 1) {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select2(' +
+              question.id +
+              ", " +
+              j +
+              ')"><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="checkbox" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        } else {
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+        }
+        questionElement.appendChild(answersElement);
+
+        // add a submit button
+        var submitButton = document.createElement("button");
+        submitButton.className = "submit";
+        submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
+
+        submitButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          var questionElement = e.target.parentElement;
+          var questionId = questionElement.id;
+          var question = questions.filter(function (q) {
+            return q.id == questionId;
+          })[0];
+
+          // set the border color of all answers to black
+          var answers = questionElement.getElementsByClassName("answer");
+          for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i]);
+            answers[i].children[0].style.borderColor = "#1c1d1f";
+          }
+
+          var answer = questionElement.querySelector(
+            'input[type="radio"]:checked'
+          );
+          var mutilanswer = questionElement.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          if (answer) {
+            var answerIndex = answer.value;
+            var answerText = question.answers[answerIndex];
+            if (answerText == question.correctAnswer) {
+              answer.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+
+            } else {
+              answer.parentElement.parentElement.style.borderColor = "red";
+              // alert("Incorrect!");
+            }
+          }
+          if (mutilanswer) {
+            var answerIndex = [...mutilanswer].map(a => a.value);
+
+            if (kiemTraDapAn(question.correctMuti, answerIndex)) {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "limegreen";
+              })
+              // alert("Correct!");
+              correct++;
+              updateScore();
+              questionElement.innerHTML += question.explanation
+            } else {
+              [...mutilanswer].map(item => {
+                item.parentElement.parentElement.style.borderColor =
+                "red";
+              })
+            }
+            // var answerText = question.answers[answerIndex];
+            // if (answerText == question.correctAnswer) {
+            //   answer.parentElement.parentElement.style.borderColor =
+            //     "limegreen";
+            //   // alert("Correct!");
+            //   correct++;
+            //   updateScore();
+            //   questionElement.innerHTML += question.explanation
+
+            // } else {
+            //   answer.parentElement.parentElement.style.borderColor = "red";
+            //   // alert("Incorrect!");
+            // }
+          }
+          // else {
+          //   alert("Please select an answer.");
+          // }
+
+        });
+
+        // add button
+        questionElement.appendChild(submitButton);
+
+        questionsContainer.appendChild(questionElement);
+      }
+    }
+
+    function select(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      for (var i = 0; i < answers.length; i++) {
+        var span = answers[i].children[0].children[0].children[0];
+        var input = answers[i].children[0].children[0].children[1];
+        span.classList.remove("selected");
+        input.checked = false;
+      }
+      var span = answers[answer].children[0].children[0].children[0];
+      var input = answers[answer].children[0].children[0].children[1];
+      span.classList.add("selected");
+      input.checked = true;
+    }
+    function select2(question, answer) {
+      var questionElement = document.getElementById(question);
+      var answers = questionElement.getElementsByClassName("answer");
+      // for (var i = 0; i < answers.length; i++) {
+      //   var span = answers[i].children[0].children[0].children[0];
+      //   var input = answers[i].children[0].children[0].children[1];
+      //   if(input.checked){
+      //     span.classList.remove("selected");
+      //     input.checked = false;
+      //   }
+
+      // }
+      // var span = answers[answer].children[0].children[0].children[0];
+      // var input = answers[answer].children[0].children[0].children[1];
+      // span.classList.add("selected");
+      // input.checked = true;
+    }
+    function updateScore() {
+      var scoreElem = document.getElementById("score");
+      const score = (correct / total) * 100;
+      scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+    }
+  </script>
+</body>
+
+</html>

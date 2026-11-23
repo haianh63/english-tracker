@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+  <style>
+    * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+        "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    main {
+      padding-top: 48px;
+    }
+
+    :root {
+      --large-device-width: 850px;
+      --primary-color: #0f172a;
+      --secondary-color: #020617;
+      --primary-text-color: #c7d1dd;
+      --secondary-text-color: #061602;
+      --success-background: hsl(159, 82%, 24%);
+      --success-foreground: hsl(164, 86%, 16%);
+      --success: hsl(160, 84%, 39%);
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info-background: hsl(218, 81%, 8%);
+      --info-foreground: hsl(217, 91%, 85%);
+      --border-color: #d1d7dc;
+      --check-box-size: 20px;
+      /* control the size */
+      --check-box-color: var(--info-foreground);
+      /* the active color */
+    }
+
+    body {
+      position: relative;
+      background-color: #020617;
+      color: var(--primary-text-color);
+    }
+
+    #score-stats-container {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      height: 40px;
+      width: 100%;
+      background-color: var(--info-background);
+
+      padding: 0px 16px;
+      color: var(--info-foreground);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #quiz-container {
+      border-radius: 8px;
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+    }
+
+    /* === Base Styles for both Radio and Checkbox === */
+    input[type="radio"],
+    input[type="checkbox"] {
+        height: var(--check-box-size);
+        aspect-ratio: 1;
+        border: calc(var(--check-box-size) / 8) solid #939393;
+        padding: calc(var(--check-box-size) / 8);
+        background: radial-gradient(farthest-side, var(--check-box-color) 94%, #0000) 50%/0 0 no-repeat content-box;
+        outline-offset: calc(var(--check-box-size) / 10);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        font-size: inherit;
+        transition: 0.3s;
+    }
+
+    input[type="radio"]:checked,
+    input[type="checkbox"]:checked {
+        border-color: var(--check-box-color);
+        background-size: 100% 100%;
+    }
+
+    input[type="radio"]:disabled,
+    input[type="checkbox"]:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* === Specific Styles === */
+    input[type="radio"] {
+      border-radius: 50%; /* Makes it a circle */
+    }
+    
+    input[type="checkbox"] {
+        border-radius: 4px; /* Makes it a square */
+    }
+    
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 767px) {
+
+      input[type="radio"],
+      input[type="checkbox"],
+      label {
+        cursor: default;
+      }
+
+      #quiz-container {
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+    }
+
+    /* PC (Desktop devices) */
+    @media (min-width: 768px) {
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      main {
+        max-width: var(--large-device-width);
+      }
+
+      #score-stats-container {
+        max-width: var(--large-device-width);
+      }
+
+      dialog {
+        max-width: var(--large-device-width);
+      }
+    }
+
+    @media print {
+        input[type="radio"],
+        input[type="checkbox"] {
+            background: none !important;
+            border-color: #939393 !important;
+        }
+
+        input[type="radio"]:checked,
+        input[type="checkbox"]:checked {
+            border-color: #939393 !important;
+        }
+    }
+
+    .question-lable {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .button {
+      background-color: var(--success-background);
+      border: none;
+      color: #f4f5f7;
+      opacity: 0.8;
+      font-size: 18px;
+      flex-grow: 1;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .button:hover {
+      opacity: 1;
+    }
+
+    .button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .explanation-btn {
+      border: none;
+      color: var(--success);
+      background-color: transparent;
+    }
+
+    .single-question-container {
+      background-color: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    #modal-content {
+      padding: 16px;
+      line-height: 24px;
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    dialog {
+      position: fixed;
+      border: 1px solid var(--border-color);
+      background-color: var(--primary-color);
+      color: rgb(240, 241, 248);
+      padding: 16px;
+      border-radius: 8px;
+      width: 80vw;
+      max-height: 80vh;
+      overflow: auto;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    #close-modal-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      border: none;
+      background-color: var(--danger);
+    }
+
+    .correct-answer > label {
+      border: 2px solid var(--success);
+      width: 100%;
+    }
+
+    .incorrect-answer > label {
+      border: 2px solid var(--danger);
+      width: 100%;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    #quiz-meta-container {
+      border-radius: 8px;
+      background-color: var(--primary-color);
+      margin-bottom: 12px;
+      padding: 8px;
+    }
+
+    #quiz-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    #quiz-description {
+      line-height: 1.5;
+      padding: 2px 6px;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <main>
+    <section id="quiz-meta-container">
+      <h1 id="quiz-title"></h1>
+      <p id="quiz-description"></p>
+    </section>
+    <section id="score-stats-container">
+      <div id="score-card">
+        Score: <span id="current-score">999</span> of
+        <span id="pass-percent">999%</span>
+      </div>
+      <div>Correct: <span id="correct-answers">999</span></div>
+      <div>Incorrect: <span id="wrong-answers">999</span></div>
+    </section>
+
+    <section id="quiz-container"></section>
+
+    <dialog id="modal" class="modal-container">
+      <div id="modal-content">
+        <p id="modal-text"></p>
+      </div>
+    </dialog>
+  </main>
+
+  <script>
+    const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 46237754, "assessment_type": "multiple-choice", "prompt": {"question": "<p>He called in sick this morning. He says he has come ____ with a nasty stomach bug.</p>", "relatedLectureIds": ["31709172"], "feedbacks": ["'To come up with (ideas, suggestions, theories)' = to create an idea/suggestion/theory", "Wrong preposition", "Wrong preposition", "'To come down with flu/a cold/a nasty virus' = to catch flu/a cold", "'To come along with sb' = to accompany sb"], "answers": ["<p>up</p>", "<p>on</p>", "<p>in</p>", "<p>down</p>", "<p>along</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "He called in sick this morning. He says he has come ____ with a nasty stomach bug.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237774, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My nose has been _____ all day, and it just won't stop. </p>", "relatedLectureIds": ["31709172"], "feedbacks": ["Wrong collocation", "People usually sneeze. It sounds strange to say that your nose has been sneezing. ", "", "You cough out of your mouth, not out of your nose. ", "Bones ache. Your back/head/tooth/stomach can ache. "], "answers": ["<p>leaking</p>", "<p>sneezing</p>", "<p>running</p>", "<p>coughing</p>", "<p>aching</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "My nose has been _____ all day, and it just won't stop.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237786, "assessment_type": "multiple-choice", "prompt": {"question": "<p>As soon as he arrived at the hospital, he threw ____ in the Accident and Emergency Unit. </p>", "relatedLectureIds": ["31709172"], "feedbacks": ["Wrong preposition", "Wrong preposition", "Wrong preposition", "'To throw/yack up' = to vomit", "Wrong preposition"], "answers": ["<p>down</p>", "<p>on</p>", "<p>over</p>", "<p>up</p>", "<p>in</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "As soon as he arrived at the hospital, he threw ____ in the Accident and Emergency Unit.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237808, "assessment_type": "multiple-choice", "prompt": {"question": "<p>The parasite had dug deeply into my skin, so I had to use _____ to rip it out</p>", "relatedLectureIds": ["31709172"], "feedbacks": ["This would be an odd tool to use! ", "Bandages are wrapped around injuries to stop the patient losing blood", "Crutches are used to help you walk when you break a bone. ", "Good. We would use tweezers to tear out a small parasite", "A drip is something that allows liquid to flow directly into the patients circulatory system. "], "answers": ["<p>scissors</p>", "<p>bandages</p>", "<p>crutches</p>", "<p>tweezers</p>", "<p>a drip</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "The parasite had dug deeply into my skin, so I had to use _____ to rip it out", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237826, "assessment_type": "multiple-choice", "prompt": {"question": "<p>I was so dizzy that I thought I was going to pass out, but the symptoms _____ _____ in a matter of hours. </p>", "relatedLectureIds": ["31709172"], "feedbacks": ["A lump or swelling can go down. ", "A part of the body can swell up", "A virus/bug/illness/cold can go round (spread)", "When symptoms clear up, they disappear. ", "Symptoms CAN drag on, but 'in a matter of hours' means a surprisingly short period of time, whereas 'drag on' means an annoyingly long period of time. "], "answers": ["<p>went down</p>", "<p>swelled up</p>", "<p>went round</p>", "<p>cleared up</p>", "<p>dragged on</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "I was so dizzy that I thought I was going to pass out, but the symptoms _____ _____ in a matter of hours.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237846, "assessment_type": "multiple-choice", "prompt": {"question": "<p>This parasite feeds on the blood of mammals, spreading _____ diseases from one species to another. </p>", "relatedLectureIds": ["31709172"], "feedbacks": ["Wrong collocation", "A contagious disease is one that spreads via human contact", "Wrong collocation (a splitting headache = migraine)", "Wrong collocation (excruciating pain)", "Wrong collocation (a gaping wound)"], "answers": ["<p>powerful</p>", "<p>contagious</p>", "<p>splitting</p>", "<p>excruciating</p>", "<p>gaping</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "This parasite feeds on the blood of mammals, spreading _____ diseases from one species to another.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237868, "assessment_type": "multiple-choice", "prompt": {"question": "<p>_____ on the side of caution, the doctor decided to prescribe me some powerful antibiotics.</p>", "relatedLectureIds": ["31709172"], "feedbacks": ["", "", "", "'To err on the side of caution' = to play it safe (to be on the safe side)", ""], "answers": ["<p>Being</p>", "<p>Staying</p>", "<p>Diagnosing</p>", "<p>Erring</p>", "<p>Living</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "_____ on the side of caution, the doctor decided to prescribe me some powerful antibiotics.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}, {"_class": "assessment", "id": 46237888, "assessment_type": "multiple-choice", "prompt": {"question": "<p>My joints have been so _____ for the last few days that I haven't been able to do any exercise or even just go for a stroll. </p>", "relatedLectureIds": ["31709172"], "feedbacks": ["Wrong collocation (excruciating pain)", "Stiff joints are difficult (or painful) to move", "Only your nose can be runny", "Only people can be drowsy (sleepy)", "Only people can be dizzy (when your head is spinning)"], "answers": ["<p>excruciating</p>", "<p>stiff</p>", "<p>runny</p>", "<p>drowsy</p>", "<p>dizzy</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "My joints have been so _____ for the last few days that I haven't been able to do any exercise or even just go for a stroll.", "related_lectures": [{"_class": "lecture", "id": 31709172, "title": "Health - Lesson 2", "created": "2022-04-06T17:31:38Z", "is_published": true, "asset": {"_class": "asset", "id": 40626112, "asset_type": "Video", "title": "IMG_2607.MOV", "created": "2022-04-06T17:30:18Z"}, "object_index": 10, "url": "/course/master-english-vocabulary/learn/lecture/31709172"}]}]};
+
+     let correct = new Set();
+    let incorrect = new Set();
+    let totalNumberOfQuestions = 0;
+    const quizTitle = quizData.quiz_title || "Quiz";
+    const quizDescription = quizData.quiz_description || "Please answer the questions below.";
+    const questionData = quizData.questions;
+    const passPercent = quizData.pass_percent;
+    const modalTextElement = document.getElementById("modal-text");
+    const quizContainerElement = document.getElementById("quiz-container");
+    const dialog = document.querySelector("dialog");
+    const closeButton = document.getElementById("close-modal-btn");
+    const quizTitleElement = document.getElementById("quiz-title");
+    const quizDescriptionElement = document.getElementById("quiz-description");
+
+    function main() {
+      // update quiz meta data
+      document.title = quizTitle;
+      quizTitleElement.innerHTML = quizTitle;
+      quizDescriptionElement.innerHTML = quizDescription;
+
+      const passPercentElement = document.getElementById("pass-percent");
+      passPercentElement.innerHTML = passPercent ? `${passPercent}%` : "N/A";
+      totalNumberOfQuestions = questionData.length;
+      
+      if(closeButton) {
+          closeButton.addEventListener("click", () => dialog.close());
+      }
+
+      // shuffle the questionData to randomize the order
+      for (let i = questionData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questionData[i], questionData[j]] = [questionData[j], questionData[i]];
+      }
+
+      let formattedQuestions = questionData.map(formatSingleQuestionData);
+      updateScore();
+      // display the formattedQuestions
+      formattedQuestions.forEach((question, idx) => {
+        renderSingleQuestion(question, idx + 1);
+      });
+    }
+
+    /**
+     * Formats the raw question data into a more usable structure.
+     */
+    function formatSingleQuestionData(singleQuizData = null) {
+        const { prompt, correct_response, id, assessment_type } = singleQuizData;
+        
+        const answers = prompt.answers || [];
+        // Create a detailed answer object including correctness
+        const formattedAnswers = answers.map((answerText, index) => {
+            const letter = String.fromCharCode(97 + index); // a, b, c...
+            const isCorrect = correct_response.includes(letter);
+            return {
+                text: answerText,
+                isCorrect: isCorrect
+            };
+        });
+
+        return {
+            id: id,
+            assessment_type: assessment_type,
+            question: prompt.question,
+            answers: formattedAnswers, // Use the new formatted answers
+            explanation: prompt?.explanation || "",
+            feedbacks: prompt.feedbacks
+        };
+    }
+
+    /**
+     * Renders a single question.
+     */
+    const renderSingleQuestion = (singleQuestionData = {}, rootIndex = 1) => {
+        const { id, explanation, answers, question, feedbacks, assessment_type } = singleQuestionData;
+
+        // shuffle the answers to randomize their order
+        // for (let i = answers.length - 1; i > 0; i--) {
+        //     const j = Math.floor(Math.random() * (i + 1));
+        //     [answers[i], answers[j]] = [answers[j], answers[i]];
+        // }
+        
+        const inputType = assessment_type === 'multi-select' ? 'checkbox' : 'radio';
+        const inputName = `answer_${id}`; // Unique name for each question group
+
+        const optionsHTML = answers
+            .map((option, index) => {
+                const optionId = `${id}_${index}`;
+                return `
+                <div class="question-lable">
+                    <input type="${inputType}" id="${optionId}" name="${inputName}" value="${option.text}" data-is-correct="${option.isCorrect}" />
+                    <label for="${optionId}">${option.text}</label>
+                </div>
+                `;
+            })
+            .join("");
+
+        const container = document.createElement("div");
+        container.innerHTML = `
+            <form data-question-id="${id}" class="single-question-container" onsubmit="submitButtonListener(event)">
+                <div style="display: flex;justify-content: space-between;">
+                    <p style="font-weight: 600">Question ${rootIndex}:</p>
+                    <button type="button" onclick="renderExplanation(event)" data-feedbacks='${JSON.stringify(feedbacks)}' data-explanation="${explanation}" class="explanation-btn">View Explanation</button>
+                </div>
+                <p style="margin-bottom: 8px;line-height: 1.5">${question}</p>
+                <div class="options-container">
+                    ${optionsHTML}
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="submit" class="button submit-btn">Submit</button>
+                </div>
+            </form>
+        `;
+        quizContainerElement.appendChild(container);
+    };
+
+    /**
+     * Updates the score board.
+     */
+    function updateScore() {
+        const currentPercentageElement = document.getElementById("current-score");
+        const correctAnswerElement = document.getElementById("correct-answers");
+        const wrongAnswerElement = document.getElementById("wrong-answers");
+        correctAnswerElement.innerHTML = correct.size;
+        wrongAnswerElement.innerHTML = incorrect.size;
+        if (totalNumberOfQuestions > 0) {
+            const score = Number((correct.size / totalNumberOfQuestions) * 100).toFixed(0);
+            currentPercentageElement.innerHTML = score;
+        }
+    }
+
+    /**
+    * Compares two sets for equality.
+    */
+    function setsAreEqual(setA, setB) {
+        if (setA.size !== setB.size) {
+            return false;
+        }
+        for (const item of setA) {
+            if (!setB.has(item)) {
+            return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * Handles the form submission for a single question.
+     */
+    const submitButtonListener = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const questionId = form.dataset.questionId;
+        const inputs = form.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+        
+        const userSelectedValues = new Set();
+        const actualCorrectValues = new Set();
+        let hasSelection = false;
+
+        inputs.forEach(input => {
+            if (input.checked) {
+                userSelectedValues.add(input.value);
+                hasSelection = true;
+            }
+            if (input.dataset.isCorrect === 'true') {
+                actualCorrectValues.add(input.value);
+            }
+        });
+
+        if (!hasSelection) {
+            alert("Please select an answer!");
+            return;
+        }
+
+        const isFullyCorrect = setsAreEqual(userSelectedValues, actualCorrectValues);
+
+        if (isFullyCorrect) {
+            correct.add(questionId);
+            incorrect.delete(questionId);
+        } else {
+            incorrect.add(questionId);
+            correct.delete(questionId);
+        }
+        
+        updateScore();
+
+        // Apply visual feedback and disable the form
+        form.querySelectorAll(".question-lable").forEach(labelContainer => {
+            const input = labelContainer.querySelector('input');
+            labelContainer.classList.remove("correct-answer", "incorrect-answer");
+
+            // Highlight all correct answers
+            if (input.dataset.isCorrect === 'true') {
+                labelContainer.classList.add("correct-answer");
+            } 
+            // Highlight user's incorrect selections
+            else if (input.checked && input.dataset.isCorrect === 'false') {
+                labelContainer.classList.add("incorrect-answer");
+            }
+        });
+
+      
+    };
+
+    /**
+     * Renders the explanation in a modal dialog.
+     */
+    function renderExplanation(ev) {
+        modalTextElement.innerHTML = '';
+        const explanation = ev.target.dataset?.explanation;
+        const feedbacksString = ev.target.dataset?.feedbacks;
+        let contentFound = false;
+
+        if (explanation && explanation.trim() !== "") {
+            modalTextElement.innerHTML += explanation;
+            contentFound = true;
+        }
+
+        if (feedbacksString) {
+            try {
+                const feedbacks = JSON.parse(feedbacksString);
+                feedbacks.forEach(feedback => {
+                    if (feedback && feedback.trim() !== "") {
+                        modalTextElement.innerHTML += feedback;
+                        contentFound = true;
+                    }
+                });
+            } catch (e) {
+                console.error("Error parsing feedbacks JSON:", e);
+            }
+        }
+
+        if (!contentFound) {
+            modalTextElement.innerHTML = "<p>No explanation found for this question.</p>";
+        }
+
+        dialog.showModal();
+        dialog.addEventListener("click", (event) => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        });
+    }
+  </script>
+</body>
+
+</html>
